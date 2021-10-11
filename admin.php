@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream
-=======
-<?php
-if (!isset($_COOKIE['User'])) {
-header("location: ./authorization.php");
-}
-?>
->>>>>>> Stashed changes
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,37 +23,24 @@ header("location: ./authorization.php");
 		<button class="tab-links">Портмоне</button>
 		<button class="tab-links">Брелки</button>
 	</div>
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	<!-- Tab content -->
 	<div id="Часы" class="tab-content">
 		<h3>London</h3>
 		<p>London is the capital city of England.</p>
 	</div>
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	<div id="Браслеты" class="tab-content">
 		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
 			<div class="wrapper">
 				<span class="wrapper-span">Наименование</span>
 				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
 			</div>
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 			<div class="wrapper">
 				<span class="wrapper-span">Цена</span>
 				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
 			</div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 			<div class="wrapper">
 				<span class="wrapper-span">Описание</span>
 				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
@@ -69,67 +50,36 @@ header("location: ./authorization.php");
 			<output id="list"></output>
 		</form>
 	</div>
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 	<div id="Кольца" class="tab-content">
 		<h3>Tokyo</h3>
 		<p>Tokyo is the capital of Japan.</p>
 	</div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	<div id="Подвески" class="tab-content">
 	<h3>London</h3>
 	<p>London is the capital city of England.</p>
 	</div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	<div id="Цепи" class="tab-content">
 	<h3>Paris</h3>
 	<p>Paris is the capital of France.</p>
 	</div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	<div id="Ремни" class="tab-content">
 	<h3>Tokyo</h3>
 	<p>Tokyo is the capital of Japan.</p>
 	</div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	<div id="Бритвы" class="tab-content">
 	<h3>London</h3>
 	<p>London is the capital city of England.</p>
 	</div>
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	<div id="Портмоне" class="tab-content">
 	<h3>Paris</h3>
 	<p>Paris is the capital of France.</p>
 	</div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	<div id="Брелки" class="tab-content">
 	<h3>Tokyo</h3>
 	<p>Tokyo is the capital of Japan.</p>
 	</div>
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	<script src="./js/admin.js"></script>
 	<script src="./js/filesLoader.js"></script>
 </body>

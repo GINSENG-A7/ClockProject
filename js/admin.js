@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 let tablinks = document.getElementsByClassName("tab-links");
 for (let i = 0; i < tablinks.length; i++) {
 	tablinks[i].addEventListener("click", () => {
@@ -10,11 +7,6 @@ for (let i = 0; i < tablinks.length; i++) {
 }
 
 let tabcontent = document.getElementsByClassName("tab-content");
-// for (let i = 0; i < tabcontent.length; i++) {
-// 	tabcontent[i].addEventListener("click", () => {
-// 		openTab(event, tabcontent[i].outerText);
-// 	});
-// }
 
 function openTab(event, tabName) {
 	for (let i = 0; i < tabcontent.length; i++) {
@@ -31,4 +23,4 @@ function openTab(event, tabName) {
 	// Show the current tab, and add an "active" class to the button that opened the tab
 	document.getElementById(tabName).style.display = "block";
 	event.currentTarget.className += " active";
-  }
+}
