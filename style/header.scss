@@ -1,3 +1,19 @@
+$dark: #22222b;
+$light: #faf9fe;
+.phone {
+	font-size: 15px;
+	text-decoration: none;
+	color: #000;
+	&:hover {
+		text-decoration: underline;
+		color: blue;
+	}
+}
+
+// .disappearable {
+// 	display: none;
+// }
+
 .header {
     max-width: 1000px;
     padding-left: 15px;
@@ -14,6 +30,19 @@
         }
         display: flex;
         align-items: center;
+		&-textWrapper {
+			display: flex;
+			flex-direction: column;
+			min-width: 100px;
+			margin-top: 48px;
+			white-space: nowrap;
+			span {
+				margin-bottom: 14px;
+			}
+		}
+		&-phone {
+			color: #FFF;
+		}
     }
 }
 ._pc .nav-item:hover .nav-sub {
@@ -44,7 +73,7 @@
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent ;
-    border-top: 10px solid $dark;
+    border-top: 10px solid #22222b;
     margin-top: 3px;
 }
 .nav-arrow {
@@ -89,7 +118,6 @@
          
             }
         }
-        
     }
     .header {
         &__menu {
@@ -154,7 +182,17 @@
                 position: relative;
                 padding-bottom: 10px;
                 display: block;
-        
+				
+				&-textWrapper {
+					display: flex;
+					flex-direction: column;
+					.contact-person {
+						color: #000;
+					}
+					.contact-telephone {
+						color: #000;
+					}
+				}
             }
             &-link {
                 text-decoration: none;
@@ -193,6 +231,9 @@
                     color: $dark;
                 }
             }
+			.disappearable {
+				display: block;
+			}
         }
     }
     .menu__body-activ {
@@ -228,7 +269,11 @@
         list-style-type: none;
         align-items: center;
         transition: all 0.3s ease 0s;
-            
+        
+		.disappearable{
+			display: none;
+		}
+
         &-item {
             padding-left: 20px;
             position: relative;

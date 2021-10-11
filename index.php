@@ -13,10 +13,13 @@
     <div class="wrapper">
         <header class="header">
             <div class="header__logo">
-                <img src="./img/logo.webp" alt="logo">
-                <div>
+                <a href='' style="width: fit-content;height: 50px;">
+					<img src="./img/logo.webp" alt="logo">
+				</a>
+                <div class="header__logo-textWrapper">
                     <span>K.Max.Jeweller</span>
-                    <span>( 8 905 534 09 56 (8 499 190 09 56))</span>
+                    <a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+					<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
                 </div>
             </div>
             <div class="header__menu">
@@ -49,8 +52,14 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+						<li class="nav-item disappearable">
+							<div class="nav-item-textWrapper">
+								<span class = "contact-person">K.Max.Jeweller</span>
+								<a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+								<a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+							</div>
+						</li>
                     </ul>
-                    <span class = "number">K.Max.Jeweller : (8 905 534 09 56 (8 499 190 09 56))</span>
                 </nav>
             </div>
         </header>

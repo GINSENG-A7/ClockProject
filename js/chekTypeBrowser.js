@@ -59,22 +59,22 @@ if(menuIcon) {
     })
 }
 
-if(menuLinks.length > 0 ) {
-    menuLinks.forEach(menuLink => {  
-        menuLink.addEventListener("click", onMenuLinkClick );
-    });
+// if(menuLinks.length > 0 ) {
+//     menuLinks.forEach(menuLink => {  
+//         menuLink.addEventListener("click", onMenuLinkClick );
+//     });
 
-    function onMenuLinkClick (e) {
-        const menuLink = e.target;
+//     function onMenuLinkClick (e) {
+//         const menuLink = e.target;
         
         
-        if(iconMenu.classList.contains('menu__icon-activ')) {
-            const menuBody = document.querySelector('.header__menu-body'); 
+//         if(iconMenu.classList.contains('menu__icon-activ')) {
+//             const menuBody = document.querySelector('.header__menu-body'); 
 
-            document.body.classList.remove('-lock')
-            iconMenu.classList.remove('menu__icon-activ');
-            menuBody.classList.remove('menu__body-activ');
+//             document.body.classList.remove('-lock')
+//             iconMenu.classList.remove('menu__icon-activ');
+//             menuBody.classList.remove('menu__body-activ');
         
-        }
-    }
-}
+//         }
+//     }
+// }
