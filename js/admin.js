@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 let tablinks = document.getElementsByClassName("tab-links");
 for (let i = 0; i < tablinks.length; i++) {
 	tablinks[i].addEventListener("click", () => {

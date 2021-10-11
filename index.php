@@ -16,7 +16,7 @@
                 <img src="./img/logo.webp" alt="logo">
                 <div>
                     <span>K.Max.Jeweller</span>
-                    <span>( 8-903-745-62-18 )</span>
+                    <span>( 8 905 534 09 56 (8 499 190 09 56))</span>
                 </div>
             </div>
             <div class="header__menu">
@@ -25,14 +25,36 @@
                 </div>
                 <nav class="header__menu-body">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="./shop.php?id=1">Часы</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./shop.php?id=2">Украшения</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./shop.php?id=3">Аксессуары</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./shop.php?id=4">Контакты</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./shop.php?id=1">Часы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./shop.php?id=2">Украшения</a>
+                            <span class="nav-arrow"></span>
+                            <ul class="nav-sub">
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Браслеты</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Кольца</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Подвески</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Цепи</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./shop.php?id=3">Аксессуары</a>
+                            <span class="nav-arrow"></span>
+                            <ul class="nav-sub">
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Ремни</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Бритвы</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Портионэ</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Брелки</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
                     </ul>
+                    <span class = "number">K.Max.Jeweller : (8 905 534 09 56 (8 499 190 09 56))</span>
                 </nav>
             </div>
         </header>
+
     </div>
     <section class="section-auto-slider">
         <div class="slider">
@@ -56,19 +78,21 @@
             <div class="card">
                 <?php for($i = 0 ; $i<10;$i++) { ?>
                     <div class="card__item">
-                        <div class="card__img">
-                            <div class = "img">
+                        <a href="./descripshen.php">
+                            <div class="card__img">
+                                <div class = "img">
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="card__decription">
-                            <div class="card__title">
-                                Часы "TSUNAMI"
+                            <div class="card__decription">
+                                <div class="card__title">
+                                    Часы "TSUNAMI"
+                                </div>
+                                <div class="card__price">
+                                    110(000),00₽
+                                </div>
                             </div>
-                            <div class="card__price">
-                                110 000,00 ₽
-                            </div>
-                        </div>
+                        </a>
                         <div class="card__btn">
                             <a href="./descripshen.php">Подробнее...</a>
                         </div>
@@ -94,7 +118,7 @@
     </section>
     <hr/>
     <section class="section-form">  
-        <div class="wrapper">
+        <div class="wrapper .fields .note">
             <h2  class="title-h2 text-center" >Контакты</h2>
             <p class="after-title text-center">У вас остались вопросы? Отправьте нам сообщение!</p>
             <div class="back-font">
@@ -126,5 +150,7 @@
     <script src="./js/jquery.js"></script>
     <script src="./js/slick.min.js"></script>
     <script src="./js/customizationSliderSlick.js"></script>
+    <script src = "./js/chekTypeBrowser.js"></script>
+    <script src = "./contactform.js"></script>
 </body>
 </html>

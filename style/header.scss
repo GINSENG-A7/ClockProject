@@ -1,55 +1,82 @@
 .header {
+    max-width: 1000px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
     display: flex;
+    color: rgb(255, 255, 255);
     justify-content: space-between;
+    align-items: center;
     &__logo {
-        color: lavender;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         img {
-            width: 80px;
-            height: 80px;
-            display: block;
+            height: 50px;
+            height: 50px;
         }
-
-        @media  (max-width: 767px) {
-            div {
-                span:last-child {
-                    display: none;
-                }
-            }
-        }
-
+        display: flex;
+        align-items: center;
     }
-    &__menu {
-        &-body {
-            height: 100%;
-        }
-    }
-    .nav {
-        height: 100%;
-        margin: 0;
-        padding: 0;
+}
+._pc .nav-item:hover .nav-sub {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
 
-        &-link {
-            color: lightcyan;
-        }
+._touch .nav-item {
+    display: flex;
+    align-items: center;
+    .nav-link {
+        margin-right: 5px;
     }
+}
+._touch ._activ-nav__Mobail .nav-sub {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+._touch ._activ-nav__Mobail .nav-arrow {
+   transform: rotate(180deg);
+}
+
+._touch .nav-arrow {
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent ;
+    border-top: 10px solid $dark;
+    margin-top: 3px;
+}
+.nav-arrow {
+    display: none;
+    transition: all 0.3s ease 0s;
+}
+.-lock {
+    overflow: hidden;
 }
 
 @media (max-width: 767px) {
-
+    .header {
+        &__logo {
+           div {
+               span:last-child {
+                   display: none;
+               }
+           }
+        }
+    }
     .nav {
         list-style-type: none;
         
         &-item {
             padding-left: 20px;
             position: relative;
+            padding-bottom: 10px;
     
         }
         &-link {
             text-decoration: none;
-            color: $light;
+            color: rgb(255, 255, 255);
             font-size: 24px;
            
         }
@@ -57,7 +84,7 @@
             list-style-type: none;
             &__link {
                 text-decoration: none;
-                color: $light;
+                color: rgb(255, 255, 255);
                 font-size: 24px;
          
             }
@@ -65,7 +92,6 @@
         
     }
     .header {
-        align-items: center;
         &__menu {
             &-icon {
                 z-index: 8;
@@ -82,7 +108,7 @@
                     height: 10%;
                     width: 100%;
                     transition: all 0.3s ease 0s;
-                    background-color: rgb(255, 255, 255);
+                    background-color: #1072ff;
         
                 }
 
@@ -110,24 +136,62 @@
                 width: 100%;
                 background-color: rgba(255, 255, 255, 0.904);
                 position: absolute;
-                //padding: 100px 30px 30px 30px;
+                padding: 100px 30px 30px 30px;
                 box-sizing: border-box;
                 transition: left 0.3s ease 0s;
                 z-index: 6;
                 overflow: auto;
             }
         }
+        .menu__body-activ .nav-arrow {
+            display: none;
+        }
         .nav {
             list-style-type: none;   
+            
             &-item {
                 
                 position: relative;
-                //padding-bottom: 10px;
+                padding-bottom: 10px;
+                display: block;
         
             }
             &-link {
                 text-decoration: none;
                 color: $dark;
+            }
+            &-sub {
+                position:relative;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                margin-left: 20px;
+              
+            
+                padding: 15px;
+                right: 0;
+
+                opacity: 1 !important;
+                visibility: inherit;
+                transition: all 0.3s ease 0s;
+                pointer-events: none;
+                z-index: 5;
+                position: initial;
+        
+                &__item {
+                    
+                    margin: 0 0 10px 0;
+                   
+                    &:last-child {
+                    
+                        margin: 0 0 0 0;
+                    }
+                }
+        
+                &__link {
+                    text-decoration: none;
+                    color: $dark;
+                }
             }
         }
     }
@@ -157,23 +221,83 @@
     .header {
         transition: all 0.3s ease 0s;
     }
+
+    
     .nav {
         display: flex;
         list-style-type: none;
         align-items: center;
+        transition: all 0.3s ease 0s;
+            
         &-item {
             padding-left: 20px;
             position: relative;
+            padding-bottom: 10px;
+    
         }
         &-link {
             text-decoration: none;
-            color: $dark;
+            color: rgb(255, 255, 255);
             border-bottom: 1px solid transparent;
             transition: 0.4s;
             &:hover {
-                border-bottom: 1px solid lightcyan;
+                border-bottom: 1px solid rgb(255, 255, 255);
                 transition: 0.4s;
             }
         }
+        &-sub {
+            position: absolute;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            z-index: 5;
+            top: 100%;
+            background-color: $dark;
+            min-width: 200px;
+            padding: 15px;
+            right: 0;
+    
+            transform: translate(0, 0%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease 0s;
+            pointer-events: none;
+            
+    
+            &__item {
+                
+                margin: 0 0 10px 0;
+               
+                &:last-child {
+                
+                    margin: 0 0 0px 0;
+                }
+            }
+    
+            &__link {
+                text-decoration: none;
+                color: $light;
+    
+                border-bottom: 2px solid transparent;
+                transition: 0.4s;
+                &:hover {
+                    border-bottom: 2px solid rgb(255, 255, 255);
+                    transition: 0.4s;
+                }
+            }
+        }
     }
+}
+.MenuBurger {
+    background-color: azure;
+    width: 70%;
+    height: 100%;
+    position: absolute;
+    position: fixed;
+    z-index: 250;
+    right: 0;
+    top: 140px;
+}
+._lock {
+    overflow: hidden !important;
 }

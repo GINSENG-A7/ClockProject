@@ -7,10 +7,22 @@
     <link href="./style/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="./img/logo.webp" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAACHCJdlgAEGcD_flKUFEmVhT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTeukKcKHF3ezmjTB0q6gzSBmoIUQ&sensor=true_or_false"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+ 
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(56.32811,44.0), 10);
+      }
+    }
+ 
+    </script>
     <title>K.Max.Jeweller</title>
 </head>
-<body>
-<div class="wrapper">
+<body onload="initialize()" onunload="GUnload()">
+    <div class="wrapper">
         <header class="header">
             <div class="header__logo">
                 <img src="./img/logo.webp" alt="logo">
@@ -25,9 +37,6 @@
                 </div>
                 <nav class="header__menu-body">
                     <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./index.php">Главная</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./shop.php?id=1">Часы</a>
                         </li>
@@ -51,44 +60,30 @@
                                 <li class="nav-sub__item"><a class="nav-sub__link" href="">Брелки</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./index.php">Главная</a></li>
                     </ul>
-                    <span class = "number">K.Max.Jeweller : (8 905 534 09 56 (8 499 190 09 56))</span>
                 </nav>
             </div>
         </header>
 
     </div>
     <hr/>
-    <section class="section-about">
-        <div class="wrapper">
-            <h2  class="title-h2 text-center" >Список товаров</h2>
-            <div class="card">
-                <?php for($i = 0 ; $i<10;$i++) { ?>
-                    <div class="card__item">
-                        <a href="./descripshen.php">
-                            <div class="card__img">
-                                <div class = "img">
-
-                                </div>
-                            </div>
-                            <div class="card__decription">
-                                <div class="card__title">
-                                    Часы "TSUNAMI"
-                                </div>
-                                <div class="card__price">
-                                    110(000),00₽
-                                </div>
-                            </div>
-                        </a>
-                        <div class="card__btn">
-                            <a href="./descripshen.php">Подробнее...</a>
-                        </div>
-                    </div>
-                <?php  } ?>
+    <section class="section-form">  
+        <div class="wrapper .fields .note">
+            <h2  class="title-h2 text-center" >Контакты</h2>
+            <p class="after-title text-center">У вас остались вопросы? Отправьте нам сообщение!</p>
+            <div class="back-font">
+                <form action="" class="from" method="post">
+                    <input class="from__input" type="text" name="name"  placeholder="Имя" value="">
+                    <input class="from__input" type="email" name="email" placeholder="Email" value="">
+                    <input class="from__input" type="tel" name="email" placeholder="Номер телефона" value="">
+                    <textarea class="from__textarea"  name="message"   placeholder="Сообщение"></textarea>
+                    <button class="from__button"  type="submit">Отправить</button>
+                </form>
             </div>
         </div>
     </section>
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
     <footer>
         <div class="wrapper"></div>
             <div class="footer">
@@ -108,5 +103,6 @@
     <script src="./js/slick.min.js"></script>
     <script src="./js/customizationSliderSlick.js"></script>
     <script src = "./js/chekTypeBrowser.js"></script>
+    <script src = "./contactform.js"></script>
 </body>
 </html>

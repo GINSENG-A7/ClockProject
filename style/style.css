@@ -58,6 +58,9 @@ body {
 }
 
 /* Слайд */
+.slick-slide {
+  z-index: 1 !important; }
+
 /* Слайд активный (показывается) */
 /* Слайд основной */
 /* Слайд по центру */
@@ -73,6 +76,7 @@ body {
   height: calc(350px  + 50 * ((100vw - 320px) / (780)));
   width: 100%;
   /* Активная точка */
+<<<<<<< Updated upstream
   /* Элемент точки */
 }
 
@@ -150,6 +154,67 @@ body {
   border-radius: 100%;
   position: relative;
 }
+=======
+  /* Элемент точки */ }
+  .section-auto-slider .slider {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-transition: all 2s;
+    transition: all 2s; }
+    .section-auto-slider .slider__item {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      z-index: 1 !important; }
+    .section-auto-slider .slider__item img {
+      width: 100%;
+      height: calc(300px  + 100 * ((100vw - 320px) / (780)));
+      background-position: center;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      background-repeat: no-repeat;
+      background-size: cover;
+      -o-object-fit: cover;
+         object-fit: cover;
+      -webkit-animation: showImage .8s .5s forwards, scaleImage .5s .5s forwards;
+              animation: showImage .8s .5s forwards, scaleImage .5s .5s forwards; }
+  .section-auto-slider .slick-slide {
+    overflow: hidden;
+    width: 100%; }
+  .section-auto-slider .slick-dots {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+  .section-auto-slider .slick-dots li {
+    list-style-type: none;
+    margin: 0 10px; }
+  .section-auto-slider .slick-dots li.slick-active button {
+    border-radius: 100%;
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+    border: 2px solid;
+    border-color: #1072ff; }
+  .section-auto-slider .index-link {
+    -webkit-animation: anim-link 8s 0s ease;
+            animation: anim-link 8s 0s ease;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards; }
+  .section-auto-slider .slick-dots li button {
+    font-size: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    position: relative; }
+>>>>>>> Stashed changes
 
 .sectionAdvertisingSlider {
   margin-top: 50px;
@@ -401,12 +466,18 @@ body {
 }
 
 .header {
+  max-width: 1000px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: white;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+<<<<<<< Updated upstream
 }
 
 .header__logo {
@@ -474,12 +545,91 @@ body {
         -ms-flex-align: center;
             align-items: center;
   }
+=======
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .header__logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .header__logo img {
+      height: 50px;
+      height: 50px; }
+
+._pc .nav-item:hover .nav-sub {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all; }
+
+._touch .nav-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  ._touch .nav-item .nav-link {
+    margin-right: 5px; }
+
+._touch ._activ-nav__Mobail .nav-sub {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all; }
+
+._touch ._activ-nav__Mobail .nav-arrow {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg); }
+
+._touch .nav-arrow {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #22222b;
+  margin-top: 3px; }
+
+.nav-arrow {
+  display: none;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; }
+
+.-lock {
+  overflow: hidden; }
+
+@media (max-width: 767px) {
+  .header__logo div span:last-child {
+    display: none; }
+
+  .nav {
+    list-style-type: none; }
+    .nav-item {
+      padding-left: 20px;
+      position: relative;
+      padding-bottom: 10px; }
+    .nav-link {
+      text-decoration: none;
+      color: white;
+      font-size: 24px; }
+    .nav-sub {
+      list-style-type: none; }
+      .nav-sub__link {
+        text-decoration: none;
+        color: white;
+        font-size: 24px; }
+
+>>>>>>> Stashed changes
   .header__menu-icon {
     z-index: 8;
     display: block;
     position: relative;
     width: 30px;
     height: 18px;
+<<<<<<< Updated upstream
     cursor: pointer;
   }
   .header__menu-icon::before, .header__menu-icon::after, .header__menu-icon span {
@@ -508,6 +658,29 @@ body {
   .header__menu-icon -activ {
     left: 0;
   }
+=======
+    cursor: pointer; }
+    .header__menu-icon::before, .header__menu-icon::after, .header__menu-icon span {
+      left: 0;
+      position: absolute;
+      height: 10%;
+      width: 100%;
+      -webkit-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      background-color: #1072ff; }
+    .header__menu-icon::before, .header__menu-icon::after {
+      content: ""; }
+    .header__menu-icon::before {
+      top: 0; }
+    .header__menu-icon::after {
+      bottom: 0; }
+    .header__menu-icon span {
+      top: 50%;
+      -webkit-transform: scale(1) translate(0px, -50%);
+              transform: scale(1) translate(0px, -50%); }
+    .header__menu-icon -activ {
+      left: 0; }
+>>>>>>> Stashed changes
   .header__menu-body {
     top: 0;
     left: -100%;
@@ -515,11 +688,16 @@ body {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.904);
     position: absolute;
+<<<<<<< Updated upstream
+=======
+    padding: 100px 30px 30px 30px;
+>>>>>>> Stashed changes
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     -webkit-transition: left 0.3s ease 0s;
     transition: left 0.3s ease 0s;
     z-index: 6;
+<<<<<<< Updated upstream
     overflow: auto;
   }
   .header .nav {
@@ -532,6 +710,43 @@ body {
     text-decoration: none;
     color: #22222b;
   }
+=======
+    overflow: auto; }
+  .header .menu__body-activ .nav-arrow {
+    display: none; }
+  .header .nav {
+    list-style-type: none; }
+    .header .nav-item {
+      position: relative;
+      padding-bottom: 10px;
+      display: block; }
+    .header .nav-link {
+      text-decoration: none;
+      color: #22222b; }
+    .header .nav-sub {
+      position: relative;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      margin-left: 20px;
+      padding: 15px;
+      right: 0;
+      opacity: 1 !important;
+      visibility: inherit;
+      -webkit-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      pointer-events: none;
+      z-index: 5;
+      position: initial; }
+      .header .nav-sub__item {
+        margin: 0 0 10px 0; }
+        .header .nav-sub__item:last-child {
+          margin: 0 0 0 0; }
+      .header .nav-sub__link {
+        text-decoration: none;
+        color: #22222b; }
+
+>>>>>>> Stashed changes
   .menu__body-activ {
     left: 0 !important;
   }
@@ -567,6 +782,7 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+<<<<<<< Updated upstream
   }
   .nav-item {
     padding-left: 20px;
@@ -585,6 +801,68 @@ body {
     transition: 0.4s;
   }
 }
+=======
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; }
+    .nav-item {
+      padding-left: 20px;
+      position: relative;
+      padding-bottom: 10px; }
+    .nav-link {
+      text-decoration: none;
+      color: white;
+      border-bottom: 1px solid transparent;
+      -webkit-transition: 0.4s;
+      transition: 0.4s; }
+      .nav-link:hover {
+        border-bottom: 1px solid white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s; }
+    .nav-sub {
+      position: absolute;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      z-index: 5;
+      top: 100%;
+      background-color: #22222b;
+      min-width: 200px;
+      padding: 15px;
+      right: 0;
+      -webkit-transform: translate(0, 0%);
+              transform: translate(0, 0%);
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      pointer-events: none; }
+      .nav-sub__item {
+        margin: 0 0 10px 0; }
+        .nav-sub__item:last-child {
+          margin: 0 0 0px 0; }
+      .nav-sub__link {
+        text-decoration: none;
+        color: #faf9fe;
+        border-bottom: 2px solid transparent;
+        -webkit-transition: 0.4s;
+        transition: 0.4s; }
+        .nav-sub__link:hover {
+          border-bottom: 2px solid white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s; } }
+.MenuBurger {
+  background-color: azure;
+  width: 70%;
+  height: 100%;
+  position: absolute;
+  position: fixed;
+  z-index: 250;
+  right: 0;
+  top: 140px; }
+
+._lock {
+  overflow: hidden !important; }
+>>>>>>> Stashed changes
 
 .sectionAdvertisingSlider .card {
   background-color: lightgreen;
@@ -877,8 +1155,52 @@ body {
   background-color: pink;
 }
 
+<<<<<<< Updated upstream
 .decription__text {
   max-width: 300px;
   margin: 10px;
 }
+=======
+@media (max-width: 428px) {
+  ._touch .section-about .card__item {
+    grid-template: auto 1fr minmax(0px, auto)/1fr;
+    background-color: #222222; }
+    ._touch .section-about .card__item a {
+      text-decoration: none !important; }
+    ._touch .section-about .card__item .card__btn {
+      display: none; }
+    ._touch .section-about .card__item .card__decription {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      font-size: calc(18px  + 7 * ((100vw - 320px) / (780)));
+      margin: 15px; }
+  ._touch .section-about .card__img .img {
+    width: 97%;
+    margin: 5px; } }
+@media (min-width: 428px) {
+  ._touch .section-about .card__item {
+    grid-template: auto 1fr minmax(40px, auto)/1fr;
+    background-color: #222222; }
+    ._touch .section-about .card__item a {
+      text-decoration: none !important; }
+    ._touch .section-about .card__item .card__btn {
+      display: none; }
+    ._touch .section-about .card__item .card__decription {
+      margin: 15px; }
+  ._touch .section-about .card__img .img {
+    width: 97%;
+    margin: 5px; } }
+
+.number {
+  display: none; }
+
+.number-activ {
+  display: block;
+  color: #222222; }
+
+>>>>>>> Stashed changes
 /*# sourceMappingURL=style.css.map */
