@@ -559,6 +559,29 @@ body {
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     background-color: #1072ff;
+    opacity: 1;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-name: burger-emerge;
+            animation-name: burger-emerge;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+  }
+  @-webkit-keyframes burger-emerge {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes burger-emerge {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   .header__menu-icon::before, .header__menu-icon::after {
     content: "";
@@ -587,8 +610,6 @@ body {
     padding: 100px 30px 30px 30px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    -webkit-transition: left 0.3s ease 0s;
-    transition: left 0.3s ease 0s;
     z-index: 6;
     overflow: auto;
   }
@@ -597,6 +618,28 @@ body {
   }
   .header .nav {
     list-style-type: none;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-name: nav-dissapear;
+            animation-name: nav-dissapear;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+  }
+  @-webkit-keyframes nav-dissapear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes nav-dissapear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
   .header .nav-item {
     position: relative;
@@ -632,8 +675,6 @@ body {
     right: 0;
     opacity: 1 !important;
     visibility: inherit;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
     pointer-events: none;
     z-index: 5;
     position: initial;
@@ -674,9 +715,29 @@ body {
 }
 
 @media (min-width: 767px) {
-  .header {
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+  .header__menu-icon {
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-name: burger-dissapear;
+            animation-name: burger-dissapear;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+  }
+  @-webkit-keyframes burger-dissapear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes burger-dissapear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
   .nav {
     display: -webkit-box;
@@ -686,8 +747,28 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-name: nav-emerge;
+            animation-name: nav-emerge;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+  }
+  @-webkit-keyframes nav-emerge {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes nav-emerge {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   .nav .disappearable {
     display: none;
@@ -701,13 +782,9 @@ body {
     text-decoration: none;
     color: white;
     border-bottom: 1px solid transparent;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
   }
   .nav-link:hover {
     border-bottom: 1px solid white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
   }
   .nav-sub {
     position: absolute;
@@ -724,8 +801,6 @@ body {
             transform: translate(0, 0%);
     opacity: 0;
     visibility: hidden;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
     pointer-events: none;
   }
   .nav-sub__item {
