@@ -1,4 +1,6 @@
+<?include "./connection_script.php"?>
 <?php
+	$tempFilesPathArray = array();
 	if(isset($_FILES)){
 		try {
 			for ($i=0; $i < count($_FILES['files']['name']); $i++) {
@@ -64,6 +66,7 @@
 				// if(in_array($file_extension,$valid_ext)) {
 					// Upload file
 					if(move_uploaded_file($_FILES['files']['tmp_name'][$i], SITE_ROOT.$location)){
+						$tempFilesPathArray[$i] = $location; //copy files paths to array
 						$response = 1;
 					}
 					else {
@@ -73,6 +76,22 @@
 	
 				echo $response;
 			}
+			
+			//inserting entryes in tables IMAGES & ENTRYES
+
+			$sectionsArray = SelectAllSections($conn);
+			print_r($POST); //POST IS EMPTY!
+
+			for ($i = 0; $i < count($sectionsArray); $i++) {
+				if($POST['tab-id'] == $sectionsArray[$i]) {
+					AddNewEntry($conn, $POST['title'], $POST['body'], $POST['price'], $sectionsArray[$i]);				
+					for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
+						AddNewImages($conn, $tempFilesPathArray[$j], mysqli_insert_id($conn));
+					}
+				}
+			}
+			
+
 			exit;
 			
 		}
