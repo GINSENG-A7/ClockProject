@@ -1,5 +1,4 @@
-
-
+<?include "./connection_script.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,14 +20,34 @@
 		<button class="tab-links">Ремни</button>
 		<button class="tab-links">Бритвы</button>
 		<button class="tab-links">Портмоне</button>
-		<button class="tab-links">Брелки</button>
+		<button class="tab-links">Брелоки</button>
 	</div>
 
 	<!-- Tab content -->
 	<div id="Часы" class="tab-content">
-		<h3>London</h3>
-		<p>London is the capital city of England.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Часы"> 
+			<output id="list"></output>
+		</form>
 	</div>
+
+	<!-- <?php for($i = 0 ; $i < count($sectionsArray); $i++) { ?>
+	<?php }?> -->
 
 	<div id="Браслеты" class="tab-content">
 		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
@@ -47,37 +66,157 @@
 			</div>
 			<input type="submit" value='Загрузить' name="submit">
 			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Браслеты"> 
 			<output id="list"></output>
 		</form>
 	</div>
 	<div id="Кольца" class="tab-content">
-		<h3>Tokyo</h3>
-		<p>Tokyo is the capital of Japan.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Кольца"> 
+			<output id="list"></output>
+		</form>
 	</div>
 	<div id="Подвески" class="tab-content">
-	<h3>London</h3>
-	<p>London is the capital city of England.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Подвески"> 
+			<output id="list"></output>
+		</form>
 	</div>
 	<div id="Цепи" class="tab-content">
-	<h3>Paris</h3>
-	<p>Paris is the capital of France.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Цепи"> 
+			<output id="list"></output>
+		</form>
 	</div>
 	<div id="Ремни" class="tab-content">
-	<h3>Tokyo</h3>
-	<p>Tokyo is the capital of Japan.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Ремни"> 
+			<output id="list"></output>
+		</form>
 	</div>
 	<div id="Бритвы" class="tab-content">
-	<h3>London</h3>
-	<p>London is the capital city of England.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Бритвы"> 
+			<output id="list"></output>
+		</form>
 	</div>
 
 	<div id="Портмоне" class="tab-content">
-	<h3>Paris</h3>
-	<p>Paris is the capital of France.</p>
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Портмоне"> 
+			<output id="list"></output>
+		</form>
 	</div>
-	<div id="Брелки" class="tab-content">
-	<h3>Tokyo</h3>
-	<p>Tokyo is the capital of Japan.</p>
+	<div id="Брелоки" class="tab-content">
+		<form method="POST" action="fileLoader.php" class="tab-content-addingNewEntry" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+			</div>
+
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input type="submit" value='Загрузить' name="submit">
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input type="hidden" name="tab-id" value="Портмоне"> 
+			<output id="list"></output>
+		</form>
 	</div>
 
 	<script src="./js/admin.js"></script>

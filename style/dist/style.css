@@ -413,6 +413,18 @@ body {
     width: 100%;
     transition: all 0.3s ease 0s;
     background-color: #1072ff;
+    opacity: 1;
+    animation-duration: 1s;
+    animation-name: burger-emerge;
+    animation-iteration-count: 1;
+  }
+  @keyframes burger-emerge {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   .header__menu-icon::before, .header__menu-icon::after {
     content: "";
@@ -439,7 +451,6 @@ body {
     position: absolute;
     padding: 100px 30px 30px 30px;
     box-sizing: border-box;
-    transition: left 0.3s ease 0s;
     z-index: 6;
     overflow: auto;
   }
@@ -448,6 +459,17 @@ body {
   }
   .header .nav {
     list-style-type: none;
+    animation-duration: 1s;
+    animation-name: nav-dissapear;
+    animation-iteration-count: 1;
+  }
+  @keyframes nav-dissapear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
   .header .nav-item {
     position: relative;
@@ -478,7 +500,6 @@ body {
     right: 0;
     opacity: 1 !important;
     visibility: inherit;
-    transition: all 0.3s ease 0s;
     pointer-events: none;
     z-index: 5;
     position: initial;
@@ -517,15 +538,35 @@ body {
   }
 }
 @media (min-width: 767px) {
-  .header {
-    transition: all 0.3s ease 0s;
+  .header__menu-icon {
+    animation-duration: 1s;
+    animation-name: burger-dissapear;
+    animation-iteration-count: 1;
+  }
+  @keyframes burger-dissapear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 
   .nav {
     display: flex;
     list-style-type: none;
     align-items: center;
-    transition: all 0.3s ease 0s;
+    animation-duration: 1s;
+    animation-name: nav-emerge;
+    animation-iteration-count: 1;
+  }
+  @keyframes nav-emerge {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   .nav .disappearable {
     display: none;
@@ -539,11 +580,9 @@ body {
     text-decoration: none;
     color: white;
     border-bottom: 1px solid transparent;
-    transition: 0.4s;
   }
   .nav-link:hover {
     border-bottom: 1px solid white;
-    transition: 0.4s;
   }
   .nav-sub {
     position: absolute;
@@ -559,7 +598,6 @@ body {
     transform: translate(0, 0%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease 0s;
     pointer-events: none;
   }
   .nav-sub__item {
