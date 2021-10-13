@@ -366,3 +366,10 @@ body {
     display: block;
     color: #222222;
 }
+
+//remove phones from mobile version
+._touch  {
+	.phone { 
+		display :none !important;
+	}	
+} 

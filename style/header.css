@@ -33,11 +33,23 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
-.header__logo img {
-  height: 50px;
-  height: 50px;
+.header__logo-linkWrapper {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+.header__logo-linkWrapper img {
+  height: 90px;
+  width: auto;
 }
 
 .header__logo-textWrapper {
@@ -49,12 +61,25 @@
       -ms-flex-direction: column;
           flex-direction: column;
   min-width: 100px;
-  margin-top: 48px;
+  margin-top: 0;
   white-space: nowrap;
 }
 
 .header__logo-textWrapper span {
+  margin-top: 4px;
+  font-size: 40px;
   margin-bottom: 14px;
+}
+
+.header__logo-textWrapper-phonesWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
 }
 
 .header__logo-phone {
@@ -109,6 +134,17 @@
 
 .-lock {
   overflow: hidden;
+}
+
+@media (max-width: 447px) {
+  .header__logo-textWrapper span {
+    margin-top: 4px;
+    font-size: 8.9vw;
+    margin-bottom: 14px;
+  }
+  .header__logo-phone {
+    font-size: 3.36vw;
+  }
 }
 
 @media (max-width: 767px) {
