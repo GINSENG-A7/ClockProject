@@ -13,13 +13,15 @@
     <div class="wrapper">
         <header class="header">
             <div class="header__logo">
-                <a href='' style="width: fit-content;height: 50px;">
+                <a href='' class="header__logo-linkWrapper">
 					<img src="./img/logo.webp" alt="logo">
 				</a>
                 <div class="header__logo-textWrapper">
                     <span>K.Max.Jeweller</span>
-                    <a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
-					<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+					<div class="header__logo-textWrapper-phonesWrapper">
+						<a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+						<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+					</div>
                 </div>
             </div>
             <div class="header__menu">
@@ -47,7 +49,7 @@
                             <ul class="nav-sub">
                                 <li class="nav-sub__item"><a class="nav-sub__link" href="">Ремни</a></li>
                                 <li class="nav-sub__item"><a class="nav-sub__link" href="">Бритвы</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Портионэ</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Портмоне</a></li>
                                 <li class="nav-sub__item"><a class="nav-sub__link" href="">Брелки</a></li>
                             </ul>
                         </li>
