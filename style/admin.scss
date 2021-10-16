@@ -36,21 +36,26 @@ body {
   
   /* Style the tab content */
   &-content {
-	display: none;
+	// display: none;
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;
+	
+	input {
+		min-width: 117px;
+		margin-left: calc(100% - (117px + 1px));
+		margin-bottom: 10px;
+	}
+
+	&-button {
+		
+	}
 
 	&-addingNewEntry {
 		textarea {
 		  resize: none;
 		  margin-top: 0px;
 
-		}
-		input {
-			min-width: 117px;
-			margin-left: calc(100% - (117px + 1px));
-			margin-bottom: 10px;
 		}
 		.wrapper {
 			display: flex;

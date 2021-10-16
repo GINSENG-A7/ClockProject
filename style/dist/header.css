@@ -234,7 +234,6 @@
     right: 0;
     opacity: 1 !important;
     visibility: inherit;
-    pointer-events: none;
     z-index: 5;
     position: initial;
   }
@@ -332,7 +331,6 @@
     transform: translate(0, 0%);
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
   }
   .nav-sub__item {
     margin: 0 0 10px 0;

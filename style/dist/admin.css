@@ -32,19 +32,18 @@ body {
   background-color: #ccc;
 }
 .tab-content {
-  display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
 }
-.tab-content-addingNewEntry textarea {
-  resize: none;
-  margin-top: 0px;
-}
-.tab-content-addingNewEntry input {
+.tab-content input {
   min-width: 117px;
   margin-left: calc(100% - (117px + 1px));
   margin-bottom: 10px;
+}
+.tab-content-addingNewEntry textarea {
+  resize: none;
+  margin-top: 0px;
 }
 .tab-content-addingNewEntry .wrapper {
   display: flex;
