@@ -81,6 +81,15 @@
 
 			$sectionsArray = SelectAllSections($conn);
 			print_r($POST); //POST IS EMPTY!
+			if(isset($_POST['Title'])){
+				echo($_POST["Title"]);
+			}
+			if(isset($_POST['Price'])){
+				echo($_POST["Price"]);
+			}
+			if(isset($_POST['Body'])){
+				echo($_POST["Body"]);
+			}
 
 			for ($i = 0; $i < count($sectionsArray); $i++) {
 				if($POST['tab-id'] == $sectionsArray[$i]) {

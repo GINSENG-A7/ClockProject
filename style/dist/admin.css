@@ -32,6 +32,7 @@ body {
   background-color: #ccc;
 }
 .tab-content {
+  display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -41,27 +42,27 @@ body {
   margin-left: calc(100% - (117px + 1px));
   margin-bottom: 10px;
 }
-.tab-content-addingNewEntry textarea {
+.tab-content textarea {
   resize: none;
   margin-top: 0px;
 }
-.tab-content-addingNewEntry .wrapper {
+.tab-content .wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 10px 0px;
   width: 100%;
 }
-.tab-content-addingNewEntry .wrapper span {
+.tab-content .wrapper span {
   min-width: 119px;
 }
-.tab-content-addingNewEntry .wrapper-title {
+.tab-content .wrapper-title {
   width: 100%;
 }
-.tab-content-addingNewEntry .wrapper-body {
+.tab-content .wrapper-body {
   resize: vertical !important;
   width: 100%;
 }
-.tab-content-addingNewEntry .wrapper-price {
+.tab-content .wrapper-price {
   width: 100%;
 }

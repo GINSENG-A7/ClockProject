@@ -37,6 +37,7 @@ body {
 }
 
 .tab-content {
+  display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -48,12 +49,12 @@ body {
   margin-bottom: 10px;
 }
 
-.tab-content-addingNewEntry textarea {
+.tab-content textarea {
   resize: none;
   margin-top: 0px;
 }
 
-.tab-content-addingNewEntry .wrapper {
+.tab-content .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -68,20 +69,20 @@ body {
   width: 100%;
 }
 
-.tab-content-addingNewEntry .wrapper span {
+.tab-content .wrapper span {
   min-width: 119px;
 }
 
-.tab-content-addingNewEntry .wrapper-title {
+.tab-content .wrapper-title {
   width: 100%;
 }
 
-.tab-content-addingNewEntry .wrapper-body {
+.tab-content .wrapper-body {
   resize: vertical !important;
   width: 100%;
 }
 
-.tab-content-addingNewEntry .wrapper-price {
+.tab-content .wrapper-price {
   width: 100%;
 }
 /*# sourceMappingURL=admin.css.map */

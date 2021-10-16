@@ -25,36 +25,47 @@
 
 	<!-- Tab content -->
 	<div id="Часы" class="tab-content">
-		<form id="textForm-1" method="POST" action="./textDataLoader.php" class="tab-content-addingNewEntry">
-			<!-- <div class="wrapper">
+		<!-- <form id="textForm-1" method="POST" action="textDataLoader.php" class="tab-content-addingNewEntry">
+			<div class="wrapper">
 				<span class="wrapper-span">Наименование</span>
-				<textarea class="wrapper-title" name="title" id="title" cols="30" rows="1"></textarea>
+				<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"></textarea>
 			</div>
 			
 			<div class="wrapper">
 				<span class="wrapper-span">Цена</span>
-				<textarea class="wrapper-price" name="price" id="price" cols="30" rows="1"></textarea>
+				<textarea class="wrapper-price" name="Price" id="price" cols="30" rows="1"></textarea>
 			</div>
 			<div class="wrapper">
 				<span class="wrapper-span">Описание</span>
-				<textarea class="wrapper-body" name="body" id="body" cols="30" rows="1"></textarea>
-			</div> -->
-			<!-- <input id="textData_input-1" type="submit" name="post-submit" style="display: none;"> -->
-			<input type="text" name="textInput" value="ghdtjdghjdtj">
-			<input type="submit" name="submitInput" value="xyi">
-		</form>
-		<!-- <form id="fileForm-1" method="POST" action="fileLoader.php" enctype="multipart/form-data">
-			<button id="loadDataButton-1" class="tab-content-button"></button>
-			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
-			<input type="hidden" name="tab-id" value="Часы"> 
-			<output id="list"></output>
+				<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<input id="textData_input-1" type="submit" name="post-submit" style="display: none;">
 		</form> -->
+		<form id="fileForm-1" method="POST" action="fileLoader.php" enctype="multipart/form-data">
+			<div class="wrapper">
+				<span class="wrapper-span">Наименование</span>
+				<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"></textarea>
+			</div>
+			
+			<div class="wrapper">
+				<span class="wrapper-span">Цена</span>
+				<textarea class="wrapper-price" name="Price" id="price" cols="30" rows="1"></textarea>
+			</div>
+			<div class="wrapper">
+				<span class="wrapper-span">Описание</span>
+				<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"></textarea>
+			</div>
+			<!-- <input id="files_input-1" type="submit" value='Загрузить' name="submit"> -->
+			<!-- <button id="loadDataButton-1" class="tab-content-button"></button> -->
+			<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+			<input id="data_input-1" type="submit" name="Post-submit" value="Добавить">
+			<input type="hidden" name="Tab-id" value="Часы"> 
+			<output id="list"></output>
+		</form>
 	</div>
 
-	<!-- <?php for($i = 0 ; $i < count($sectionsArray); $i++) { ?>
-	<?php }?> -->
 
-	<!-- <div id="Браслеты" class="tab-content">
+	<div id="Браслеты" class="tab-content">
 		<form method="POST" action="textDataLoader.php" class="tab-content-addingNewEntry">
 			<div class="wrapper">
 				<span class="wrapper-span">Наименование</span>
@@ -245,11 +256,9 @@
 			<input type="hidden" name="tab-id" value="Портмоне"> 
 			<output id="list"></output>
 		</form>
-	</div> -->
+	</div>
 
-	<!-- <script src="./js/admin.js"></script>
+	<script src="./js/admin.js"></script>
 	<script src="./js/filesLoader.js"></script>
-	<script src="./js/sendSecondFormData.js"></script> -->
-	<script src="./js/jquery.js"></script>
-	<script src="./js/ajax/adminTextDataAjaxLoader.js"></script>
+	<!-- <script src="./js/sendSecondFormData.js"></script> -->
 </body>
