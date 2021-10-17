@@ -35,8 +35,54 @@ body {
   }
   
   /* Style the tab content */
-  &-content {
+   &-content {
 	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+	
+	input {
+		min-width: 117px;
+		margin-left: calc(100% - (117px + 1px));
+		margin-bottom: 10px;
+	}
+
+	&-button {
+		
+	}
+
+	textarea {
+		resize: none;
+		margin-top: 0px;
+
+	}
+	.wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin: 10px 0px;
+		width: 100%;
+
+		span {
+			min-width: 119px;
+		}
+		&-title {
+			// margin-left: 10px;
+			width: 100%;
+		}
+		&-body {
+			// margin-left: 10px;
+			resize: vertical !important;
+			width: 100%;
+		}
+		&-price {
+			// margin-left: 10px;
+			width: 100%;
+		}
+	}
+  }
+  &-output {
+	// display: none; СДЕЛАТЬ СКРЫТИЕ ЧЕРЕЗ JS
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;

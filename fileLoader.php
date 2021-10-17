@@ -80,26 +80,30 @@
 			//inserting entryes in tables IMAGES & ENTRYES
 
 			$sectionsArray = SelectAllSections($conn);
-			print_r($POST); //POST IS EMPTY!
-			if(isset($_POST['Title'])){
-				echo($_POST["Title"]);
-			}
-			if(isset($_POST['Price'])){
-				echo($_POST["Price"]);
-			}
-			if(isset($_POST['Body'])){
-				echo($_POST["Body"]);
-			}
-
-			for ($i = 0; $i < count($sectionsArray); $i++) {
-				if($POST['tab-id'] == $sectionsArray[$i]) {
-					AddNewEntry($conn, $POST['title'], $POST['body'], $POST['price'], $sectionsArray[$i]);				
-					for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
-						AddNewImages($conn, $tempFilesPathArray[$j], mysqli_insert_id($conn));
+			if (isset($_POST['Title']) && 
+			isset($_POST['Price']) && 
+			isset($_POST['Body']) &&
+			isset($_POST['Tab-id'])) {
+				$title = $_POST['Title'];
+				$body = $_POST['Body'];
+				$price = $_POST['Price'];
+				$tabName = $_POST['Tab-id'];
+				echo($title);
+				echo($body);
+				echo($price);
+				echo($tabName);
+				for ($i = 0; $i < count($sectionsArray); $i++) {
+					// echo (strcasecmp(trim($POST['Tab-id']),  trim($sectionsArray[$i])) == 0) ? 'Equal' : 'Not equal';
+					if(trim($tabName) == trim($sectionsArray[$i])) {
+						echo("!");
+						AddNewEntry($conn, $title, $body, $price, SelectSectionIdByName($conn, $tabName));
+						$lastInsertedIdInEntryes = mysqli_insert_id($conn);
+						for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
+							AddNewImages($conn, $tempFilesPathArray[$j], $lastInsertedIdInEntryes);
+						}
 					}
 				}
 			}
-			
 
 			exit;
 			
