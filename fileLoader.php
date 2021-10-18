@@ -26,7 +26,7 @@
 				}
 	
 				// You should also check filesize here.
-				if ($_FILES['files']['size'][$i] > 1000000) {
+				if ($_FILES['files']['size'][$i] > 10000000) {
 					throw new RuntimeException('Exceeded filesize limit.');
 				}
 	
@@ -94,7 +94,8 @@
 				echo($tabName);
 				for ($i = 0; $i < count($sectionsArray); $i++) {
 					// echo (strcasecmp(trim($POST['Tab-id']),  trim($sectionsArray[$i])) == 0) ? 'Equal' : 'Not equal';
-					if(trim($tabName) == trim($sectionsArray[$i])) {
+					print_r($sectionsArray[$i]['sectionName']);
+					if(trim($tabName) == trim($sectionsArray[$i]['sectionName'])) {
 						echo("!");
 						AddNewEntry($conn, $title, $body, $price, SelectSectionIdByName($conn, $tabName));
 						$lastInsertedIdInEntryes = mysqli_insert_id($conn);
