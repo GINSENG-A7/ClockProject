@@ -85,6 +85,10 @@ $sectionsArray = SelectAllSections($conn);
 								<input type="hidden" name="Section-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
 							</form>
+							<form id="deleteForm-<?echo($sectionsArray[$i]['sectionName'])?>-<?echo($entryesBySectionArray[$j]['idEntry'])?>" method="POST" action="dataDeleter.php">
+								<input id="delete_input" type="submit" name="Post-delete" value="Удалить">
+								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
+							</form>
 						<?
 					}
 					else {

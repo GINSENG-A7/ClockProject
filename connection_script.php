@@ -96,10 +96,10 @@ function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice) 
 	mysqli_query($connection, $sql);
 }
 	
-function DeleteEntryAndImage($connection, $idEntry) {
-	$sql = "DELETE FROM images WHERE idEntry=".$idEntry."";
+function DeleteEntryAndImages($connection, $idEntry) {
+	$sql = "DELETE FROM images WHERE idEntry = ".$idEntry."";
 	mysqli_query($connection, $sql);
-	$sql = "DELETE FROM entryes WHERE idEntry=".$idEntry."";
+	$sql = "DELETE FROM entryes WHERE idEntry = ".$idEntry."";
 	mysqli_query($connection, $sql);
 }
 
