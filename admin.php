@@ -21,10 +21,10 @@ $sectionsArray = SelectAllSections($conn);
 	</div>
 
 	<!-- Tab content -->
-	<h2 class="ContentH2">Добавление</h2>
-
+	
 	<?for ($i = 0; $i < count($sectionsArray); $i++) {?>
 		<div id="<?echo($sectionsArray[$i]['sectionName'])?>" class="tab-content">
+			<h2 class="ContentH2">Добавление</h2>
 			<form id="fileForm-<?echo($i)?>" method="POST" action="fileLoader.php" enctype="multipart/form-data">
 				<div class="wrapper">
 					<span class="wrapper-span">Наименование</span>
@@ -40,7 +40,9 @@ $sectionsArray = SelectAllSections($conn);
 				</div>
 				<!-- <input id="files_input-1" type="submit" value='Загрузить' name="submit"> -->
 				<!-- <button id="loadDataButton-1" class="tab-content-button"></button> -->
-				<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+				<div class="fileInputWrapper">
+					<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+				</div>
 				<input id="data_input" type="submit" name="Post-submit" value="Добавить">
 				<input type="hidden" name="Tab-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
 				<output id="list"></output>
@@ -51,32 +53,34 @@ $sectionsArray = SelectAllSections($conn);
 	<span class="bottom-line"></span>
 
 	<!-- Output content -->
-	<h2 class="OutputH2">Изменение</h2>
-
+	
 	<?for ($i = 0; $i < count($sectionsArray); $i++) {
 		?>
 		<div id="<?echo($sectionsArray[$i]['sectionName'])?>" class="tab-output">
+			<h2 class="OutputH2">Изменение</h2>
 			<?
 			$entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $sectionsArray[$i]['idSection']);
 			if (is_countable($entryesBySectionArray)) {
 				for ($j = 0; $j < count($entryesBySectionArray); $j++) {
 					if($entryesBySectionArray[$j] != null) {
-						print_r($entryesBySectionArray[$j]);
+						// print_r($entryesBySectionArray[$j]);
 						?>
-							<form id="outputForm-<?$sectionsArray[$i]['sectionName']?>-<?$entryesBySectionArray[$j]['idEntry']?>" action="">
+							<form id="outputForm-<?echo($sectionsArray[$i]['sectionName'])?>-<?echo($entryesBySectionArray[$j]['idEntry'])?>" method="POST" action="dataUpdater.php">
 								<div class="wrapper">
 									<span class="wrapper-span">Наименование</span>
-									<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"></textarea>
+									<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['title'])?></textarea>
 								</div>
 								<div class="wrapper">
 									<span class="wrapper-span">Цена</span>
-									<textarea class="wrapper-price" name="Price" id="price" cols="30" rows="1"></textarea>
+									<textarea class="wrapper-price" name="Price" id="price" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['price'])?></textarea>
 								</div>
 								<div class="wrapper">
 									<span class="wrapper-span">Описание</span>
-									<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"></textarea>
+									<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['body'])?></textarea>
 								</div>
-								<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+								<div class="fileInputWrapper">
+									<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+								</div>
 								<input id="edit_input" type="submit" name="Post-edit" value="Изменить">
 								<input type="hidden" name="Section-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">

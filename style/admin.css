@@ -1,11 +1,10 @@
 body {
   margin: 0 0;
   padding: 0 0;
-  overflow: hidden;
 }
 
-.custom-file-input {
-  color: transparent;
+.h2 {
+  display: none;
 }
 
 /* Style the tab */
@@ -86,6 +85,16 @@ body {
   width: 100%;
 }
 
+.tab-content .fileInputWrapper {
+  overflow: hidden;
+  width: 118px;
+  margin-left: calc(100% - (117px + 1px));
+}
+
+.tab-content .fileInputWrapper .custom-file-input {
+  color: transparent;
+}
+
 .tab-output {
   padding: 6px 12px;
   border: 1px solid #ccc;
@@ -133,5 +142,15 @@ body {
 
 .tab-output .wrapper-price {
   width: 100%;
+}
+
+.tab-output .fileInputWrapper {
+  overflow: hidden;
+  width: 118px;
+  margin-left: calc(100% - (117px + 1px));
+}
+
+.tab-output .fileInputWrapper .custom-file-input {
+  color: transparent;
 }
 /*# sourceMappingURL=admin.css.map */

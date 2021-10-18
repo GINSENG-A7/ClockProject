@@ -90,6 +90,11 @@ function SelectAllSections($connection) {
     }
     return $array;
 }
+
+function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice) {
+	$sql = "UPDATE entryes SET title = '$newTitle', body = '$newBody', price = $newPrice WHERE idEntry = $idEntry";
+	mysqli_query($connection, $sql);
+}
 	
 function DeleteEntryAndImage($connection, $idEntry) {
 	$sql = "DELETE FROM images WHERE idEntry=".$idEntry."";

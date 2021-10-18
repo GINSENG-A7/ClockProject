@@ -1,13 +1,16 @@
 body {
 	margin: 0 0;
 	padding: 0 0;
-	overflow: hidden;
+	// overflow: hidden;
 }
-.custom-file-input {
-	color: transparent;
-	// &::-webkit-file-upload-button {
-	// 	visibility: hidden;
-	// }
+.h2{
+	display: none;
+	.ContentH2 {
+
+	}
+	.OutputH2 {
+
+	}
 }
 /* Style the tab */
 .tab {
@@ -80,6 +83,17 @@ body {
 			width: 100%;
 		}
 	}
+	.fileInputWrapper {
+		overflow: hidden;
+    	width: 118px;
+		margin-left: calc(100% - (117px + 1px));
+		.custom-file-input {
+			color: transparent;
+			// &::-webkit-file-upload-button {
+			// 	visibility: hidden;
+			// }
+		}
+	}
   }
   &-output {
 	// display: none; СДЕЛАТЬ СКРЫТИЕ ЧЕРЕЗ JS
@@ -124,6 +138,17 @@ body {
 		&-price {
 			// margin-left: 10px;
 			width: 100%;
+		}
+	}
+	.fileInputWrapper {
+		overflow: hidden;
+    	width: 118px;
+		margin-left: calc(100% - (117px + 1px));
+		.custom-file-input {
+			color: transparent;
+			// &::-webkit-file-upload-button {
+			// 	visibility: hidden;
+			// }
 		}
 	}
   }
