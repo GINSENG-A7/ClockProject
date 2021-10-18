@@ -1,13 +1,16 @@
 body {
 	margin: 0 0;
 	padding: 0 0;
-	overflow: hidden;
+	// overflow: hidden;
 }
-.custom-file-input {
-	color: transparent;
-	// &::-webkit-file-upload-button {
-	// 	visibility: hidden;
-	// }
+.h2{
+	display: none;
+	.ContentH2 {
+
+	}
+	.OutputH2 {
+
+	}
 }
 /* Style the tab */
 .tab {
@@ -35,46 +38,117 @@ body {
   }
   
   /* Style the tab content */
-  &-content {
+   &-content {
 	display: none;
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;
+	
+	input {
+		min-width: 117px;
+		margin-left: calc(100% - (117px + 1px));
+		margin-bottom: 10px;
+	}
 
-	&-addingNewEntry {
-		textarea {
-		  resize: none;
-		  margin-top: 0px;
+	&-button {
+		
+	}
 
+	textarea {
+		resize: none;
+		margin-top: 0px;
+
+	}
+	.wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin: 10px 0px;
+		width: 100%;
+
+		span {
+			min-width: 119px;
 		}
-		input {
-			min-width: 117px;
-			margin-left: calc(100% - (117px + 1px));
-			margin-bottom: 10px;
-		}
-		.wrapper {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			margin: 10px 0px;
+		&-title {
+			// margin-left: 10px;
 			width: 100%;
+		}
+		&-body {
+			// margin-left: 10px;
+			resize: vertical !important;
+			width: 100%;
+		}
+		&-price {
+			// margin-left: 10px;
+			width: 100%;
+		}
+	}
+	.fileInputWrapper {
+		overflow: hidden;
+    	width: 118px;
+		margin-left: calc(100% - (117px + 1px));
+		.custom-file-input {
+			color: transparent;
+			// &::-webkit-file-upload-button {
+			// 	visibility: hidden;
+			// }
+		}
+	}
+  }
+  &-output {
+	// display: none; СДЕЛАТЬ СКРЫТИЕ ЧЕРЕЗ JS
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+	
+	input {
+		min-width: 117px;
+		margin-left: calc(100% - (117px + 1px));
+		margin-bottom: 10px;
+	}
 
-			span {
-				min-width: 119px;
-			}
-			&-title {
-				// margin-left: 10px;
-				width: 100%;
-			}
-			&-body {
-				// margin-left: 10px;
-				resize: vertical !important;
-				width: 100%;
-			}
-			&-price {
-				// margin-left: 10px;
-				width: 100%;
-			}
+	&-button {
+		
+	}
+
+	textarea {
+		resize: none;
+		margin-top: 0px;
+
+	}
+	.wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin: 10px 0px;
+		width: 100%;
+
+		span {
+			min-width: 119px;
+		}
+		&-title {
+			// margin-left: 10px;
+			width: 100%;
+		}
+		&-body {
+			// margin-left: 10px;
+			resize: vertical !important;
+			width: 100%;
+		}
+		&-price {
+			// margin-left: 10px;
+			width: 100%;
+		}
+	}
+	.fileInputWrapper {
+		overflow: hidden;
+    	width: 118px;
+		margin-left: calc(100% - (117px + 1px));
+		.custom-file-input {
+			color: transparent;
+			// &::-webkit-file-upload-button {
+			// 	visibility: hidden;
+			// }
 		}
 	}
   }

@@ -1,13 +1,11 @@
 body {
   margin: 0 0;
   padding: 0 0;
-  overflow: hidden;
 }
 
-.custom-file-input {
-  color: transparent;
+.h2 {
+  display: none;
 }
-
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -37,32 +35,82 @@ body {
   border: 1px solid #ccc;
   border-top: none;
 }
-.tab-content-addingNewEntry textarea {
-  resize: none;
-  margin-top: 0px;
-}
-.tab-content-addingNewEntry input {
+.tab-content input {
   min-width: 117px;
   margin-left: calc(100% - (117px + 1px));
   margin-bottom: 10px;
 }
-.tab-content-addingNewEntry .wrapper {
+.tab-content textarea {
+  resize: none;
+  margin-top: 0px;
+}
+.tab-content .wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 10px 0px;
   width: 100%;
 }
-.tab-content-addingNewEntry .wrapper span {
+.tab-content .wrapper span {
   min-width: 119px;
 }
-.tab-content-addingNewEntry .wrapper-title {
+.tab-content .wrapper-title {
   width: 100%;
 }
-.tab-content-addingNewEntry .wrapper-body {
+.tab-content .wrapper-body {
   resize: vertical !important;
   width: 100%;
 }
-.tab-content-addingNewEntry .wrapper-price {
+.tab-content .wrapper-price {
   width: 100%;
+}
+.tab-content .fileInputWrapper {
+  overflow: hidden;
+  width: 118px;
+  margin-left: calc(100% - (117px + 1px));
+}
+.tab-content .fileInputWrapper .custom-file-input {
+  color: transparent;
+}
+.tab-output {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.tab-output input {
+  min-width: 117px;
+  margin-left: calc(100% - (117px + 1px));
+  margin-bottom: 10px;
+}
+.tab-output textarea {
+  resize: none;
+  margin-top: 0px;
+}
+.tab-output .wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0px;
+  width: 100%;
+}
+.tab-output .wrapper span {
+  min-width: 119px;
+}
+.tab-output .wrapper-title {
+  width: 100%;
+}
+.tab-output .wrapper-body {
+  resize: vertical !important;
+  width: 100%;
+}
+.tab-output .wrapper-price {
+  width: 100%;
+}
+.tab-output .fileInputWrapper {
+  overflow: hidden;
+  width: 118px;
+  margin-left: calc(100% - (117px + 1px));
+}
+.tab-output .fileInputWrapper .custom-file-input {
+  color: transparent;
 }

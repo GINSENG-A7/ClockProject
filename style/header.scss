@@ -265,7 +265,7 @@ $light: #faf9fe;
                 opacity: 1 !important;
                 visibility: inherit;
                 // transition: all 0.3s ease 0s;
-                pointer-events: none;
+                // pointer-events: none;
                 z-index: 5;
                 position: initial;
         
@@ -385,7 +385,7 @@ $light: #faf9fe;
             opacity: 0;
             visibility: hidden;
             // transition: all 0.3s ease 0s;
-            pointer-events: none;
+            // pointer-events: none;
             
     
             &__item {
