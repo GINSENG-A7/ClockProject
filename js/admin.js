@@ -50,3 +50,44 @@ function openTab(event, tabName) {
 	// document.getElementById(tabName).style.display = "block";
 	event.currentTarget.className += " active";
 }
+
+//Rebind button click to invisible submit in the form
+let picturesForms = document.querySelectorAll("form.deleteOnePictureForm");
+for (let i = 0; i < picturesForms.length; i++) {
+	pictureForm = picturesForms[i];
+	let xButton = pictureForm.querySelector("#X-button");
+	let submitInput = pictureForm.querySelector("#X-submit");
+
+	xButton.addEventListener("click", () => {
+		submitInput.click();
+	});
+}
+
+let  insertImageForms = document.querySelectorAll("form.insertImageForm");
+for (let i = 0; i < insertImageForms.length; i++) {
+	insertImage = insertImageForms[i];
+	let insertButton = insertImage.querySelector("#insertImage-button");
+	let filesInput = insertImage.querySelector("#files");
+	let submitInput = insertImage.querySelector("#insertImage-submit");
+
+	filesInput.addEventListener('change', handleFileSelect, false);
+	function handleFileSelect(event) {
+		let files = event.target.files; // FileList object
+		let output = [];
+		for (let i = 0, f; f = files[i]; i++) {
+			output.push(escape(f.name));
+		}
+		if (files != null || files != undefined || output.length > 0) {
+			submitInput.click();
+		}
+		console.log(output);
+
+	}
+
+
+	
+	insertButton.addEventListener("click", (event) => {
+		filesInput.click();
+		event.stopPropagation();
+	});
+}

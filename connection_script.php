@@ -107,7 +107,7 @@ function DeleteEntryAndImages($connection, $idEntry) {
 }
 
 function DeleteImageById($connection, $idImage) {
-	$sql = "DELETE FROM images WHERE idImage=".$idImage."";
+	$sql = "DELETE FROM images WHERE idImage = ".$idImage."";
 	mysqli_query($connection, $sql);
 }
 ?>

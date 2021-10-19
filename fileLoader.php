@@ -106,6 +106,15 @@
 				}
 			}
 
+			//Adding new pictures
+			if (isset($_POST['Entry-id'])) {
+				$entryId = $_POST['Entry-id'];
+				//добавление картинок
+				for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
+					AddNewImages($conn, $tempFilesPathArray[$j], $entryId);
+				}
+			}
+
 			exit;
 			
 		}
