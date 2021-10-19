@@ -151,6 +151,32 @@ body {
 			// }
 		}
 	}
+	.imageWrapper {
+		width: calc(100% - 156px);
+		height: 83px;
+		outline: springgreen;
+		outline-style: solid;
+		position: absolute;
+		margin-top: -93px;
+		display: flex;
+		flex-direction: row;
+		gap: 2px;
+
+		&-container {
+			height: 83px;
+			width: auto;
+			img {
+				height: 83px;
+				width: auto;
+			}
+		}
+		.add-new-image {
+			all: initial !important; 
+			// position: relative;
+			height: 83px;
+			min-width: 83px;
+		}
+	}
   }
 
 }

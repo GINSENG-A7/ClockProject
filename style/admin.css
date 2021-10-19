@@ -153,4 +153,37 @@ body {
 .tab-output .fileInputWrapper .custom-file-input {
   color: transparent;
 }
+
+.tab-output .imageWrapper {
+  width: calc(100% - 156px);
+  height: 83px;
+  outline: springgreen;
+  outline-style: solid;
+  position: absolute;
+  margin-top: -93px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 2px;
+}
+
+.tab-output .imageWrapper-container {
+  height: 83px;
+  width: auto;
+}
+
+.tab-output .imageWrapper-container img {
+  height: 83px;
+  width: auto;
+}
+
+.tab-output .imageWrapper .add-new-image {
+  all: initial !important;
+  height: 83px;
+  min-width: 83px;
+}
 /*# sourceMappingURL=admin.css.map */

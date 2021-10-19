@@ -114,3 +114,27 @@ body {
 .tab-output .fileInputWrapper .custom-file-input {
   color: transparent;
 }
+.tab-output .imageWrapper {
+  width: calc(100% - 156px);
+  height: 83px;
+  outline: springgreen;
+  outline-style: solid;
+  position: absolute;
+  margin-top: -93px;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+.tab-output .imageWrapper-container {
+  height: 83px;
+  width: auto;
+}
+.tab-output .imageWrapper-container img {
+  height: 83px;
+  width: auto;
+}
+.tab-output .imageWrapper .add-new-image {
+  all: initial !important;
+  height: 83px;
+  min-width: 83px;
+}

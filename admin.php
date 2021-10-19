@@ -89,6 +89,16 @@ $sectionsArray = SelectAllSections($conn);
 								<input id="delete_input" type="submit" name="Post-delete" value="Удалить">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
 							</form>
+
+							<?$imagesByEntryArray = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$j]['idEntry']);?>
+							<div class="imageWrapper">
+									<?for ($u = 0; $u < count($imagesByEntryArray); $u++) {?>
+										<div class="imageWrapper-container">
+											<img src="<?echo($imagesByEntryArray[$u]['path'])?>" alt="">
+										</div>
+									<?}?>
+								<!-- <div class="add-new-image"> -->
+							</div>
 						<?
 					}
 					else {

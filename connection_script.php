@@ -57,11 +57,14 @@ function SelectAllFromEntryesBySectionId($connection, $idSection) {
 }
 
 function SelectAllImagesByEntryId($connection, $idEntry) {
-	$sql = "SELECT i.path FROM images i WHERE i.idEntry = ".$idEntry."";
+	$sql = "SELECT idImage, `path` FROM images WHERE idEntry = ".$idEntry."";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
-        $array[] = $row['path'];
+        $array[] = array(
+			'idImage'=>$row['idImage'],
+			'path'=>$row['path']
+		);
     }
     return $array;
 }
