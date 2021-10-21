@@ -24,11 +24,11 @@
 
             exit;
         }
-        header("location: authorization.php");
+        header("location: ./authorization.php");
         exit;
     } 
     else {
-        header("location: authorization.php");
+        header("location: ./authorization.php");
         exit;
     }
 ?>

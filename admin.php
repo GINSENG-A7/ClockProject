@@ -1,3 +1,8 @@
+<?php
+	if (!isset($_COOKIE['User'])) {
+		header("location: ./authorization.php");
+	}
+?>
 <?include "./connection_script.php"?>
 <?
 $sectionsArray = SelectAllSections($conn);
@@ -16,9 +21,14 @@ $sectionsArray = SelectAllSections($conn);
 <body>
 	<input id="sectionsArray" type="hidden" value="sectionsArray"  data-sectionsArrayLength="<?echo(count($sectionsArray))?>">
 	<div class="tab">
-	<?for ($i = 0; $i < count($sectionsArray); $i++) {?>
-		<button class="tab-links"><?echo($sectionsArray[$i]['sectionName'])?></button>
-	<?}?>
+		<div>
+			<?for ($i = 0; $i < count($sectionsArray); $i++) {?>
+				<button class="tab-links"><?echo($sectionsArray[$i]['sectionName'])?></button>
+			<?}?>
+		</div>
+		<form  action="entionAdmin.php">
+			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">
+		</form>
 	</div>
 
 	<!-- Tab content -->

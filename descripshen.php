@@ -1,3 +1,4 @@
+<?include "./connection_script.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +15,15 @@
         <div class="wrapper">
             <header class="header">
                 <div class="header__logo">
-                    <img src="./img/logo.webp" alt="logo">
-                    <div>
+                    <a href='./index.php' class="header__logo-linkWrapper">
+                        <img src="./img/logo.webp" alt="logo">
+                    </a>
+                    <div class="header__logo-textWrapper">
                         <span>K.Max.Jeweller</span>
-                        <span>( 8-903-745-62-18 )</span>
+                        <div class="header__logo-textWrapper-phonesWrapper">
+                            <a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+                            <a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+                        </div>
                     </div>
                 </div>
                 <div class="header__menu">
@@ -26,11 +32,37 @@
                     </div>
                     <nav class="header__menu-body">
                         <ul class="nav">
-                            <li class="nav-item"><a class="nav-link" href="./">Главная</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./shop.php?id=1">Часы</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./shop.php?id=2">Украшения</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./shop.php?id=3">Аксессуары</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./shop.php?id=4">Контакты</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./shop.php?id=1">Часы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./shop.php?id=2">Украшения</a>
+                                <span class="nav-arrow"></span>
+                                <ul class="nav-sub">
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=2">Браслеты</a></li>
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=3">Кольца</a></li>
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=4">Подвески</a></li>
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=5">Цепи</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./shop.php?id=6">Аксессуары</a>
+                                <span class="nav-arrow"></span>
+                                <ul class="nav-sub">
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=6">Ремни</a></li>
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=7">Бритвы</a></li>
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=8">Портмоне</a></li>
+                                    <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+                            <li class="nav-item disappearable">
+                                <div class="nav-item-textWrapper">
+                                    <span class = "contact-person">K.Max.Jeweller</span>
+                                    <a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+                                    <a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -40,31 +72,34 @@
         <section class = "section-decription">
             <div class = "wrapper">
                 <div class ="decription">
-                    <div class = "decription__img">
-                        <div class = "decription__click">
-                            <div class="decription__item" onclick="ShowImg(this)" data-src="../img/clock/2a1ee2_6d0605a686e644269f03180a85bf6881_mv2.webp">
-                                <img class = "img" src="../img/clock/2a1ee2_6d0605a686e644269f03180a85bf6881_mv2.webp" alt="">
+                    <?php 
+                        if (isset( $_GET['id'] ) && !empty( $_GET['id'] )){
+                        $entry = SelectEntryByEntryId($conn, $_GET['id']);
+                        $img = SelectAllImagesByEntryId($conn, $entry[0]['idEntry']);
+                        if(count($img) > 0) {
+                    ?> 
+                        <div class = "decription__img">
+                            <div class = "decription__click">
+                                <?php for($i = 0 ; $i<count($img);$i++) {?> 
+                                    <div class="decription__item" onclick="ShowImg(this)" data-src="<?=$img[$i]['path']?>">
+                                        <img class = "img" src="<?=$img[$i]['path']?>" alt="">
+                                    </div>
+                                <?php }?>
                             </div>
-                            <div class="decription__item" onclick="ShowImg(this)" data-src="../img/clock/2a1ee2_b7d9e76fb7ed4bafa73e7ec7f246d8d7_mv2.webp">
-                                <img class = "img" src="../img/clock/2a1ee2_b7d9e76fb7ed4bafa73e7ec7f246d8d7_mv2.webp" alt="">
+                            <div class = "decription__show">
+                                <img class = "img" src="<?=$img[0]['path']?>" alt="">
                             </div>
                         </div>
-                        <div class = "decription__show">
-                            <img class = "img" src="../img/clock/2a1ee2_6d0605a686e644269f03180a85bf6881_mv2.webp" alt="">
+                        <div class = "decription__text">
+                            <h2 class = "decription__title"> <?=$entry[0]['title']?></h2>
+                            <div class = "decription__price">
+                                <?=$entry[0]['price']?> ₽Цена
+                            </div>
+                            <div class = "decription__body">
+                                <?=$entry[0]['body']?>
+                            </div>
                         </div>
-                    </div>
-                    <div class = "decription__text">
-                        <h2 class = "decription__title">Браслет для часов "SKULL"</h2>
-                        <div class = "decription__price">
-                            35 000,00 ₽Цена
-                        </div>
-                        <div class = "decription__body">
-                            Браслет для мужских часов из серебра 925 пробы и натуральных камней 
-                            (тигровый глаз) ручной работы. При изготовлении браслета возможно 
-                            использовать другие камни (чёрный агат, гранат, шунгит и другие).
-                            Браслет возможно адаптировать к любым часам.
-                        </div>
-                    </div>
+                    <?php }} ?>
                 </div>
             </div>
         </section>

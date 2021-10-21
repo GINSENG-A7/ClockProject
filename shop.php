@@ -1,3 +1,4 @@
+<?include "./connection_script.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +14,15 @@
 <div class="wrapper">
         <header class="header">
             <div class="header__logo">
-                <img src="./img/logo.webp" alt="logo">
-                <div>
+                <a href='./index.php' class="header__logo-linkWrapper">
+					<img src="./img/logo.webp" alt="logo">
+				</a>
+                <div class="header__logo-textWrapper">
                     <span>K.Max.Jeweller</span>
-                    <span>( 8 905 534 09 56 (8 499 190 09 56))</span>
+					<div class="header__logo-textWrapper-phonesWrapper">
+						<a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+						<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+					</div>
                 </div>
             </div>
             <div class="header__menu">
@@ -26,32 +32,36 @@
                 <nav class="header__menu-body">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="./index.php">Главная</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="./shop.php?id=1">Часы</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./shop.php?id=2">Украшения</a>
                             <span class="nav-arrow"></span>
                             <ul class="nav-sub">
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Браслеты</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Кольца</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Подвески</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Цепи</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=2">Браслеты</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=3">Кольца</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=4">Подвески</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=5">Цепи</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./shop.php?id=3">Аксессуары</a>
+                            <a class="nav-link" href="./shop.php?id=6">Аксессуары</a>
                             <span class="nav-arrow"></span>
                             <ul class="nav-sub">
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Ремни</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Бритвы</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Портионэ</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Брелки</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=6">Ремни</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=7">Бритвы</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=8">Портмоне</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+						<li class="nav-item disappearable">
+							<div class="nav-item-textWrapper">
+								<span class = "contact-person">K.Max.Jeweller</span>
+								<a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+								<a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+							</div>
+						</li>
                     </ul>
                     <span class = "number">K.Max.Jeweller : (8 905 534 09 56 (8 499 190 09 56))</span>
                 </nav>
@@ -64,20 +74,27 @@
         <div class="wrapper">
             <h2  class="title-h2 text-center" >Список товаров</h2>
             <div class="card">
-                <?php for($i = 0 ; $i<10;$i++) { ?>
+            <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $_GET['id']);
+                for($i = 0 ; $i<count($entryesBySectionArray);$i++) {  
+                $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
+                if(count($img) > 1) {
+                ?> 
                     <div class="card__item">
                         <a href="./descripshen.php">
                             <div class="card__img">
-                                <div class = "img">
+                                <div class = "img " style= "background-image: url('<?=$img[0]['path']?>')">
+
+                                </div>
+                                <div class = "img-back" style= "background-image: url('<?=$img[1]['path']?>')">
 
                                 </div>
                             </div>
                             <div class="card__decription">
                                 <div class="card__title">
-                                    Часы "TSUNAMI"
+                                    <?=$entryesBySectionArray[$i]['title']?>
                                 </div>
                                 <div class="card__price">
-                                    110(000),00₽
+                                    <?=$entryesBySectionArray[$i]['price']?> руб
                                 </div>
                             </div>
                         </a>
@@ -85,7 +102,7 @@
                             <a href="./descripshen.php">Подробнее...</a>
                         </div>
                     </div>
-                <?php  } ?>
+                <?php  }}?>
             </div>
         </div>
     </section>

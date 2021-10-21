@@ -63,7 +63,23 @@ function SelectAllImagesByEntryId($connection, $idEntry) {
     {
         $array[] = array(
 			'idImage'=>$row['idImage'],
-			'path'=>$row['path']
+			'path'=>$row['path'],
+		);
+    }
+    return $array;
+}
+
+function SelectEntryByEntryId($connection, $idEntry) {
+	$sql = "SELECT * FROM entryes WHERE idEntry = ".$idEntry."";
+    $result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idEntry'=>$row['idEntry'],
+			'title'=>$row['title'],
+			'body'=>$row['body'],
+			'price'=>$row['price'],
+			'idSection'=>$row['idSection']
 		);
     }
     return $array;
@@ -109,5 +125,40 @@ function DeleteEntryAndImages($connection, $idEntry) {
 function DeleteImageById($connection, $idImage) {
 	$sql = "DELETE FROM images WHERE idImage = ".$idImage."";
 	mysqli_query($connection, $sql);
+}
+
+function SelectPictureBySection($connection, $idSection) {
+	$sql = "SELECT * FROM entryes e Join images i on e.idEntry = i.idEntry  WHERE e.idSection = ".$idSection."";
+    $result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idEntry'=>$row['idEntry'],
+			'title'=>$row['title'],
+			'body'=>$row['body'],
+			'price'=>$row['price'],
+			'idSection'=>$row['idSection'],
+			'path'=>$row['path']
+		);
+    }
+    return $array;
+}
+
+function SelectFirstPictureBySection($connection, $idSection) {
+	$sql = "SELECT * FROM entryes e Join images i on e.idEntry = i.idEntry  WHERE e.idSection = 1 GROUP BY e.idEntry";
+	
+    $result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idEntry'=>$row['idEntry'],
+			'title'=>$row['title'],
+			'body'=>$row['body'],
+			'price'=>$row['price'],
+			'idSection'=>$row['idSection'],
+			'path'=>$row['path']
+		);
+    }
+    return $array;
 }
 ?>

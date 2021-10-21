@@ -97,11 +97,26 @@ body {
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-image: url(../img/clock/2a1ee2_b7d9e76fb7ed4bafa73e7ec7f246d8d7_mv2.webp);
+                //background-image: url(../img/clock/2a1ee2_b7d9e76fb7ed4bafa73e7ec7f246d8d7_mv2.webp);
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: cover;
+                z-index: 2;
                 transition: all 1s;
+            }
+            .img-back {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                //background-image: url(../img/clock/2a1ee2_b7d9e76fb7ed4bafa73e7ec7f246d8d7_mv2.webp);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                transition: all .3s;
+                visibility: visible;
             }
         }
         &__btn{
@@ -116,8 +131,11 @@ body {
             }
         }
         &__item:hover .img {
-            transition: all 1s;
-            background-image: url(../img/clock/2a1ee2_6d0605a686e644269f03180a85bf6881_mv2.webp);
+            transition: all .3s;
+            //visibility: hidden !important;
+            visibility: hidden !important;
+            //z-index: 0 !important;
+            // background-image: url(../img/clock/2a1ee2_6d0605a686e644269f03180a85bf6881_mv2.webp);
             
         }
         &__item:hover .card__btn {

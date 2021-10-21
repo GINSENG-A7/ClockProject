@@ -25,10 +25,15 @@
     <div class="wrapper">
         <header class="header">
             <div class="header__logo">
-                <img src="./img/logo.webp" alt="logo">
-                <div>
+                <a href='' class="header__logo-linkWrapper">
+					<img src="./img/logo.webp" alt="logo">
+				</a>
+                <div class="header__logo-textWrapper">
                     <span>K.Max.Jeweller</span>
-                    <span>( 8 905 534 09 56 (8 499 190 09 56))</span>
+					<div class="header__logo-textWrapper-phonesWrapper">
+						<a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+						<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+					</div>
                 </div>
             </div>
             <div class="header__menu">
@@ -44,23 +49,30 @@
                             <a class="nav-link" href="./shop.php?id=2">Украшения</a>
                             <span class="nav-arrow"></span>
                             <ul class="nav-sub">
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Браслеты</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Кольца</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Подвески</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Цепи</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=2">Браслеты</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=3">Кольца</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=4">Подвески</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=5">Цепи</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./shop.php?id=3">Аксессуары</a>
+                            <a class="nav-link" href="./shop.php?id=6">Аксессуары</a>
                             <span class="nav-arrow"></span>
                             <ul class="nav-sub">
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Ремни</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Бритвы</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Портионэ</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="">Брелки</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=6">Ремни</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=7">Бритвы</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=8">Портмоне</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="./index.php">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+						<li class="nav-item disappearable">
+							<div class="nav-item-textWrapper">
+								<span class = "contact-person">K.Max.Jeweller</span>
+								<a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+								<a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+							</div>
+						</li>
                     </ul>
                 </nav>
             </div>
