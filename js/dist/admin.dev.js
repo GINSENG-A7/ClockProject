@@ -53,4 +53,55 @@ function openTab(event, tabName) {
 
 
   event.currentTarget.className += " active";
+} //Rebind button click to invisible submit in the form
+
+
+var picturesForms = document.querySelectorAll("form.deleteOnePictureForm");
+
+var _loop2 = function _loop2(_i6) {
+  pictureForm = picturesForms[_i6];
+  var xButton = pictureForm.querySelector("#X-button");
+  var submitInput = pictureForm.querySelector("#X-submit");
+  xButton.addEventListener("click", function () {
+    submitInput.click();
+  });
+};
+
+for (var _i6 = 0; _i6 < picturesForms.length; _i6++) {
+  _loop2(_i6);
+}
+
+var insertImageForms = document.querySelectorAll("form.insertImageForm");
+
+var _loop3 = function _loop3(_i7) {
+  insertImage = insertImageForms[_i7];
+  var insertButton = insertImage.querySelector("#insertImage-button");
+  var filesInput = insertImage.querySelector("#files");
+  var submitInput = insertImage.querySelector("#insertImage-submit");
+  filesInput.addEventListener('change', handleFileSelect, false);
+
+  function handleFileSelect(event) {
+    var files = event.target.files; // FileList object
+
+    var output = [];
+
+    for (var _i8 = 0, f; f = files[_i8]; _i8++) {
+      output.push(escape(f.name));
+    }
+
+    if (files != null || files != undefined || output.length > 0) {
+      submitInput.click();
+    }
+
+    console.log(output);
+  }
+
+  insertButton.addEventListener("click", function (event) {
+    filesInput.click();
+    event.stopPropagation();
+  });
+};
+
+for (var _i7 = 0; _i7 < insertImageForms.length; _i7++) {
+  _loop3(_i7);
 }

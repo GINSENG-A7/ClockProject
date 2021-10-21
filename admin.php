@@ -14,6 +14,7 @@ $sectionsArray = SelectAllSections($conn);
     <title>Admin panel</title>
 </head>
 <body>
+	<input id="sectionsArray" type="hidden" value="sectionsArray"  data-sectionsArrayLength="<?echo(count($sectionsArray))?>">
 	<div class="tab">
 	<?for ($i = 0; $i < count($sectionsArray); $i++) {?>
 		<button class="tab-links"><?echo($sectionsArray[$i]['sectionName'])?></button>
@@ -65,7 +66,8 @@ $sectionsArray = SelectAllSections($conn);
 					if($entryesBySectionArray[$j] != null) {
 						// print_r($entryesBySectionArray[$j]);
 						?>
-							<form id="outputForm-<?echo($sectionsArray[$i]['sectionName'])?>-<?echo($entryesBySectionArray[$j]['idEntry'])?>" method="POST" action="dataUpdater.php">
+							<input id="entryesBySectionArray" type="hidden" value="entryesBySectionArray" data-entryesBySectionArrayLength="<?echo(count($entryesBySectionArray))?>"> 
+							<form id="outputForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="dataUpdater.php" >
 								<div class="wrapper">
 									<span class="wrapper-span">Наименование</span>
 									<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['title'])?></textarea>
@@ -85,10 +87,35 @@ $sectionsArray = SelectAllSections($conn);
 								<input type="hidden" name="Section-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
 							</form>
-							<form id="deleteForm-<?echo($sectionsArray[$i]['sectionName'])?>-<?echo($entryesBySectionArray[$j]['idEntry'])?>" method="POST" action="dataDeleter.php">
+							<form id="deleteForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="dataDeleter.php">
 								<input id="delete_input" type="submit" name="Post-delete" value="Удалить">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
 							</form>
+
+							<?$imagesByEntryArray = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$j]['idEntry']);?>
+							<input id="imagesByEntryArray" type="hidden" value="imagesByEntryArray" data-imagesByEntryArrayLength="<?echo(count($imagesByEntryArray))?>">
+							<div class="imageWrapper">
+									<?for ($u = 0; $u < count($imagesByEntryArray); $u++) {?>
+										<div class="imageWrapper-container">
+											<form id="deleteForm-<?echo($i)?>-<?echo($j)?>-<?echo($u)?>" method="POST" action="imageDeleter.php" class="deleteOnePictureForm">
+												<img src="<?echo($imagesByEntryArray[$u]['path'])?>" alt="">
+												<button id="X-button" class="X-button">X</button>
+												<input id="X-submit" type="submit" class="X-submit">
+												<input type="hidden" name="ImageId" value="<?echo($imagesByEntryArray[$u]['idImage'])?>">
+											</form>
+										</div>
+									<?}?>
+								<div class="add-new-images">
+									<form id="insertImageForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="fileLoader.php" class="insertImageForm" enctype="multipart/form-data">
+										<div id="insertImage-button" class="insertImage-button">
+											<p>+</p>
+										</div>
+										<input id="insertImage-submit" type="submit" class="insertImage-submit">
+										<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
+										<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
+									</form>
+								</div>
+							</div>
 						<?
 					}
 					else {
@@ -99,6 +126,7 @@ $sectionsArray = SelectAllSections($conn);
 			?>
 		</div>
 	<?}?>
+
 
 	<span class="bottom-line"></span>
 

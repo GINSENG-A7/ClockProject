@@ -114,3 +114,76 @@ body {
 .tab-output .fileInputWrapper .custom-file-input {
   color: transparent;
 }
+.tab-output .imageWrapper {
+  width: calc(100% - 156px);
+  height: calc(83px + 17px);
+  outline: springgreen;
+  outline-style: solid;
+  position: absolute;
+  margin-top: -93px;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: flex-start;
+  overflow: auto;
+}
+.tab-output .imageWrapper-container {
+  height: 83px;
+  width: auto;
+}
+.tab-output .imageWrapper-container .deleteOnePictureForm {
+  height: 100%;
+  width: 100%;
+}
+.tab-output .imageWrapper-container .deleteOnePictureForm img {
+  height: 83px;
+  width: auto;
+}
+.tab-output .imageWrapper-container .deleteOnePictureForm .X-button {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  color: red;
+  border-style: none;
+  outline-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: -15px;
+}
+.tab-output .imageWrapper-container .deleteOnePictureForm .X-submit {
+  display: none;
+}
+.tab-output .imageWrapper .add-new-images {
+  height: calc(83px - 6px);
+  min-width: 77px;
+  border: 3px;
+  border-style: dashed;
+  border-color: #000;
+}
+.tab-output .imageWrapper .add-new-images .insertImageForm {
+  height: 100%;
+  width: 100%;
+}
+.tab-output .imageWrapper .add-new-images .insertImageForm .insertImage-button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+.tab-output .imageWrapper .add-new-images .insertImageForm .insertImage-button p {
+  line-height: 77px;
+  font-size: 30px;
+  font-weight: 1000;
+  margin: 0;
+  text-align: center;
+}
+.tab-output .imageWrapper .add-new-images .insertImageForm .insertImage-submit {
+  display: none;
+}
+.tab-output .imageWrapper .add-new-images .insertImageForm .custom-file-input {
+  display: none;
+}

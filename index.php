@@ -1,3 +1,4 @@
+<?include "./connection_script.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,17 +70,13 @@
     </div>
     <section class="section-auto-slider">
         <div class="slider">
-            <?php for($i = 0 ; $i<10;$i++) { ?>
-                <?php if($i%2 == 0) { ?>
-                    <div class="slider__item">
-                        <img src="./img/2a1ee2_ad7511e40c5546de9b69b70cc1ffa401_mv2.webp" alt="" srcset="">
-                    </div>
-                <?php  } ?>
-                <?php if($i%2 != 0) { ?>
-                    <div class="slider__item">
-                        <img src="./img/qQAQe_Lc0Co.jpg" alt="" srcset="">
-                    </div>
-                <?php  } ?>
+            <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
+			for($i = 0 ; $i<count($entryesBySectionArray);$i++) { 
+				$imagesOfEntry = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
+			?> 
+				<div class="slider__item">
+					<img src="<?=$imagesOfEntry[0]['path']?>" alt="" srcset="">
+				</div>
             <?php  } ?>
         </div>
     </section>
