@@ -1,3 +1,4 @@
+<?include "/abstractions/productClass.php"?>
 <?include "./connection_script.php"?>
 <?php
 $sectionsArray = SelectAllSections($conn);
@@ -5,17 +6,26 @@ if (isset($_POST['Title']) &&
 isset($_POST['Price']) &&
 isset($_POST['Body']) &&
 isset($_POST['Section-id']) &&
-isset($POST['Entry-id'])) {
-	$title = $_POST['Title'];
-	$body = $_POST['Body'];
-	$price = $_POST['Price'];
-	$sectionId = $_POST['Section-id'];
-	$entryId = $_POST['Entry-id'];
-	echo($title);
-	echo($body);
-	echo($price);
-	echo($sectionId);
-	echo($entryId);
+isset($_POST['Entry-id'])) {
+
+	$product = new Product(
+		$_POST['Entry-id'],
+		$_POST['Title'],
+		$_POST['Body'],
+		$_POST['Price'],
+		$_POST['Section-id']
+	);
+
+	// $title = $_POST['Title'];
+	// $body = $_POST['Body'];
+	// $price = $_POST['Price'];
+	// $sectionId = $_POST['Section-id'];
+	// $entryId = $_POST['Entry-id'];
+	echo($product->title);
+	echo($product->body);
+	echo($product->price);
+	echo($product->sectionId);
+	echo($product->entryId);
 	// for ($i = 0; $i < count($sectionsArray); $i++) {
 	// 	// echo (strcasecmp(trim($POST['Tab-id']),  trim($sectionsArray[$i])) == 0) ? 'Equal' : 'Not equal';
 	// 	print_r($sectionsArray[$i]['sectionName']);
@@ -28,6 +38,6 @@ isset($POST['Entry-id'])) {
 	// 		}
 	// 	}
 	// }
-	UpdateEntryById($conn, $entryId, $title, $body, $price);
+	UpdateEntryById($conn, $product->entryId, $product->title, $product->body, $product->price);
 }
 ?>

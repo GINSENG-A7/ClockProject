@@ -1,9 +1,9 @@
 <?include "./connection_script.php"?>
 <?php
 	$tempFilesPathArray = array();
-	if(isset($_FILES)){
+	if(isset($_FILES)) {
 		try {
-			for ($i=0; $i < count($_FILES['files']['name']); $i++) {
+			for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
 				// Undefined | Multiple Files | $_FILES Corruption Attack
 				// If this request falls under any of them, treat it invalid.
 				if (

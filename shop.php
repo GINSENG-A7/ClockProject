@@ -64,7 +64,7 @@
         <div class="wrapper">
             <h2  class="title-h2 text-center" >Список товаров</h2>
             <div class="card">
-                <?php for($i = 0 ; $i<10;$i++) { ?>
+                <?php for($i = 0 ; $i < 10; $i++) { ?>
                     <div class="card__item">
                         <a href="./descripshen.php">
                             <div class="card__img">
