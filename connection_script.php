@@ -1,10 +1,16 @@
 <?php
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
+include './classes/connectionClass.php';
+$connection = new Connection("127.0.0.1", "root", "root");
+echo($connection->serverIP);
+echo($connection->username);
+echo($connection->password);
+
+// $servername = "127.0.0.1";
+// $username = "root";
+// $password = "root";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, 'clock');
+$conn = $connection->get_mysqli_connection('clock');
 
 // Check connection
 if ($conn->connect_error) {
