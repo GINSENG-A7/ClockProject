@@ -1,9 +1,14 @@
 <?php
-include './classes/connectionClass.php';
+// include './classes/connectionClass.php';
+// include './classes/photoClass.php';
+// include './classes/entryClass.php';
+require_once('./classes/connectionClass.php');
+require_once('./classes/photoClass.php');
+require_once('./classes/entryClass.php');
 $connection = new Connection("127.0.0.1", "root", "root");
-echo($connection->serverIP);
-echo($connection->username);
-echo($connection->password);
+// echo($connection->serverIP);
+// echo($connection->username);
+// echo($connection->password);
 
 // $servername = "127.0.0.1";
 // $username = "root";
@@ -35,12 +40,12 @@ function SelectAllFromEntryes($connection) {
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
-        $array[] = array(
-			'idEntry'=>$row['idEntry'],
-			'title'=>$row['title'],
-			'body'=>$row['body'],
-			'price'=>$row['price'],
-			'idSection'=>$row['idSection']
+        $array[] = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection']
 		);
     }
     return $array;
@@ -51,12 +56,12 @@ function SelectAllFromEntryesBySectionId($connection, $idSection) {
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
-        $array[] = array(
-			'idEntry'=>$row['idEntry'],
-			'title'=>$row['title'],
-			'body'=>$row['body'],
-			'price'=>$row['price'],
-			'idSection'=>$row['idSection']
+        $array[] = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection']
 		);
     }
     return $array;
@@ -67,9 +72,9 @@ function SelectAllImagesByEntryId($connection, $idEntry) {
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
-        $array[] = array(
-			'idImage'=>$row['idImage'],
-			'path'=>$row['path'],
+        $array[] = new Photo(
+			$row['idImage'],
+			$row['path']
 		);
     }
     return $array;
@@ -150,20 +155,22 @@ function SelectPictureBySection($connection, $idSection) {
     return $array;
 }
 
-function SelectFirstPictureBySection($connection, $idSection) {
+function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 	$sql = "SELECT * FROM entryes e Join images i on e.idEntry = i.idEntry  WHERE e.idSection = 1 GROUP BY e.idEntry";
 	
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
-        $array[] = array(
-			'idEntry'=>$row['idEntry'],
-			'title'=>$row['title'],
-			'body'=>$row['body'],
-			'price'=>$row['price'],
-			'idSection'=>$row['idSection'],
-			'path'=>$row['path']
+		$tempEntry = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection']
 		);
+		$tempEntry->setImages($connection);
+
+        $array[] = $tempEntry;
     }
     return $array;
 }

@@ -70,12 +70,14 @@
     </div>
     <section class="section-auto-slider">
         <div class="slider">
-            <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
-			for($i = 0 ; $i<count($entryesBySectionArray);$i++) { 
-				$imagesOfEntry = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
+            <?php $entryesBySection = SelectAllFromEntryesBySectionId($conn, 1);
+            // echo(count($entryesBySection));
+			for($i = 0; $i<count($entryesBySection);$i++) {
+				$entryesBySection[$i]->setImages($conn);
+                // print_r($entryesBySection[$i]->imagesArray[0]);
 			?> 
 				<div class="slider__item">
-					<img src="<?=$imagesOfEntry[0]['path']?>" alt="" srcset="">
+					<img src="<?=$entryesBySection[$i]->imagesArray[0]->path?>" alt="" srcset="">
 				</div>
             <?php  } ?>
         </div>
@@ -86,25 +88,26 @@
             <div class="card">
             <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
                 for($i = 0 ; $i<count($entryesBySectionArray);$i++) {  
-                $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
-                if(count($img) > 1) {
+                // $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
+                $entryesBySectionArray[$i]->setImages($conn);
+                if(count($entryesBySectionArray[$i]->imagesArray) > 1) {
                 ?> 
                     <div class="card__item">
-                        <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]['idEntry']?> ">
+                        <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?> ">
                             <div class="card__img">
-                                <div class = "img " style= "background-image: url('<?=$img[0]['path']?>')">
+                                <div class = "img " style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>')">
 
                                 </div>
-                                <div class = "img-back" style= "background-image: url('<?=$img[1]['path']?>')">
+                                <div class = "img-back" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[1]->path?>')">
 
                                 </div>
                             </div>
                             <div class="card__decription">
                                 <div class="card__title">
-                                    <?=$entryesBySectionArray[$i]['title']?>
+                                    <?=$entryesBySectionArray[$i]->title?>
                                 </div>
                                 <div class="card__price">
-                                    <?=$entryesBySectionArray[$i]['price']?> руб
+                                    <?=$entryesBySectionArray[$i]->price?> руб
                                 </div>
                             </div>
                         </a>
@@ -120,12 +123,13 @@
     <section class="sectionAdvertisingSlider">
         <div class="wrapper">
             <div class="slider-bottom">
-                <?php $entryesBySectionArray = SelectFirstPictureBySection($conn, 1);
+                <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
                 for($i = 0 ; $i<count($entryesBySectionArray);$i++) { 
+                    $entryesBySectionArray[$i]->setImages($conn);
                 ?> 
-                    <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]['idEntry']?> ">
+                    <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?> ">
                         <div class="slider-bottom__item">
-                            <img src="<?=$entryesBySectionArray[$i]['path']?>" alt="" srcset="">
+                            <img src="<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>" alt="" srcset="">
                         </div>
                     </a>
                 <?php  } ?>
