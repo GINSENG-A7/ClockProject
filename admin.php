@@ -80,35 +80,35 @@ $sectionsArray = SelectAllSections($conn);
 							<form id="outputForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="dataUpdater.php" >
 								<div class="wrapper">
 									<span class="wrapper-span">Наименование</span>
-									<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['title'])?></textarea>
+									<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->title)?></textarea>
 								</div>
 								<div class="wrapper">
 									<span class="wrapper-span">Цена</span>
-									<textarea class="wrapper-price" name="Price" id="price" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['price'])?></textarea>
+									<textarea class="wrapper-price" name="Price" id="price" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->price)?></textarea>
 								</div>
 								<div class="wrapper">
 									<span class="wrapper-span">Описание</span>
-									<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"><?echo($entryesBySectionArray[$j]['body'])?></textarea>
+									<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->body)?></textarea>
 								</div>
 								<div class="fileInputWrapper">
 									<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
 								</div>
 								<input id="edit_input" type="submit" name="Post-edit" value="Изменить">
 								<input type="hidden" name="Section-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
-								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
+								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
 							</form>
 							<form id="deleteForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="dataDeleter.php">
 								<input id="delete_input" type="submit" name="Post-delete" value="Удалить">
-								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
+								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
 							</form>
 
-							<?$imagesByEntryArray = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$j]['idEntry']);?>
-							<input id="imagesByEntryArray" type="hidden" value="imagesByEntryArray" data-imagesByEntryArrayLength="<?echo(count($imagesByEntryArray))?>">
+							<?$entryesBySectionArray[$j]->setImages($conn);?>
+							<input id="imagesByEntryArray" type="hidden" value="imagesByEntryArray" data-imagesByEntryArrayLength="<?echo(count($entryesBySectionArray[$j]->imagesArray))?>">
 							<div class="imageWrapper">
-									<?for ($u = 0; $u < count($imagesByEntryArray); $u++) {?>
+									<?for ($u = 0; $u < count($entryesBySectionArray[$j]->imagesArray); $u++) {?>
 										<div class="imageWrapper-container">
 											<form id="deleteForm-<?echo($i)?>-<?echo($j)?>-<?echo($u)?>" method="POST" action="imageDeleter.php" class="deleteOnePictureForm">
-												<img src="<?echo($imagesByEntryArray[$u]['path'])?>" alt="">
+												<img src="<?echo($entryesBySectionArray[$j]->imagesArray[$u]->path)?>" alt="">
 												<button id="X-button" class="X-button">X</button>
 												<input id="X-submit" type="submit" class="X-submit">
 												<input type="hidden" name="ImageId" value="<?echo($imagesByEntryArray[$u]['idImage'])?>">
@@ -122,7 +122,7 @@ $sectionsArray = SelectAllSections($conn);
 										</div>
 										<input id="insertImage-submit" type="submit" class="insertImage-submit">
 										<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
-										<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]['idEntry'])?>">
+										<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
 									</form>
 								</div>
 							</div>
