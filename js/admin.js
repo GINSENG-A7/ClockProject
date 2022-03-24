@@ -2,7 +2,21 @@
 let tablinks = document.getElementsByClassName("tab-links");
 for (let i = 0; i < tablinks.length; i++) {
 	tablinks[i].addEventListener("click", () => {
-		openTab(event, tablinks[i].outerText)
+		openTab(event, tablinks[i].outerText);
+
+		let bodyTextAreas = document.querySelectorAll(".wrapper-body");
+		for (let i = 0; i < bodyTextAreas.length; i++) {
+			let bTA = bodyTextAreas[i];
+			 console.log(bTA.scrollHeight);
+			// bTA.style.height = bTA.scrollHeight;
+			// bTA.style.overflowY = "hidden";
+			bTA.setAttribute("style", "height:" + (bTA.scrollHeight) + "px;");
+			bTA.addEventListener("input", OnInput, false);
+		}
+		function OnInput() {
+			this.style.height = "auto";
+			this.style.height = (this.scrollHeight) + "px";
+		}
 	});
 }
 
@@ -47,7 +61,6 @@ function openTab(event, tabName) {
 	}
   
 	// Show the current tab, and add an "active" class to the button that opened the tab
-	// document.getElementById(tabName).style.display = "block";
 	event.currentTarget.className += " active";
 }
 
@@ -90,4 +103,7 @@ for (let i = 0; i < insertImageForms.length; i++) {
 		filesInput.click();
 		event.stopPropagation();
 	});
+
+
+
 }

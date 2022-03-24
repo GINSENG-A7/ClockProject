@@ -77,7 +77,7 @@ $sectionsArray = SelectAllSections($conn);
 						// print_r($entryesBySectionArray[$j]);
 						?>
 							<input id="entryesBySectionArray" type="hidden" value="entryesBySectionArray" data-entryesBySectionArrayLength="<?echo(count($entryesBySectionArray))?>"> 
-							<form id="outputForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="dataUpdater.php" >
+							<form id="outputForm-<?echo($i)?>-<?echo($j)?>" class="outputForm" method="POST" action="dataUpdater.php" >
 								<div class="wrapper">
 									<span class="wrapper-span">Наименование</span>
 									<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->title)?></textarea>
@@ -97,7 +97,7 @@ $sectionsArray = SelectAllSections($conn);
 								<input type="hidden" name="Section-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
 							</form>
-							<form id="deleteForm-<?echo($i)?>-<?echo($j)?>" method="POST" action="dataDeleter.php">
+							<form id="deleteForm-<?echo($i)?>-<?echo($j)?>" class="deleteForm" method="POST" action="dataDeleter.php">
 								<input id="delete_input" type="submit" name="Post-delete" value="Удалить">
 								<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
 							</form>

@@ -107,6 +107,14 @@ body {
   margin-bottom: 10px;
 }
 
+.tab-output .outputForm {
+  margin-top: 30px;
+}
+
+.tab-output .outputForm:first-of-type {
+  margin-top: 0px;
+}
+
 .tab-output textarea {
   resize: none;
   margin-top: 0px;
