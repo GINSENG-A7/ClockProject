@@ -8,6 +8,7 @@
     <link href="./style/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="./img/logo.webp" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>K.Max.Jeweller</title>
 </head>
 <body>
@@ -55,6 +56,7 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+						<li class="nav-item"><a class="nav-link" href="./userSingUpOrLogIn.php"><i class="fa fa-user" style="font-size:24px"></i></a></li>
 						<li class="nav-item disappearable">
 							<div class="nav-item-textWrapper">
 								<span class = "contact-person">K.Max.Jeweller</span>
@@ -171,6 +173,6 @@
     <script src="./js/slick.min.js"></script>
     <script src="./js/customizationSliderSlick.js"></script>
     <script src = "./js/chekTypeBrowser.js"></script>
-    <script src = "./contactform.js"></script>
+    <script src = "./js/contactform.js"></script>
 </body>
 </html>

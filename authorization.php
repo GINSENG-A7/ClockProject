@@ -16,12 +16,11 @@ if (isset($_COOKIE['User'])) {
             <div class="container">
                 <form action="checkPassword.php" method="POST">
                     <div>
-                        <input class="input" name="Login" type="text" placeholder="Логин"><br>
-                        <input class="input" name="Password" type="password" placeholder="Пароль"><br>
+                        <input class="input" name="Login" id="login" type="text" placeholder="Логин"><br>
+                        <input class="input" name="Password" id="password" type="password" placeholder="Пароль"><br>
                     </div>
-                    <div>
-                        <div></div>
-                        <input type="submit" class="button">
+                    <div class="wrapper-buttons">
+						<input class="button" type="submit">
                     </div>
                 </form>
             </div>

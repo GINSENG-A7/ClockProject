@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #000;
 }
 
 .wrapper {
@@ -9,15 +10,16 @@ body {
 }
 
 .container {
-  background-color: #cccccc;
+  background-color: #181818;
   padding: 15px;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  height: 150px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 300px;
-  position: absolute;
   margin: 0 auto;
-  top: calc(50% - 100px);
+  margin-top: calc(50% - 150px);
 }
 
 .container form {
@@ -34,20 +36,72 @@ body {
   height: 100%;
 }
 
-.container form div:last-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
 .container .input {
   width: 100%;
   padding: 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  background-color: #969696;
+  border-radius: 20px;
+}
+
+.container .input::-webkit-input-placeholder {
+  color: #000;
+}
+
+.container .input:-ms-input-placeholder {
+  color: #000;
+}
+
+.container .input::-ms-input-placeholder {
+  color: #000;
+}
+
+.container .input::placeholder {
+  color: #000;
+}
+
+.container #loginInput {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.container #passwordInput {
+  margin-top: 5px;
   margin-bottom: 20px;
+}
+
+.container .wrapper-buttons {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-item-align: center;
+      align-self: center;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.container .button {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  height: 40px;
+  background-color: #787878;
+  display: block;
+}
+
+.container .button p {
+  line-height: normal;
+  vertical-align: middle;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
 }
 /*# sourceMappingURL=authoriz.css.map */

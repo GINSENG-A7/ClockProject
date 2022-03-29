@@ -114,7 +114,7 @@ $light: #faf9fe;
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 821px) {
     .header {
         &__logo {
            div {
@@ -311,7 +311,7 @@ $light: #faf9fe;
 }
 
 
-@media (min-width: 767px) {
+@media (min-width: 821px) {
     .header {
 		&__menu {
             &-icon {
@@ -357,7 +357,6 @@ $light: #faf9fe;
             padding-left: 20px;
             position: relative;
             padding-bottom: 10px;
-    
         }
         &-link {
             text-decoration: none;
