@@ -6,7 +6,6 @@ body {
 
 .wrapper {
   width: 100%;
-  height: 100vh;
 }
 
 .container {
@@ -19,7 +18,7 @@ body {
   height: fit-content;
   width: 300px;
   margin: 0 auto;
-  margin-top: calc(50% - 150px);
+  margin-top: calc(50vh - 150px);
 }
 
 .container form {
@@ -68,7 +67,18 @@ body {
 
 .container #passwordInput {
   margin-top: 5px;
-  margin-bottom: 20px;
+}
+
+.container .line {
+  margin-top: 15px;
+  width: 100%;
+  height: 1px;
+  color: #000;
+  background-color: #000;
+}
+
+.container .wrapper-inputs input {
+  margin: 5px 0;
 }
 
 .container .wrapper-buttons {
@@ -103,5 +113,9 @@ body {
   font-size: 20px;
   text-align: center;
   margin: 10px;
+}
+
+.container .validationError {
+  color: red;
 }
 /*# sourceMappingURL=authoriz.css.map */

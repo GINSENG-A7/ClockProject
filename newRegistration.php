@@ -9,24 +9,26 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <form id="loginOrRegisterForm" action="checkPassword.php" method="POST">
+                <form id="registration_script.php" action="checkPassword.php" method="POST">
                     <div class="wrapper-inputs">
-                        <input class="input" name="Login" id="loginInput" type="text" placeholder="Логин"><br>
-                        <input class="input" name="Password" id="passwordInput" type="password" placeholder="Пароль"><br>
-						<input class="input" id="SingIn" type="submit" style="display: none;">
-						<input class="input" id="SingInVK" type="submit" style="display: none;">
+						<input class="input" id="Login" type="text" placeholder="Логин">
+						<input class="input" id="Password" type="text" placeholder="Пароль">
+						<input class="input" id="Name" type="text" placeholder="Имя">
+						<input class="input" id="Surname" type="text" placeholder="Фамилия">
+						<input class="input" id="Patronymic" type="text" placeholder="Отчество">
+						<input class="input" id="Address" type="text" placeholder="Адрес">
+						<input class="input" id="Email" type="text" placeholder="Эл. почта">
+
 						<input class="input" id="SingUp" type="submit"style="display: none;">
                     </div>
 					<span class="line"></span>
                     <div class="wrapper-buttons">
-                        <div class="button" id="loginButton"><p>Войти</p></div>
-						<div class="button" id="loginVKButton"><p>Войти через VK</p></div>
 						<div class="button" id="registerButton"><p>Зарегистрироваться</p></div>
                     </div>
                 </form>
             </div>
         </div>
-		<script src = "./js/userSingUpOrLogin.js"></script>
+		<script src = "./js/newRegistration.js"></script>
     </body>
 
 </html>
