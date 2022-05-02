@@ -9,15 +9,15 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <form id="registration_script.php" action="checkPassword.php" method="POST">
+                <form id="registrationForm" action="registration_script.php" method="POST">
                     <div class="wrapper-inputs">
-						<input class="input" id="Login" type="text" placeholder="Логин">
-						<input class="input" id="Password" type="text" placeholder="Пароль">
-						<input class="input" id="Name" type="text" placeholder="Имя">
-						<input class="input" id="Surname" type="text" placeholder="Фамилия">
-						<input class="input" id="Patronymic" type="text" placeholder="Отчество">
-						<input class="input" id="Address" type="text" placeholder="Адрес">
-						<input class="input" id="Email" type="text" placeholder="Эл. почта">
+						<input class="input" id="Login" name="Login" type="text" placeholder="Логин">
+						<input class="input" id="Password" name="Password" type="text" placeholder="Пароль">
+						<input class="input" id="Name" name="Name" type="text" placeholder="Имя">
+						<input class="input" id="Surname" name="Surname" type="text" placeholder="Фамилия">
+						<input class="input" id="Patronymic" name="Patronymic" type="text" placeholder="Отчество">
+						<input class="input" id="Address" name="Address" type="text" placeholder="Адрес">
+						<input class="input" id="Email" name="Email" type="text" placeholder="Эл. почта">
 
 						<input class="input" id="SingUp" type="submit"style="display: none;">
                     </div>

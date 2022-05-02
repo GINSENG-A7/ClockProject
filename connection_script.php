@@ -23,6 +23,15 @@ if ($conn->connect_error) {
   	die("Connection failed: " . $conn->connect_error);
 }
 
+// Create connection
+$clockUsersConn = $connection->get_mysqli_connection('clockusers');
+
+// Check connection
+if ($clockUsersConn->connect_error) {
+	print_r("Connection Error");
+  	die("Connection failed: " . $clockUsersConn->connect_error);
+}
+
 
 function AddNewImages($connection, $path, $idEntry) {
 	$sql = "INSERT INTO `images` (idImage, `path`, idEntry) VALUES (DEFAULT, '$path', $idEntry)";
@@ -173,5 +182,12 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
         $array[] = $tempEntry;
     }
     return $array;
+}
+
+//-----------------------------Users----------------------------//
+
+function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $address, $email) {
+	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, email, token, discount, role_id) VALUES (DEFAULT, '$login', '$password', '$name', '$surname', '$patronymic', '$address', '$email', DEFAULT, 0, 3)";
+	mysqli_query($connection, $sql);
 }
 ?>

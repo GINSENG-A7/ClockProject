@@ -105,6 +105,9 @@
 					}
 				}
 			}
+			else {
+				throw new Exception('POST data is not set.');
+			}
 
 			//Adding new pictures
 			if (isset($_POST['Entry-id'])) {

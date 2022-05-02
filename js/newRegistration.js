@@ -1,3 +1,19 @@
+let form = document.querySelector('#registrationForm');
+form.addEventListener('submit', async (e) => {
+	e.preventDefault();
+	let response = await fetch('registration_script.php', {
+		method: 'POST',
+		body: new FormData(form)
+	});
+	if (response.ok) {
+		window.location.replace("../index.php");
+		alert("Учётная запись успешно создана");
+	}
+	else {
+		alert("Request error");
+	}
+})
+
 let allInputs = document.querySelectorAll("input[type=text]");
 
 let registerButton = document.querySelector("#registerButton");
@@ -11,7 +27,7 @@ registerButton.addEventListener("click", () => {
 			inputsAreNotEmpty = false;
 		}
 	}
-	if (inputsAreNotEmpty = false) {
+	if (inputsAreNotEmpty == false) {
 		toggleValidationError("Все поля обязательны к заполнению.");
 	}
 	else {
@@ -32,7 +48,7 @@ registerButton.addEventListener("click", () => {
 					}
 					break;
 				case "Name" || "Surname" || "Patronymic":
-					let regex1 = /^[a-zA-Z]{2,250}$/;
+					let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
 					fioValidationIsGood = regex1.test(input.value);
 					if (fioValidationIsGood == false) {
 						toggleValidationError("Неверныйформат данных при указании ФИО.");
