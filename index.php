@@ -56,7 +56,15 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
-						<li class="nav-item"><a class="nav-link" href="./userSingUpOrLogIn.php"><i class="fa fa-user" style="font-size:24px"></i></a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="./userSingUpOrLogIn.php"><i class="fa fa-user" style="font-size:24px"></i></a>
+							<span class="nav-arrow"></span>
+							<ul class="nav-sub">
+								<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
+							</ul>
+						</li>
 						<li class="nav-item disappearable">
 							<div class="nav-item-textWrapper">
 								<span class = "contact-person">K.Max.Jeweller</span>

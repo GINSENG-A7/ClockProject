@@ -2,6 +2,23 @@ let form = document.querySelector("#loginOrRegisterForm");
 
 let loginButton = document.querySelector("#loginButton");
 loginButton.addEventListener("click", () => {
+	form.action = "authorize_script.php";
+
+	// form.addEventListener('submit', async (e) => {
+	// 	e.preventDefault();
+	// 	let response = await fetch('authorize_script.php', {
+	// 		method: 'POST',
+	// 		body: new FormData(form)
+	// 	});
+	// 	if (response.ok) {
+	// 		window.location.replace("../index.php");
+	// 		alert("Вы успешно авторизированы.");
+	// 	}
+	// 	else {
+	// 		alert("Request error");
+	// 	}
+	// })
+
 	let singInInput = document.querySelector("#SingIn");
 	singInInput.click();
 });
@@ -19,3 +36,15 @@ registerButton.addEventListener("click", () => {
 	let registerInput = document.querySelector("#SingUp");
 	registerInput.click();
 });
+
+function toggleValidationError(errorMessage) {
+	let validationError = document.querySelector(".validationError");
+	if (validationError != null) {
+		validationError.remove();
+	}
+	let validationErrorNode = document.createElement("p");
+	validationErrorNode.innerText = errorMessage;
+	validationErrorNode.classList.add('validationError');
+	let lastDiv = document.querySelector(".wrapper-buttons");
+	lastDiv.appendChild(validationErrorNode);
+}

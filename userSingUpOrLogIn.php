@@ -1,3 +1,13 @@
+<?
+	setcookie("authorize_response", "true");
+	$scriptResponse = true;
+	if (isset($_COOKIE["authorize_response"])) {
+		if ($_COOKIE["authorize_response"] == "false") {
+			$scriptResponse = false;
+			setcookie ("authorize_response", "", time() - 3600); //удаление куки
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,6 +37,15 @@
             </div>
         </div>
 		<script src = "./js/userSingUpOrLogin.js"></script>
+		<?
+		if ($scriptResponse == false) {
+			?>
+			<script>
+				toggleValidationError("Неверный логин или пароль.");
+			</script>
+			<?
+		}
+		?>
     </body>
 
 </html>

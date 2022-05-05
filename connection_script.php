@@ -187,7 +187,40 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 //-----------------------------Users----------------------------//
 
 function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $address, $email) {
-	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, email, token, discount, role_id) VALUES (DEFAULT, '$login', '$password', '$name', '$surname', '$patronymic', '$address', '$email', DEFAULT, 0, 3)";
+	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, email, token, discount, role_id) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$address', '$email', DEFAULT, 0, 3)";
 	mysqli_query($connection, $sql);
+}
+
+function CheckUserAuthorizationData($connection, $login, $password) {
+	// printf($login);
+	// printf($password);
+	$sql = "SELECT u.login, u.password FROM `users` u WHERE u.login = '".$login."'";
+	$result = mysqli_query($connection, $sql);
+	$row = mysqli_fetch_array($result);
+	if ($result->num_rows > 0) {
+		if ($login == $row['login'] && md5($password) == $row['password']) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
+function SelectUserByLogin($connection, $login) {
+	$sql = "SELECT * FROM `users` WHERE login = '".$login."'";
+	$result = mysqli_query($connection, $sql);
+	$row = mysqli_fetch_array($result);
+	return $row;
+}
+
+function SelectRoleById($connection, $idRole) {
+	$sql = "SELECT r.role FROM `roles` r WHERE r.idRole = ".$idRole."";
+	$result = mysqli_query($connection, $sql);
+	$row = mysqli_fetch_array($result);
+	return $row;
 }
 ?>

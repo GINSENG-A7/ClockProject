@@ -25,6 +25,18 @@
                     <div class="wrapper-buttons">
 						<div class="button" id="registerButton"><p>Зарегистрироваться</p></div>
                     </div>
+					<?
+						if (isset($_COOKIE["authorize_response"])) {
+							if ($_COOKIE["authorize_response"] == false) {
+								?>
+								<script>
+									toggleValidationError("Неверное имя пользователя или логин.");
+								</script>
+								<?
+								setcookie ("authorize_response", "", time() - 3600); //удаление куки
+							}
+						}
+					?>
                 </form>
             </div>
         </div>
