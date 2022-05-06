@@ -66,3 +66,43 @@ if (menuIcon) {
 //         }
 //     }
 // }
+//Выход из учётки
+
+
+var exitForm = document.querySelector('#exit_form');
+var exitLink = document.querySelector('#exit_link');
+exitLink.addEventListener("click", function (e) {
+  e.preventDefault();
+  exitForm.addEventListener('submit', function _callee(e) {
+    var response;
+    return regeneratorRuntime.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault();
+            _context.next = 3;
+            return regeneratorRuntime.awrap(fetch('exit_script.php', {
+              method: 'POST',
+              body: new FormData(exitForm)
+            }));
+
+          case 3:
+            response = _context.sent;
+
+            if (response.ok) {
+              alert("Вы успешно вышли из аккаунта.");
+              window.location.replace("/index.php");
+            } else {
+              alert("Request error");
+            }
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    });
+  });
+  var exitInput = document.querySelector('#exit_input');
+  exitInput.click();
+});

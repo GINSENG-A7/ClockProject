@@ -1,4 +1,5 @@
 <?include "./connection_script.php"?>
+<?session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,15 @@
     <title>K.Max.Jeweller</title>
 </head>
 <body>
+	<?
+	if (isset($_SESSION["login"])) {
+		$login = $_SESSION["login"];
+		print_r($login);
+	} 
+	else {
+		$login = NULL;
+	}
+	?>
     <div class="wrapper">
         <header class="header">
             <div class="header__logo">
@@ -57,13 +67,27 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
 						<li class="nav-item">
-							<a class="nav-link" href="./userSingUpOrLogIn.php"><i class="fa fa-user" style="font-size:24px"></i></a>
-							<span class="nav-arrow"></span>
-							<ul class="nav-sub">
-								<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
-								<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
-								<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
-							</ul>
+							<a class="nav-link" <?if ($login == NULL) {echo('href="./userSingUpOrLogIn.php"');}?>>
+								<i class="fa fa-user" style="font-size:24px"></i>
+							</a>
+							<?
+							if ($login != NULL) {
+								?>
+								<span class="nav-arrow"></span>
+								<ul class="nav-sub">
+									<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
+									<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
+									<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
+									<li class="nav-sub__item">
+										<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">
+											<input id="exit_input" type="submit" name="exit_input" style="display: none;">
+										</form>
+										<a id="exit_link" class="nav-sub__link" href="">Выйти</a>
+									</li>
+								</ul>
+								<?
+							}
+							?>
 						</li>
 						<li class="nav-item disappearable">
 							<div class="nav-item-textWrapper">
@@ -157,7 +181,7 @@
                     <input class="from__input" type="email" name="email" placeholder="Email" value="">
                     <input class="from__input" type="tel" name="email" placeholder="Номер телефона" value="">
                     <textarea class="from__textarea"  name="message"   placeholder="Сообщение"></textarea>
-                    <button class="from__button"  type="submit">Отправить</button>
+                    <button class="from__button" type="submit">Отправить</button>
                 </form>
             </div>
         </div>
@@ -180,7 +204,7 @@
     <script src="./js/jquery.js"></script>
     <script src="./js/slick.min.js"></script>
     <script src="./js/customizationSliderSlick.js"></script>
-    <script src = "./js/chekTypeBrowser.js"></script>
-    <script src = "./js/contactform.js"></script>
+    <script src="./js/chekTypeBrowser.js"></script>
+    <script src="./js/contactform.js"></script>
 </body>
 </html>

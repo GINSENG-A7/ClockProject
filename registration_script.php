@@ -32,8 +32,8 @@
 				0
 			);
 			AddNewUserInDatabase($clockUsersConn, $login, $password, $name, $surname, $patronymic, $address, $email);
-			$user->idUser = SelectUserByLogin($clockUsersConn, $login)['idUser'];
-			$_SESSION["user"] = $user;
+			$user->idUser = SelectUserByLogin($clockUsersConn, $user->login)['idUser'];
+			$_SESSION["login"] = $user->login;
 			?>
 			<script>
 				window.location.replace("/index.php");

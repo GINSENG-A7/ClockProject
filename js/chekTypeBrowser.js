@@ -78,3 +78,30 @@ if(menuIcon) {
 //         }
 //     }
 // }
+
+
+//Выход из учётки
+
+let exitForm = document.querySelector('#exit_form');
+let exitLink = document.querySelector('#exit_link');
+exitLink.addEventListener("click", (e) => {
+	e.preventDefault();
+	
+	exitForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch('exit_script.php', {
+			method: 'POST',
+			body: new FormData(exitForm)
+		});
+		if (response.ok) {
+			alert("Вы успешно вышли из аккаунта.");
+			window.location.replace("/index.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+
+	let exitInput = document.querySelector('#exit_input');
+	exitInput.click();
+});

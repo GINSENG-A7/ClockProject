@@ -4,20 +4,20 @@ let loginButton = document.querySelector("#loginButton");
 loginButton.addEventListener("click", () => {
 	form.action = "authorize_script.php";
 
-	// form.addEventListener('submit', async (e) => {
-	// 	e.preventDefault();
-	// 	let response = await fetch('authorize_script.php', {
-	// 		method: 'POST',
-	// 		body: new FormData(form)
-	// 	});
-	// 	if (response.ok) {
-	// 		window.location.replace("../index.php");
-	// 		alert("Вы успешно авторизированы.");
-	// 	}
-	// 	else {
-	// 		alert("Request error");
-	// 	}
-	// })
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch('authorize_script.php', {
+			method: 'POST',
+			body: new FormData(form)
+		});
+		if (response.ok) {
+			window.location.replace("../index.php");
+			alert("Вы успешно авторизированы.");
+		}
+		else {
+			alert("Request error");
+		}
+	})
 
 	let singInInput = document.querySelector("#SingIn");
 	singInInput.click();

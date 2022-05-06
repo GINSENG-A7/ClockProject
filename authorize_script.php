@@ -10,15 +10,15 @@
 		$response = CheckUserAuthorizationData($clockUsersConn, $login, $password);
 		if ($response == true) {
 			$resultArray = SelectUserByLogin($clockUsersConn, $login);
-			$role = SelectRoleById($clockUsersConn, $resultArray['idRole']);
+			$role = SelectRoleById($clockUsersConn, $resultArray['idRole'])['role'];
 			if ($role != "user") {
-				$user = new User(
-					$resultArray['idUser'],
-					$resultArray['idRole'],
-					$resultArray['login'],
-					$resultArray['password']
-				);
-				$_SESSION["user"] = $user;
+				// $user = new User(
+				// 	$resultArray['idUser'],
+				// 	$resultArray['idRole'],
+				// 	$resultArray['login'],
+				// 	$resultArray['password']
+				// );
+				$_SESSION["login"] = $resultArray['login'];
 				if ($role == "admin") {
 					?>
 					<script>
@@ -27,24 +27,27 @@
 					<?
 				}
 				else {
+					$_SESSION["login"] = $resultArray['login'];
 					//редирект на страницу менеджера
 				}
 			}
 			else {
-				$user = new AdvancedUser(
-					$resultArray['idUser'],
-					$resultArray['idRole'],
-					$resultArray['login'],
-					$resultArray['password'],
-					$resultArray['name'],
-					$resultArray['surname'],
-					$resultArray['patronymic'],
-					$resultArray['address'],
-					$resultArray['email'],
-					$resultArray['token'],
-					$resultArray['discount']
-				);
-				$_SESSION["user"] = $user;
+				// $user = new AdvancedUser(
+				// 	$resultArray['idUser'],
+				// 	$resultArray['idRole'],
+				// 	$resultArray['login'],
+				// 	$resultArray['password'],
+				// 	$resultArray['name'],
+				// 	$resultArray['surname'],
+				// 	$resultArray['patronymic'],
+				// 	$resultArray['address'],
+				// 	$resultArray['email'],
+				// 	$resultArray['token'],
+				// 	$resultArray['discount']
+				// );
+				$_SESSION["login"] = $resultArray['login'];
+				$login = $_SESSION["login"];
+				print_r($_SESSION["login"]);
 				?>
 				<script>
 					window.location.replace("/index.php");
@@ -62,11 +65,6 @@
 			</script>
 			<?
 		}
-		?>
-		<script>
-			window.location.replace("/index.php");
-		</script>
-		<?
 	}
 	else {
 		throw new Exception('POST data is not set.');
