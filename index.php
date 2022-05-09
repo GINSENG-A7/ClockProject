@@ -129,7 +129,7 @@
                     <div class="card__item">
                         <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">
                             <div class="card__img">
-                                <div class = "img " style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>')">
+                                <div class = "img" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>')">
 
                                 </div>
                                 <div class = "img-back" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[1]->path?>')">

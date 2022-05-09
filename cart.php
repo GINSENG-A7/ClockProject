@@ -1,0 +1,156 @@
+<?require_once("./connection_script.php");?>
+<?
+session_start();
+$sectionsArray = SelectAllSections($conn);
+if (isset($_SESSION["login"])) {
+	$login = $_SESSION["login"];
+	print_r($login);
+} 
+else {
+	$login = NULL;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style/cart.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/logo.webp" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Cart</title>
+</head>
+<body>
+<div class="wrapper">
+        <header class="header">
+            <div class="header__logo">
+                <a href='' class="header__logo-linkWrapper">
+					<img src="./img/logo.webp" alt="logo">
+				</a>
+                <div class="header__logo-textWrapper">
+                    <span>K.Max.Jeweller</span>
+					<div class="header__logo-textWrapper-phonesWrapper">
+						<a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+						<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+					</div>
+                </div>
+            </div>
+            <div class="header__menu">
+                <div class="header__menu-icon">
+                    <span></span>
+                </div>
+                <nav class="header__menu-body">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./shop.php?id=1">Часы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./shop.php?id=2">Украшения</a>
+                            <span class="nav-arrow"></span>
+                            <ul class="nav-sub">
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=2">Браслеты</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=3">Кольца</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=4">Подвески</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=5">Цепи</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./shop.php?id=6">Аксессуары</a>
+                            <span class="nav-arrow"></span>
+                            <ul class="nav-sub">
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=6">Ремни</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=7">Бритвы</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=8">Портмоне</a></li>
+                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+						<li class="nav-item">
+							<a class="nav-link" <?if ($login == NULL) {echo('href="./userSingUpOrLogIn.php"');}?>>
+								<i class="fa fa-user" style="font-size:24px"></i>
+							</a>
+							<?
+							if ($login != NULL) {
+								?>
+								<span class="nav-arrow"></span>
+								<ul class="nav-sub">
+									<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
+									<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
+									<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
+									<li class="nav-sub__item">
+										<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">
+											<input id="exit_input" type="submit" name="exit_input" style="display: none;">
+										</form>
+										<a id="exit_link" class="nav-sub__link" href="">Выйти</a>
+									</li>
+								</ul>
+								<?
+							}
+							?>
+						</li>
+						<li class="nav-item disappearable">
+							<div class="nav-item-textWrapper">
+								<span class = "contact-person">K.Max.Jeweller</span>
+								<a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+								<a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+							</div>
+						</li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+		
+		<section class="section-orders-items">
+			<h2  class="title-h2 text-center">Список товаров</h2>
+			<div class="rows_of_entryes">
+			<?
+			$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1)[0];
+			$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $cart['idOrder']);
+			for ($i = 0; $i < count($entryesInOrderArray); $i++) {
+				$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
+				$entry->setImages($conn);
+				// print_r($entry->imagesArray[0]->path);
+			?>
+				<div class="rows__item">
+					<a class="rows__item-wrap_link" href="<?=$entry->idEntry?>">
+						<form id="purchaseForm" class="purchase_form" method="POST">
+							<div class="rows__item-img">
+								<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
+
+								</div>
+							</div>
+							<div class="rows__item-none_flex_wrapper">
+								<div class="rows__item-flex_wrapper">
+									<div class="rows__item-description">
+										<div class="title">
+											<?=$entry->title?>
+										</div>
+										<div class="price">
+											<?=$entry->price?> руб
+										</div>
+									</div>
+									<div class="number_wrapper">
+										<button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+										<input class="number_input" type="number" min="0" value="1" readonly>
+										<button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+									</div>
+								</div>
+								<div class="rows__item-submit_wrapper">
+									<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit">
+								</div>
+							</div>
+						</form>
+					</a>
+				</div>
+			<?
+			}
+			?>
+		</section>
+    </div>
+
+
+
+	<script src="./js/chekTypeBrowser.js"></script>
+</body>

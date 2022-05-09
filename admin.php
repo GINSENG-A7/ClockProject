@@ -1,5 +1,6 @@
 <?include "./connection_script.php"?>
 <?
+session_start();
 $sectionsArray = SelectAllSections($conn);
 if (isset($_SESSION["login"])) {
 	$login = $_SESSION["login"];

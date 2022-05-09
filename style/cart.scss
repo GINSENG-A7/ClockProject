@@ -1,0 +1,144 @@
+@import "adaptiveMexinFonts.scss";
+@import "header.scss";
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.section-orders-items {
+
+}
+
+.rows_of_entryes {
+
+}
+
+.rows {
+	&__item {
+		font-size: 34px;
+		&-wrap_link {
+			// display: flex;
+			// flex-direction: row;
+			// justify-content: space-between;
+			margin: 0 auto;
+			max-width: 1030px;
+			width: 100%;
+			height: 200px;
+			display: block;
+		}
+		.purchase_form {
+			display: flex;
+			flex-direction: row;
+			// justify-content: space-between;
+			width: 100%;
+			height: 200px;
+			outline: blue dashed 1px;
+		}
+		&-img {
+			// float: left;
+			min-width: 200px;
+			height: 100%;
+			margin-right: 20px;
+			.img {
+				min-height: 100%;
+				min-width: 100%;
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
+		}
+		&-none_flex_wrapper {
+			width: 100%;
+		}
+		&-flex_wrapper {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			max-width: max-content;
+			height: 140px;
+			max-width: 810px;
+			flex-grow: 1;
+			.number {
+				&_wrapper {
+					display: inline-block;
+					position: relative;
+					width: 100px;
+					margin-right: 20px;
+					& > * {
+						margin-top: 50% !important;
+					}
+				}
+				&_wrapper input[type="number"] {
+					display: block;
+					height: 32px;
+					line-height: 32px;
+					width: 100%;
+					padding: 0;
+					margin: 0;
+					box-sizing: border-box;
+					text-align: center;
+					-moz-appearance: textfield;
+					-webkit-appearance: textfield;
+					appearance: textfield;
+				}
+				&_wrapper input[type="number"]::-webkit-outer-spin-button,
+				&_wrapper input[type="number"]::-webkit-inner-spin-button {
+					display: none;
+				}
+				&-minus {
+					position: absolute;
+					top: 1px;
+					left: 1px;
+					bottom: 1px;
+					width: 20px;
+					height: 32px;
+					padding: 0;
+					display: block;
+					text-align: center;
+					border: none;
+					border-right: 1px solid #ddd;
+					font-size: 16px;
+					font-weight: 600;
+				}
+				&-plus {
+					position: absolute;
+					top: 1px;
+					right: 1px;
+					bottom: 1px;
+					width: 20px;
+					height: 32px;
+					padding: 0;
+					display: block;
+					text-align: center;
+					border: none;
+					border-left: 1px solid #ddd;
+					font-size: 16px;
+					font-weight: 600;
+				}
+			}
+		}
+		&-description {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			width:auto;
+			min-width: min-content;
+			.title {
+				
+			}
+			.price {
+
+			}
+		}
+		&-submit_wrapper {
+			display: inline-block;
+			width: 100%;
+			.submit_input {
+				margin-top: 10px;
+				width: calc(100% - 20px);
+				height: 40px;
+			}
+		}
+	}
+}
