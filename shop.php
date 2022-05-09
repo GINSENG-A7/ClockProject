@@ -75,33 +75,34 @@
             <h2  class="title-h2 text-center" >Список товаров</h2>
             <div class="card">
             <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $_GET['id']);
-                for($i = 0 ; $i<count($entryesBySectionArray);$i++) {  
-                $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
-                if(count($img) > 1) {
-                ?> 
-                    <div class="card__item">
-                        <a href="./descripshen.php">
-                            <div class="card__img">
-                                <div class = "img " style= "background-image: url('<?=$img[0]['path']?>')">
+                for($i = 0 ; $i<count($entryesBySectionArray);$i++) {
+					$entry = $entryesBySectionArray[$i];
+					$entry->setImages($conn);
+					if(count($entry->imagesArray) > 1) {
+					?>
+						<div class="card__item">
+							<a href="./descripshen.php?id=<?=$entry->idEntry?>">
+								<div class="card__img">
+									<div class = "img" style= "background-image: url('<?=$entry->imagesArray[0]->path?>')">
 
-                                </div>
-                                <div class = "img-back" style= "background-image: url('<?=$img[1]['path']?>')">
+									</div>
+									<div class = "img-back" style= "background-image: url('<?=$entry->imagesArray[1]->path?>')">
 
-                                </div>
-                            </div>
-                            <div class="card__decription">
-                                <div class="card__title">
-                                    <?=$entryesBySectionArray[$i]['title']?>
-                                </div>
-                                <div class="card__price">
-                                    <?=$entryesBySectionArray[$i]['price']?> руб
-                                </div>
-                            </div>
-                        </a>
-                        <div class="card__btn">
-                            <a href="./descripshen.php">Подробнее...</a>
-                        </div>
-                    </div>
+									</div>
+								</div>
+								<div class="card__decription">
+									<div class="card__title">
+										<?=$entry->title?>
+									</div>
+									<div class="card__price">
+										<?=$entry->price?> руб
+									</div>
+								</div>
+							</a>
+							<div class="card__btn">
+								<a href="./descripshen.php?id=<?=$entry->idEntry?>">Подробнее...</a>
+							</div>
+						</div>
                 <?php  }}?>
             </div>
         </div>

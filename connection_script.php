@@ -92,17 +92,17 @@ function SelectAllImagesByEntryId($connection, $idEntry) {
 function SelectEntryByEntryId($connection, $idEntry) {
 	$sql = "SELECT * FROM entryes WHERE idEntry = ".$idEntry."";
     $result = mysqli_query($connection, $sql);
-    while($row = mysqli_fetch_array($result))
+    $row = mysqli_fetch_array($result);
     {
-        $array[] = array(
-			'idEntry'=>$row['idEntry'],
-			'title'=>$row['title'],
-			'body'=>$row['body'],
-			'price'=>$row['price'],
-			'idSection'=>$row['idSection']
+		$entry = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection']
 		);
     }
-    return $array;
+    return $entry;
 }
 
 function SelectSectionNameById($connection, $idSection) {
@@ -222,5 +222,53 @@ function SelectRoleById($connection, $idRole) {
 	$result = mysqli_query($connection, $sql);
 	$row = mysqli_fetch_array($result);
 	return $row;
+}
+
+//------------------------Cart--------------------------//
+function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
+	$sql = "SELECT * FROM `orders` o WHERE o.status_id = ".$status_id." && o.user_id = (SELECT u.idUser FROM users u WHERE u.login = '".$login."')";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idOrder'=>$row['idOrder'],
+			'result_value'=>$row['result_value'],
+			'order_date'=>$row['order_date'],
+			'user_id'=>$row['user_id'],
+			'status_id'=>$row['status_id']
+		);
+    }
+    return $array;
+}
+
+function SelectEntryesInOrderByOrderId($connection, $idOrder) {
+	$sql = "SELECT * FROM entryes_in_order WHERE order_id = ".$idOrder."";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idEntry_in_order'=>$row['idEntry_in_order'],
+			'historicalPrice'=>$row['historicalPrice'],
+			'order_id'=>$row['order_id'],
+			'entry_id'=>$row['entry_id']
+		);
+    }
+    return $array;
+}
+
+function AddNewOrderToUser($connection, $order_date, $login, $status_id) {
+	$sql = "INSERT INTO `orders` (idOrder, order_date, `user_id`, status_id) VALUES (DEFAULT, '$order_date', (SELECT u.idUser FROM users u WHERE u.login = '$login'), $status_id)";
+	mysqli_query($connection, $sql);
+}
+
+function AddNewEntryToOrder($connection, $order_id, $entry_id) {
+	$sql = "INSERT INTO `entryes_in_order` (idEntry_in_order, historicalPrice, order_id, entry_id) VALUES (DEFAULT, NULL, $order_id, $entry_id)";
+	mysqli_query($connection, $sql);
 }
 ?>

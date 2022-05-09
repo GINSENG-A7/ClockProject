@@ -1,11 +1,13 @@
-<?php
-	if (!isset($_COOKIE['User'])) {
-		header("location: ./authorization.php");
-	}
-?>
 <?include "./connection_script.php"?>
 <?
 $sectionsArray = SelectAllSections($conn);
+if (isset($_SESSION["login"])) {
+	$login = $_SESSION["login"];
+	print_r($login);
+} 
+else {
+	$login = NULL;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +20,10 @@ $sectionsArray = SelectAllSections($conn);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <title>Admin panel</title>
 </head>
+<?
+$userArray = SelectUserByLogin($clockUsersConn, $login);
+if ($userArray['idRole'] == 1) {
+?>
 <body>
 	<input id="sectionsArray" type="hidden" value="sectionsArray"  data-sectionsArrayLength="<?echo(count($sectionsArray))?>">
 	<div class="tab">
@@ -26,6 +32,7 @@ $sectionsArray = SelectAllSections($conn);
 				<button class="tab-links"><?echo($sectionsArray[$i]['sectionName'])?></button>
 			<?}?>
 		</div>
+		<button class="tab-links">Клиенты</button>
 		<form  action="entionAdmin.php">
 			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">
 		</form>
@@ -144,3 +151,14 @@ $sectionsArray = SelectAllSections($conn);
 	<script src="./js/filesLoader.js"></script>
 	<!-- <script src="./js/sendSecondFormData.js"></script> -->
 </body>
+<?
+}
+else {
+	?>
+	<script>
+		alert("Данная страница вам недоступна.");
+		window.location.replace("./index.php");
+	</script>
+	<?
+}
+?>

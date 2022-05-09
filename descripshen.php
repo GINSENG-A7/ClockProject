@@ -1,4 +1,5 @@
-<?include "./connection_script.php"?>
+<?require_once("./connection_script.php")?>
+<?session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,19 @@
     <link href="./style/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="./img/logo.webp" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-    <title>K.Max.Jeweller</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>K.Max.Jeweller</title>
 </head>
-<body >
+<body>
+	<?
+	if (isset($_SESSION["login"])) {
+		$login = $_SESSION["login"];
+		print_r($login);
+	} 
+	else {
+		$login = NULL;
+	}
+	?>
     <div class = "dis">
         <div class="wrapper">
             <header class="header">
@@ -56,6 +67,29 @@
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+							<li class="nav-item">
+								<a class="nav-link" <?if ($login == NULL) {echo('href="./userSingUpOrLogIn.php"');}?>>
+									<i class="fa fa-user" style="font-size:24px"></i>
+								</a>
+								<?
+								if ($login != NULL) {
+								?>
+									<span class="nav-arrow"></span>
+									<ul class="nav-sub">
+										<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
+										<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
+										<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
+										<li class="nav-sub__item">
+											<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">
+												<input id="exit_input" type="submit" name="exit_input" style="display: none;">
+											</form>
+											<a id="exit_link" class="nav-sub__link" href="">Выйти</a>
+										</li>
+									</ul>
+								<?
+								}
+								?>
+							</li>
                             <li class="nav-item disappearable">
                                 <div class="nav-item-textWrapper">
                                     <span class = "contact-person">K.Max.Jeweller</span>
@@ -73,31 +107,60 @@
             <div class = "wrapper">
                 <div class ="decription">
                     <?php 
-                        if (isset( $_GET['id'] ) && !empty( $_GET['id'] )){
-                        $entry = SelectEntryByEntryId($conn, $_GET['id']);
-                        $img = SelectAllImagesByEntryId($conn, $entry[0]['idEntry']);
-                        if(count($img) > 0) {
+                        if (isset( $_GET['id'] ) && !empty( $_GET['id'] )) {
+						$entry = SelectEntryByEntryId($conn, $_GET['id']);
+						$entry->setImages($conn);
+                        if(count($entry->imagesArray) > 0) {
                     ?> 
                         <div class = "decription__img">
                             <div class = "decription__click">
-                                <?php for($i = 0 ; $i<count($img);$i++) {?> 
-                                    <div class="decription__item" onclick="ShowImg(this)" data-src="<?=$img[$i]['path']?>">
-                                        <img class = "img" src="<?=$img[$i]['path']?>" alt="">
+                                <?php for($i = 0 ; $i < count($entry->imagesArray); $i++) { ?> 
+                                    <div class="decription__item" onclick="ShowImg(this)" data-src="<?=$entry->imagesArray[$i]->path?>">
+                                        <img class="img" src="<?=$entry->imagesArray[$i]->path?>" alt="">
                                     </div>
-                                <?php }?>
+                                <?php } ?>
                             </div>
                             <div class = "decription__show">
-                                <img class = "img" src="<?=$img[0]['path']?>" alt="">
+                                <img class = "img" src="<?=$entry->imagesArray[0]->path?>" alt="">
                             </div>
                         </div>
                         <div class = "decription__text">
-                            <h2 class = "decription__title"> <?=$entry[0]['title']?></h2>
+                            <h2 class = "decription__title"> <?=$entry->title?></h2>
                             <div class = "decription__price">
-                                <?=$entry[0]['price']?> ₽Цена
+                                <?=$entry->price?> ₽
                             </div>
                             <div class = "decription__body">
-                                <?=$entry[0]['body']?>
+                                <?=$entry->body?>
                             </div>
+							<form id="addToCartForm" name="addToCartForm" action="add_to_cart_script.php" method="POST">
+								<input id="entryIdInput" name="entryIdInput" type="hidden" value="<?=$_GET['id']?>">
+								<?php
+								$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1);
+								if ($cart != NULL) {
+									$cartItems = SelectEntryesInOrderByOrderId($clockUsersConn, $cart[0]['idOrder']);
+									if ($cartItems != NULL) {
+										for ($i = 0; $i < count($cartItems); $i++) {
+											if ($cartItems[$i]['entry_id'] == $entry->idEntry) {
+											?>
+												<input class="alreadyInCart" id="addToCartForm" type="submit" value="Уже в корзине" disabled>	
+											<?
+											break;
+											}
+											else {
+											?>
+												<input id="addToCartForm" type="submit" value="Добавить в корзину">
+											<?
+											}
+										}
+									}
+								}
+								else {
+								?>
+									<input id="addToCartForm" type="submit" value="Добавить в корзину">
+								<?
+								}
+								?>
+							</form>
                         </div>
                     <?php }} ?>
                 </div>
@@ -121,6 +184,8 @@
         <script src="./js/jquery.js"></script>
         <script src="./js/slick.min.js"></script>
         <script src="./js/customizationSliderSlick.js"></script>
+		<script src="./js/chekTypeBrowser.js"></script>
+		<script src="./js/description.js"></script>
     </div>
 </body>
 </html>

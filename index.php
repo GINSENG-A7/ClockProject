@@ -127,7 +127,7 @@
                 if(count($entryesBySectionArray[$i]->imagesArray) > 1) {
                 ?> 
                     <div class="card__item">
-                        <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?> ">
+                        <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">
                             <div class="card__img">
                                 <div class = "img " style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>')">
 
@@ -146,7 +146,7 @@
                             </div>
                         </a>
                         <div class="card__btn">
-                            <a href="./descripshen.php">Подробнее...</a>
+                            <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">Подробнее...</a>
                         </div>
                     </div>
                 <?php  }}?>
