@@ -19,7 +19,8 @@
 			AddNewEntryToOrder($clockUsersConn, $cartId, $_POST['entryIdInput']);
 		}
 		else {
-			AddNewEntryToOrder($clockUsersConn, $cart['id'], $_POST['entryIdInput']);
+			print_r($_POST['entryIdInput']);
+			AddNewEntryToOrder($clockUsersConn, $cart[0]['idOrder'], $_POST['entryIdInput']);
 		}
 	}
 ?>

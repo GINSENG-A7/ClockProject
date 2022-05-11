@@ -105,17 +105,18 @@ else {
 		<section class="section-orders-items">
 			<h2  class="title-h2 text-center">Список товаров</h2>
 			<div class="rows_of_entryes">
-			<?
-			$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1)[0];
-			$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $cart['idOrder']);
-			for ($i = 0; $i < count($entryesInOrderArray); $i++) {
-				$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
-				$entry->setImages($conn);
-				// print_r($entry->imagesArray[0]->path);
-			?>
-				<div class="rows__item">
-					<form id="purchaseForm" class="purchase_form" method="POST" action="./new_order_script.php">
-						<div class="rows__item-img">
+				<?
+				$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1)[0];
+				$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $cart['idOrder']);
+				for ($i = 0; $i < count($entryesInOrderArray); $i++) {
+					$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
+					$entry->setImages($conn);
+					// print_r($entry->imagesArray[0]->path);
+				?>
+					<div class="rows__item">
+						<form id="deleteItemForm" class="rows__item-purchase_form" method="POST" action="./delete_from_cart_script.php">
+							<input id="itemId" name="itemId[]" type="hidden" value="<?=$entry->idEntry?>">
+							<div class="rows__item-img">
 								<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
 									<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
 
@@ -136,21 +137,26 @@ else {
 									</div>
 									<div class="number_wrapper">
 										<button class="number-minus" type="button">-</button>
-										<input class="number_input" type="number" min="0" value="1" readonly>
+										<input name="itemCount[]" class="number_input" type="number" min="1" value="1" readonly>
 										<button class="number-plus" type="button">+</button>
 									</div>
 								</div>
 								<div class="rows__item-submit_wrapper">
-									<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit" value="Заказать">
+									<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit" value="Удалить">
 								</div>
 							</div>
 						</form>
-				</div>
-			<?
-			}
-			?>
+					</div>
+				<?
+				}
+				?>
+				<form id="newOfferForm" class="new_offer_form" method="POST" action="./new_order_script.php">
+					<input id="orderId" name="orderId" type="hidden" value="<?=$cart['idOrder']?>">
+					<input class="submit_input" type="submit" value="Заказать">
+				</form>
+			</div>
 		</section>
-    </div>
+</div>
 
 
 

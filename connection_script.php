@@ -271,4 +271,14 @@ function AddNewEntryToOrder($connection, $order_id, $entry_id) {
 	$sql = "INSERT INTO `entryes_in_order` (idEntry_in_order, historicalPrice, order_id, entry_id) VALUES (DEFAULT, NULL, $order_id, $entry_id)";
 	mysqli_query($connection, $sql);
 }
+
+function UpdateHistoricalPriceInAllEntryesInOrderById($connection, $historicalPrice, $entry_id) {
+	$sql = "UPDATE `entryes_in_order` eio SET eio.historicalPrice = ".$historicalPrice." WHERE eio.entry_id = ".$entry_id."";
+	mysqli_query($connection, $sql);
+}
+
+function UpdateDateAndStatusOrderById($connection, $newDate, $status_id, $idOrder) {
+	$sql = "UPDATE `orders` o SET o.order_date = '".$newDate."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
+	mysqli_query($connection, $sql);
+}
 ?>

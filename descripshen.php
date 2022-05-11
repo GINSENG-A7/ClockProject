@@ -76,7 +76,7 @@
 								?>
 									<span class="nav-arrow"></span>
 									<ul class="nav-sub">
-										<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
+										<li class="nav-sub__item"><a class="nav-sub__link" href="./cart.php">Корзина</a></li>
 										<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
 										<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
 										<li class="nav-sub__item">
@@ -139,18 +139,20 @@
 								if ($cart != NULL) {
 									$cartItems = SelectEntryesInOrderByOrderId($clockUsersConn, $cart[0]['idOrder']);
 									if ($cartItems != NULL) {
+										$itemIsNotInCart = true;
 										for ($i = 0; $i < count($cartItems); $i++) {
 											if ($cartItems[$i]['entry_id'] == $entry->idEntry) {
 											?>
 												<input class="alreadyInCart" id="addToCartForm" type="submit" value="Уже в корзине" disabled>	
 											<?
+											$itemIsNotInCart = false;
 											break;
 											}
-											else {
+										}
+										if ($itemIsNotInCart == true) {
 											?>
 												<input id="addToCartForm" type="submit" value="Добавить в корзину">
 											<?
-											}
 										}
 									}
 								}

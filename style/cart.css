@@ -471,8 +471,13 @@ body {
   padding: 0;
 }
 
-.none_pointer_event {
-  pointer-events: none;
+.invisible {
+  display: none !important;
+}
+
+.rows_of_entryes {
+  margin: 0 auto;
+  max-width: 1030px;
 }
 
 .rows__item {
@@ -483,9 +488,7 @@ body {
   display: block;
 }
 
-.rows__item .purchase_form {
-  margin: 0 auto;
-  max-width: 1030px;
+.rows__item-purchase_form {
   width: 100%;
   height: 200px;
   display: -webkit-box;
@@ -497,6 +500,7 @@ body {
           flex-direction: row;
   width: 100%;
   height: 200px;
+  margin-bottom: 35px;
   -webkit-box-shadow: 0 1px 20px white, -23px 0 20px -23px rgba(255, 255, 255, 0.8), 23px 0 20px -23px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.1) inset;
           box-shadow: 0 1px 20px white, -23px 0 20px -23px rgba(255, 255, 255, 0.8), 23px 0 20px -23px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.1) inset;
 }
@@ -632,5 +636,16 @@ body {
   margin-top: 10px;
   width: calc(100% - 20px);
   height: 40px;
+}
+
+.new_offer_form {
+  margin: 0 auto;
+  width: 100%;
+  height: 40px;
+}
+
+.new_offer_form .submit_input {
+  width: 100%;
+  height: 100%;
 }
 /*# sourceMappingURL=cart.css.map */
