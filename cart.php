@@ -114,35 +114,37 @@ else {
 				// print_r($entry->imagesArray[0]->path);
 			?>
 				<div class="rows__item">
-					<a class="rows__item-wrap_link" href="<?=$entry->idEntry?>">
-						<form id="purchaseForm" class="purchase_form" method="POST">
-							<div class="rows__item-img">
-								<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
+					<form id="purchaseForm" class="purchase_form" method="POST" action="./new_order_script.php">
+						<div class="rows__item-img">
+								<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+									<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
 
-								</div>
+									</div>
+								</a>
 							</div>
 							<div class="rows__item-none_flex_wrapper">
 								<div class="rows__item-flex_wrapper">
 									<div class="rows__item-description">
-										<div class="title">
-											<?=$entry->title?>
-										</div>
-										<div class="price">
-											<?=$entry->price?> руб
-										</div>
+										<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+											<div class="title">
+												<?=$entry->title?>
+											</div>
+											<div class="price">
+												<?=$entry->price?> руб
+											</div>
+										</a>
 									</div>
 									<div class="number_wrapper">
-										<button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+										<button class="number-minus" type="button">-</button>
 										<input class="number_input" type="number" min="0" value="1" readonly>
-										<button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+										<button class="number-plus" type="button">+</button>
 									</div>
 								</div>
 								<div class="rows__item-submit_wrapper">
-									<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit">
+									<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit" value="Заказать">
 								</div>
 							</div>
 						</form>
-					</a>
 				</div>
 			<?
 			}
@@ -153,4 +155,5 @@ else {
 
 
 	<script src="./js/chekTypeBrowser.js"></script>
+	<script src="./js/cart.js"></script>
 </body>

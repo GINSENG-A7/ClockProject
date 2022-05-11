@@ -15,31 +15,42 @@ body {
 
 }
 
+.none_pointer_event {
+	pointer-events: none;
+}
+
 .rows {
 	&__item {
 		font-size: 34px;
-		&-wrap_link {
+		.wrap_link {
 			// display: flex;
 			// flex-direction: row;
 			// justify-content: space-between;
+			display: block;
+		}
+		.purchase_form {
 			margin: 0 auto;
 			max-width: 1030px;
 			width: 100%;
 			height: 200px;
-			display: block;
-		}
-		.purchase_form {
 			display: flex;
 			flex-direction: row;
 			// justify-content: space-between;
 			width: 100%;
 			height: 200px;
-			outline: blue dashed 1px;
+			// outline: blue dashed 1px;
+			box-shadow: 0 1px 20px rgb(255, 255, 255),
+			-23px 0 20px -23px rgba(255, 255, 255, 0.8),
+			23px 0 20px -23px rgba(255, 255, 255, 0.8),
+			0 0 40px rgba(255, 255, 255, 0.1) inset;
 		}
 		&-img {
 			// float: left;
+			margin-left: 20px;
+			margin-top: 10px;
 			min-width: 200px;
-			height: 100%;
+			vertical-align: center;
+			height: 90%;
 			margin-right: 20px;
 			.img {
 				min-height: 100%;
@@ -65,7 +76,13 @@ body {
 					position: relative;
 					width: 100px;
 					margin-right: 20px;
+					// &_fakelink {
+					// 	display: block;
+					// 	width: 100%;
+					// 	height: 100%;
+					// }
 					& > * {
+						z-index: 5;
 						margin-top: 50% !important;
 					}
 				}
@@ -81,6 +98,7 @@ body {
 					-moz-appearance: textfield;
 					-webkit-appearance: textfield;
 					appearance: textfield;
+					// pointer-events: none;
 				}
 				&_wrapper input[type="number"]::-webkit-outer-spin-button,
 				&_wrapper input[type="number"]::-webkit-inner-spin-button {
@@ -115,6 +133,7 @@ body {
 					border-left: 1px solid #ddd;
 					font-size: 16px;
 					font-weight: 600;
+					// pointer-events: none;
 				}
 			}
 		}
@@ -134,6 +153,7 @@ body {
 		&-submit_wrapper {
 			display: inline-block;
 			width: 100%;
+			// pointer-events: none;
 			.submit_input {
 				margin-top: 10px;
 				width: calc(100% - 20px);
