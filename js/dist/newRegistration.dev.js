@@ -9,7 +9,7 @@ form.addEventListener('submit', function _callee(e) {
         case 0:
           e.preventDefault();
           _context.next = 3;
-          return regeneratorRuntime.awrap(fetch('registration_script.php', {
+          return regeneratorRuntime.awrap(fetch('../registration_script.php', {
             method: 'POST',
             body: new FormData(form)
           }));
@@ -77,16 +77,6 @@ registerButton.addEventListener("click", function () {
         var input = _step2.value;
 
         switch (input.id) {
-          case "Email":
-            var regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            emailValidationIsGood = regex3.test(input.value);
-
-            if (emailValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании эл. почты.");
-            }
-
-            break;
-
           case "Login" || "Password":
             var regex2 = /^[a-zA-Z0-9]{4,250}$/;
             loginPasswordValidationIsGood = regex2.test(input.value);
@@ -103,6 +93,26 @@ registerButton.addEventListener("click", function () {
 
             if (fioValidationIsGood == false) {
               toggleValidationError("Неверныйформат данных при указании ФИО.");
+            }
+
+            break;
+
+          case "PostIndex":
+            var regex4 = /^[0-9]{6}$/;
+            fioValidationIsGood = regex4.test(input.value);
+
+            if (fioValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании ФИО.");
+            }
+
+            break;
+
+          case "Email":
+            var regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            emailValidationIsGood = regex3.test(input.value);
+
+            if (emailValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании эл. почты.");
             }
 
             break;

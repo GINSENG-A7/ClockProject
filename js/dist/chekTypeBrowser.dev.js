@@ -81,7 +81,7 @@ exitLink.addEventListener("click", function (e) {
           case 0:
             e.preventDefault();
             _context.next = 3;
-            return regeneratorRuntime.awrap(fetch('exit_script.php', {
+            return regeneratorRuntime.awrap(fetch('../exit_script.php', {
               method: 'POST',
               body: new FormData(exitForm)
             }));

@@ -186,8 +186,8 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 
 //-----------------------------Users----------------------------//
 
-function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $address, $email) {
-	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, email, token, discount, role_id) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$address', '$email', DEFAULT, 0, 3)";
+function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $address, $post_index, $email) {
+	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, post_index, email, token, discount, role_id) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$address', '$post_index', '$email', DEFAULT, 0, 3)";
 	mysqli_query($connection, $sql);
 }
 
@@ -196,8 +196,8 @@ function CheckUserAuthorizationData($connection, $login, $password) {
 	// printf($password);
 	$sql = "SELECT u.login, u.password FROM `users` u WHERE u.login = '".$login."'";
 	$result = mysqli_query($connection, $sql);
-	$row = mysqli_fetch_array($result);
 	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_array($result);
 		if ($login == $row['login'] && md5($password) == $row['password']) {
 			return true;
 		}
@@ -217,6 +217,30 @@ function SelectUserByLogin($connection, $login) {
 	return $row;
 }
 
+function SelectUserByUserId($connection, $idUser) {
+	$sql = "SELECT * FROM `users` WHERE idUser = '".$idUser."'";
+	$result = mysqli_query($connection, $sql);
+	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_array($result);
+		$user = new AdvancedUser(
+			$row["idUser"],
+			$row["idRole"],
+			$row["login"],
+			$row["password"],
+			$row["name"],
+			$row["surname"],
+			$row["patronymic"],
+			$row["address"],
+			$row["post_index"],
+			$row["email"],
+			$row["token"],
+			$row["discount"],
+		);
+		return $user;
+	}
+	return NULL;
+}
+
 function SelectRoleById($connection, $idRole) {
 	$sql = "SELECT r.role FROM `roles` r WHERE r.idRole = ".$idRole."";
 	$result = mysqli_query($connection, $sql);
@@ -224,7 +248,24 @@ function SelectRoleById($connection, $idRole) {
 	return $row;
 }
 
-//------------------------Cart--------------------------//
+function SelectAllUsersByRoleId($connection, $idRole) {
+	$sql = "SELECT * FROM `users` WHERE idRole = ".$idRole."";
+	$result = mysqli_query($connection, $sql);
+	if ($result->num_rows > 0) {
+		while($row = mysqli_fetch_array($result))
+		{
+			$array[] = $row;
+		}
+		return $array;
+	}
+	return NULL;
+}
+
+function UpdateUsersDiscount($connection, $newDiscount, $idUser) {
+	$sql = "UPDATE `users` u SET u.discount = ".$newDiscount." WHERE u.idUser = ".$idUser."";
+	mysqli_query($connection, $sql);
+}
+//------------------------Cart_and_orders--------------------------//
 function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
 	$sql = "SELECT * FROM `orders` o WHERE o.status_id = ".$status_id." && o.user_id = (SELECT u.idUser FROM users u WHERE u.login = '".$login."')";
 	$result = mysqli_query($connection, $sql);
@@ -235,8 +276,27 @@ function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
     {
         $array[] = array(
 			'idOrder'=>$row['idOrder'],
-			'result_value'=>$row['result_value'],
 			'order_date'=>$row['order_date'],
+			'historicalDiscount'=>$row['historicalDiscount'],
+			'user_id'=>$row['user_id'],
+			'status_id'=>$row['status_id']
+		);
+    }
+    return $array;
+}
+
+function SelectAllFromOrdersByStatus($connection, $status_id) {
+	$sql = "SELECT * FROM `orders` o WHERE o.status_id = ".$status_id." ORDER BY o.order_date";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idOrder'=>$row['idOrder'],
+			'order_date'=>$row['order_date'],
+			'historicalDiscount'=>$row['historicalDiscount'],
 			'user_id'=>$row['user_id'],
 			'status_id'=>$row['status_id']
 		);
@@ -277,8 +337,8 @@ function UpdateHistoricalPriceInAllEntryesInOrderById($connection, $historicalPr
 	mysqli_query($connection, $sql);
 }
 
-function UpdateDateAndStatusOrderById($connection, $newDate, $status_id, $idOrder) {
-	$sql = "UPDATE `orders` o SET o.order_date = '".$newDate."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
+function UpdateDateAndStatusAndHistoricalDiscountInOrderById($connection, $newDate, $status_id, $idOrder, $login) {
+	$sql = "UPDATE `orders` o SET o.order_date = '".$newDate."', o.status_id = ".$status_id.", o.historicalDiscount = (SELECT u.discount FROM users u WHERE u.login = '".$login."') WHERE o.idOrder = ".$idOrder."";
 	mysqli_query($connection, $sql);
 }
 ?>

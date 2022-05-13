@@ -17,6 +17,7 @@
 						<input class="input" id="Surname" name="Surname" type="text" placeholder="Фамилия">
 						<input class="input" id="Patronymic" name="Patronymic" type="text" placeholder="Отчество">
 						<input class="input" id="Address" name="Address" type="text" placeholder="Адрес">
+						<input class="input" id="PostIndex" name="PostIndex" type="text" placeholder="Почтовый индекс">
 						<input class="input" id="Email" name="Email" type="text" placeholder="Эл. почта">
 
 						<input class="input" id="SingUp" type="submit"style="display: none;">

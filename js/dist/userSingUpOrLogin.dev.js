@@ -12,7 +12,7 @@ loginButton.addEventListener("click", function () {
           case 0:
             e.preventDefault();
             _context.next = 3;
-            return regeneratorRuntime.awrap(fetch('authorize_script.php', {
+            return regeneratorRuntime.awrap(fetch('../authorize_script.php', {
               method: 'POST',
               body: new FormData(form)
             }));

@@ -5,6 +5,21 @@ var tablinks = document.getElementsByClassName("tab-links");
 var _loop = function _loop(i) {
   tablinks[i].addEventListener("click", function () {
     openTab(event, tablinks[i].outerText);
+    var bodyTextAreas = document.querySelectorAll(".wrapper-body");
+
+    for (var _i9 = 0; _i9 < bodyTextAreas.length; _i9++) {
+      var bTA = bodyTextAreas[_i9];
+      console.log(bTA.scrollHeight); // bTA.style.height = bTA.scrollHeight;
+      // bTA.style.overflowY = "hidden";
+
+      bTA.setAttribute("style", "height:" + bTA.scrollHeight + "px;");
+      bTA.addEventListener("input", OnInput, false);
+    }
+
+    function OnInput() {
+      this.style.height = "auto";
+      this.style.height = this.scrollHeight + "px";
+    }
   });
 };
 
@@ -49,7 +64,6 @@ function openTab(event, tabName) {
   for (var _i5 = 0; _i5 < tablinks.length; _i5++) {
     tablinks[_i5].className = tablinks[_i5].className.replace("active", "");
   } // Show the current tab, and add an "active" class to the button that opened the tab
-  // document.getElementById(tabName).style.display = "block";
 
 
   event.currentTarget.className += " active";
@@ -85,7 +99,7 @@ var _loop3 = function _loop3(_i7) {
 
     var output = [];
 
-    for (var _i8 = 0, f; f = files[_i8]; _i8++) {
+    for (var _i10 = 0, f; f = files[_i10]; _i10++) {
       output.push(escape(f.name));
     }
 
@@ -104,4 +118,42 @@ var _loop3 = function _loop3(_i7) {
 
 for (var _i7 = 0; _i7 < insertImageForms.length; _i7++) {
   _loop3(_i7);
+}
+
+var updateClientDiscountForms = document.querySelectorAll(".clientForm");
+
+var _loop4 = function _loop4(_i8) {
+  updateClientDiscountForms[_i8].addEventListener('submit', function _callee(e) {
+    var response;
+    return regeneratorRuntime.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault();
+            _context.next = 3;
+            return regeneratorRuntime.awrap(fetch('../update_client_discount_script.php', {
+              method: 'POST',
+              body: new FormData(updateClientDiscountForms[_i8])
+            }));
+
+          case 3:
+            response = _context.sent;
+
+            if (response.ok) {
+              alert("Данные учётной записи успешно обновлены");
+            } else {
+              alert("Request error");
+            }
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    });
+  });
+};
+
+for (var _i8 = 0; _i8 < updateClientDiscountForms.length; _i8++) {
+  _loop4(_i8);
 }

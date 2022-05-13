@@ -89,7 +89,7 @@ exitLink.addEventListener("click", (e) => {
 	
 	exitForm.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		let response = await fetch('exit_script.php', {
+		let response = await fetch('../exit_script.php', {
 			method: 'POST',
 			body: new FormData(exitForm)
 		});

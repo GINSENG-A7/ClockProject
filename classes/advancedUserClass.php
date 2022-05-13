@@ -7,11 +7,12 @@ class AdvancedUser extends User
     public $surname;
     public $patronymic;
 	public $address;
+	public $postIndex;
 	public $email;
 	public $token;
 	public $discount;
 
-    public function __construct($idUser, $idRole, $login, $password, $name, $surname, $patronymic, $address, $email, $token, $discount) {
+    public function __construct($idUser, $idRole, $login, $password, $name, $surname, $patronymic, $address, $postIndex, $email, $token, $discount) {
         $this->idUser = $idUser;
         $this->idRole = $idRole;
         $this->login = $login;
@@ -20,6 +21,7 @@ class AdvancedUser extends User
 		$this->surname = $surname;
 		$this->patronymic = $patronymic;
 		$this->address = $address;
+		$this->postIndex = $postIndex;
 		$this->email = $email;
 		$this->token = $token;
 		$this->discount = $discount;

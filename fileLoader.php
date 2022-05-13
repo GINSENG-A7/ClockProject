@@ -1,5 +1,13 @@
 <?include "./connection_script.php"?>
+<?session_start()?>
 <?php
+	if (isset($_SESSION["login"])) {
+		$login = $_SESSION["login"];
+		// print_r($login);
+	} 
+	else {
+		$login = NULL;
+	}
 	$tempFilesPathArray = array();
 	if(isset($_FILES)){
 		try {

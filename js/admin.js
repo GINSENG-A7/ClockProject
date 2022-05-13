@@ -103,7 +103,21 @@ for (let i = 0; i < insertImageForms.length; i++) {
 		filesInput.click();
 		event.stopPropagation();
 	});
+}
 
-
-
+let updateClientDiscountForms = document.querySelectorAll(".clientForm");
+for (let i = 0; i < updateClientDiscountForms.length; i++) {
+	updateClientDiscountForms[i].addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch('../update_client_discount_script.php', {
+			method: 'POST',
+			body: new FormData(updateClientDiscountForms[i])
+		});
+		if (response.ok) {
+			alert("Данные учётной записи успешно обновлены");
+		}
+		else {
+			alert("Request error");
+		}
+	});
 }

@@ -16,6 +16,10 @@ body {
   /* Style the tab content */
 }
 
+.tab .active {
+  background-color: #ccc;
+}
+
 .tab button {
   background-color: inherit;
   float: left;
@@ -107,11 +111,11 @@ body {
   margin-bottom: 10px;
 }
 
-.tab-output .outputForm {
+.tab-output .entry-wrapper {
   margin-top: 30px;
 }
 
-.tab-output .outputForm:first-of-type {
+.tab-output .entry-wrapper:first-of-type {
   margin-top: 0px;
 }
 
@@ -252,5 +256,71 @@ body {
 
 .tab-output .imageWrapper .add-new-images .insertImageForm .custom-file-input {
   display: none;
+}
+
+.tab-output .clientsGridWrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(150px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  -ms-grid-rows: (1fr)[1];
+      grid-template-rows: repeat(1, 1fr);
+  grid-gap: 20px 20px;
+}
+
+.tab-output .clientsGridWrapper .client {
+  padding: 10px;
+  outline: 1px dashed;
+}
+
+.tab-output .clientsGridWrapper .client-login {
+  display: block;
+}
+
+.tab-output .clientsGridWrapper .client-login p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-name {
+  display: block;
+}
+
+.tab-output .clientsGridWrapper .client-name p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-surname {
+  display: block;
+}
+
+.tab-output .clientsGridWrapper .client-surname p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-patronymic {
+  display: block;
+}
+
+.tab-output .clientsGridWrapper .client-patronymic p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-discount {
+  display: block;
+}
+
+.tab-output .clientsGridWrapper .client-discount p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-discount input {
+  max-width: 40px;
+  min-width: 40px;
+  display: inline;
+  margin: 0;
+}
+
+.tab-output .clientsGridWrapper .client input {
+  margin: 5px 0 0 0;
 }
 /*# sourceMappingURL=admin.css.map */

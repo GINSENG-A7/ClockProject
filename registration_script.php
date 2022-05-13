@@ -1,4 +1,5 @@
 <?include "./connection_script.php"?>
+<?require_once ("./classes/advancedUserClass.php");?>
 <?php
 	session_start();
 	if (isset($_POST['Login']) && 
@@ -6,7 +7,8 @@
 	isset($_POST['Name']) &&
 	isset($_POST['Surname']) &&
 	isset($_POST['Patronymic']) && 
-	isset($_POST['Address']) && 
+	isset($_POST['Address']) &&
+	isset($_POST['PostIndex']) &&
 	isset($_POST['Email'])) {
 		$login = $_POST['Login'];
 		$password = $_POST['Password'];
@@ -14,6 +16,7 @@
 		$surname = $_POST['Surname'];
 		$patronymic = $_POST['Patronymic'];
 		$address = $_POST['Address'];
+		$postIndex = $_POST['PostIndex'];
 		$email = $_POST['Email'];
 
 
@@ -27,11 +30,21 @@
 				$surname,
 				$patronymic,
 				$address,
+				$postIndex,
 				$email,
 				null,
 				0
 			);
-			AddNewUserInDatabase($clockUsersConn, $login, $password, $name, $surname, $patronymic, $address, $email);
+			AddNewUserInDatabase($clockUsersConn, 
+				$user->login, 
+				$user->password,
+				$user->name,
+				$user->surname,
+				$user->patronymic,
+				$user->address,
+				$user->postIndex,
+				$user->email
+			);
 			$user->idUser = SelectUserByLogin($clockUsersConn, $user->login)['idUser'];
 			$_SESSION["login"] = $user->login;
 			?>

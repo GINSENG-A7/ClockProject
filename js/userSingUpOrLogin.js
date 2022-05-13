@@ -6,7 +6,7 @@ loginButton.addEventListener("click", () => {
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		let response = await fetch('authorize_script.php', {
+		let response = await fetch('../authorize_script.php', {
 			method: 'POST',
 			body: new FormData(form)
 		});

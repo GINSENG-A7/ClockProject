@@ -1,7 +1,7 @@
 let form = document.querySelector('#registrationForm');
 form.addEventListener('submit', async (e) => {
 	e.preventDefault();
-	let response = await fetch('registration_script.php', {
+	let response = await fetch('../registration_script.php', {
 		method: 'POST',
 		body: new FormData(form)
 	});
@@ -12,7 +12,7 @@ form.addEventListener('submit', async (e) => {
 	else {
 		alert("Request error");
 	}
-})
+});
 
 let allInputs = document.querySelectorAll("input[type=text]");
 
@@ -33,13 +33,6 @@ registerButton.addEventListener("click", () => {
 	else {
 		for (const input of allInputs) {
 			switch (input.id) {
-				case "Email":
-					let regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-					emailValidationIsGood = regex3.test(input.value);
-					if (emailValidationIsGood == false) {
-						toggleValidationError("Неверныйформат данных при указании эл. почты.");
-					}
-				break;
 				case "Login" || "Password":
 					let regex2 = /^[a-zA-Z0-9]{4,250}$/;
 					loginPasswordValidationIsGood = regex2.test(input.value);
@@ -47,13 +40,27 @@ registerButton.addEventListener("click", () => {
 						toggleValidationError("Неверныйформат данных при указании логина или пароля.");
 					}
 					break;
-				case "Name" || "Surname" || "Patronymic":
-					let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-					fioValidationIsGood = regex1.test(input.value);
-					if (fioValidationIsGood == false) {
-						toggleValidationError("Неверныйформат данных при указании ФИО.");
-					}
-				break;
+					case "Name" || "Surname" || "Patronymic":
+						let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+						fioValidationIsGood = regex1.test(input.value);
+						if (fioValidationIsGood == false) {
+							toggleValidationError("Неверныйформат данных при указании ФИО.");
+						}
+					break;
+					case "PostIndex":
+						let regex4 = /^[0-9]{6}$/;
+						fioValidationIsGood = regex4.test(input.value);
+						if (fioValidationIsGood == false) {
+							toggleValidationError("Неверныйформат данных при указании ФИО.");
+						}
+					break;
+					case "Email":
+						let regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+						emailValidationIsGood = regex3.test(input.value);
+						if (emailValidationIsGood == false) {
+							toggleValidationError("Неверныйформат данных при указании эл. почты.");
+						}
+					break;
 			}
 		}
 	}
