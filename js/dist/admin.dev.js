@@ -157,3 +157,35 @@ var _loop4 = function _loop4(_i8) {
 for (var _i8 = 0; _i8 < updateClientDiscountForms.length; _i8++) {
   _loop4(_i8);
 }
+
+var orderLinkWrappedButtonsArray = document.querySelectorAll(".order__entryes-link > button");
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  var _loop5 = function _loop5() {
+    var button = _step.value;
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      button.closest("a").click();
+    });
+  };
+
+  for (var _iterator = orderLinkWrappedButtonsArray[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    _loop5();
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+      _iterator["return"]();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}

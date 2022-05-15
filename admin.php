@@ -218,10 +218,10 @@ if ($userArray['idRole'] == 1) {
 			$ordersArray = SelectAllFromOrdersByStatus($clockUsersConn, 2);
 			if ($ordersArray != NULL) {
 				for ($i = 0; $i < count($ordersArray); $i++) {
-					$user = SelectUserByUserId($clockUsersConn, $ordersArray["user_id"]);
+					$user = SelectUserByUserId($clockUsersConn, $ordersArray[$i]["user_id"]);
 					?>
 					<div class="order">
-						<form id="orderForm-<?echo($i)?>" class="orderForm" action="" method="POST">
+						<form id="orderForm-<?echo($i)?>" class="orderForm" action="confirm_user_payment.php" method="POST">
 							<input name="idUser" type="hidden" value="<?echo($user->idUser);?>">
 							<input name="idOrder" type="hidden" value="<?echo($ordersArray["idOrder"]);?>">
 							<div class="order__client-login">
@@ -230,20 +230,35 @@ if ($userArray['idRole'] == 1) {
 							</div>
 							<div class="order__client-discount">
 								<p>Скидка: </p>
-								<p><?echo($user->discount * 100);?>"</p>
+								<p><?echo($user->discount * 100);?></p>
 								<p> %</p>
+							</div>
+							<div class="order__totalPrice">
+								<?
+								$totalPrice = 0;
+								$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $ordersArray[$i]["idOrder"]);
+								for ($j = 0; $j < count($entryesInOrderArray); $j++) {
+									$totalPrice += $entryesInOrderArray[$j]['historicalPrice'] - ($entryesInOrderArray[$j]['historicalPrice'] * $user->discount);
+								}
+								?>
+								<p>Cтоимость заказа: </p>
+								<p><?echo($totalPrice);?> ₽</p>
 							</div>
 							<div class="order__date">
 								<p>Дата заказа: </p>
-								<p><?echo($ordersArray["order_date"]);?></p>
+								<p><?echo($ordersArray[$i]["order_date"]);?></p>
+							</div>
+							<div class="order__date">
+								<p>Дата оплаты: </p>
+								<input type="datetime-local" name="paidDate">
 							</div>
 							<div class="order__entryes">
-								<!-- Нужна отдельная страница для отображения списка товаров
-								Можно взять вёрстку из корзины -->
-								<p>Тоары: </p>
+								<a class="order__entryes-link" href="./entryesInOrder.php?id=<?=$ordersArray[$i]["idOrder"];?>">
+									<button>Товары в заказе</button>
+								</a>
 							</div>
-
-							<input id="client-update__input" type="submit" value="Обновить данные">
+							<input name="confirmUserPayment" type="submit" value="Подтвердить оплату">
+							<!-- Добавить асинхронное выполнение скрипта -->
 						</form>
 					</div>
 					<?

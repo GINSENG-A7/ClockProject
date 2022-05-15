@@ -121,3 +121,11 @@ for (let i = 0; i < updateClientDiscountForms.length; i++) {
 		}
 	});
 }
+
+let orderLinkWrappedButtonsArray = document.querySelectorAll(".order__entryes-link > button");
+for (const button of orderLinkWrappedButtonsArray) {
+	button.addEventListener("click", (event) => {
+		event.preventDefault();
+		button.closest("a").click();
+	});
+}

@@ -218,7 +218,7 @@ function SelectUserByLogin($connection, $login) {
 }
 
 function SelectUserByUserId($connection, $idUser) {
-	$sql = "SELECT * FROM `users` WHERE idUser = '".$idUser."'";
+	$sql = "SELECT * FROM `users` WHERE idUser = ".$idUser."";
 	$result = mysqli_query($connection, $sql);
 	if ($result->num_rows > 0) {
 		$row = mysqli_fetch_array($result);
@@ -269,20 +269,22 @@ function UpdateUsersDiscount($connection, $newDiscount, $idUser) {
 function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
 	$sql = "SELECT * FROM `orders` o WHERE o.status_id = ".$status_id." && o.user_id = (SELECT u.idUser FROM users u WHERE u.login = '".$login."')";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
-		return NULL;
+	if ($result != NULL || !empty($result)) {
+		while($row = mysqli_fetch_array($result))
+		{
+			$array[] = array(
+				'idOrder'=>$row['idOrder'],
+				'order_date'=>$row['order_date'],
+				'paid_date'=>$row['paid_date'],
+				'historicalDiscount'=>$row['historicalDiscount'],
+				'user_id'=>$row['user_id'],
+				'status_id'=>$row['status_id']
+			);
+		}
+		// print_r($array);
+		return $array;
 	}
-	while($row = mysqli_fetch_array($result))
-    {
-        $array[] = array(
-			'idOrder'=>$row['idOrder'],
-			'order_date'=>$row['order_date'],
-			'historicalDiscount'=>$row['historicalDiscount'],
-			'user_id'=>$row['user_id'],
-			'status_id'=>$row['status_id']
-		);
-    }
-    return $array;
+	return NULL;
 }
 
 function SelectAllFromOrdersByStatus($connection, $status_id) {
@@ -296,6 +298,7 @@ function SelectAllFromOrdersByStatus($connection, $status_id) {
         $array[] = array(
 			'idOrder'=>$row['idOrder'],
 			'order_date'=>$row['order_date'],
+			'paid_date'=>$row['paid_date'],
 			'historicalDiscount'=>$row['historicalDiscount'],
 			'user_id'=>$row['user_id'],
 			'status_id'=>$row['status_id']
@@ -304,8 +307,17 @@ function SelectAllFromOrdersByStatus($connection, $status_id) {
     return $array;
 }
 
+function SelectAllFromOrdersByOrderId($connection, $idOrder) {
+	$sql = "SELECT * FROM `orders` o WHERE o.idOrder = ".$idOrder."";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+    return $result;
+}
+
 function SelectEntryesInOrderByOrderId($connection, $idOrder) {
-	$sql = "SELECT * FROM entryes_in_order WHERE order_id = ".$idOrder."";
+	$sql = "SELECT * FROM entryes_in_order WHERE order_id = ".$idOrder." ORDER BY entry_id";
 	$result = mysqli_query($connection, $sql);
 	if ($result == NULL || empty($result)) {
 		return NULL;
@@ -323,7 +335,7 @@ function SelectEntryesInOrderByOrderId($connection, $idOrder) {
 }
 
 function AddNewOrderToUser($connection, $order_date, $login, $status_id) {
-	$sql = "INSERT INTO `orders` (idOrder, order_date, `user_id`, status_id) VALUES (DEFAULT, '$order_date', (SELECT u.idUser FROM users u WHERE u.login = '$login'), $status_id)";
+	$sql = "INSERT INTO `orders` (idOrder, order_date, paid_date, `user_id`, status_id) VALUES (DEFAULT, '$order_date', DEFAULT, (SELECT u.idUser FROM users u WHERE u.login = '$login'), $status_id)";
 	mysqli_query($connection, $sql);
 }
 
@@ -337,8 +349,13 @@ function UpdateHistoricalPriceInAllEntryesInOrderById($connection, $historicalPr
 	mysqli_query($connection, $sql);
 }
 
-function UpdateDateAndStatusAndHistoricalDiscountInOrderById($connection, $newDate, $status_id, $idOrder, $login) {
-	$sql = "UPDATE `orders` o SET o.order_date = '".$newDate."', o.status_id = ".$status_id.", o.historicalDiscount = (SELECT u.discount FROM users u WHERE u.login = '".$login."') WHERE o.idOrder = ".$idOrder."";
+function UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($connection, $newOrderDate, $status_id, $idOrder, $login) {
+	$sql = "UPDATE `orders` o SET o.order_date = '".$newOrderDate."', o.status_id = ".$status_id.", o.historicalDiscount = (SELECT u.discount FROM users u WHERE u.login = '".$login."') WHERE o.idOrder = ".$idOrder."";
+	mysqli_query($connection, $sql);
+}
+
+function UpdatePaidDateAndStatusInOrderById($connection, $newPaidDate, $status_id, $idOrder) {
+	$sql = "UPDATE `orders` o SET o.paid_date = '".$newPaidDate."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
 	mysqli_query($connection, $sql);
 }
 ?>

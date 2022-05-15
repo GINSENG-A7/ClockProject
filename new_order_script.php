@@ -30,7 +30,7 @@
 			// print_r($entryesArray[$i]->price);
 			UpdateHistoricalPriceInAllEntryesInOrderById($clockUsersConn, $entryesArray[$i]->price, $entryesArray[$i]->idEntry);
 		}
-		UpdateDateAndStatusAndHistoricalDiscountInOrderById($clockUsersConn, date('Y-m-d H:i:s'), 2, $idOrder, $login);
+		UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($clockUsersConn, date('Y-m-d H:i:s'), 2, $idOrder, $login);
 		// print_r($entryesArray);
 
 	}

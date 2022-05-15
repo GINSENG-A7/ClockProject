@@ -75,8 +75,8 @@
 								?>
 								<span class="nav-arrow"></span>
 								<ul class="nav-sub">
-									<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
-									<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
+									<li class="nav-sub__item"><a class="nav-sub__link" href="/cart.php">Корзина</a></li>
+									<li class="nav-sub__item"><a class="nav-sub__link" href="/recentOrders.php">Заказы</a></li>
 									<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
 									<li class="nav-sub__item">
 										<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">

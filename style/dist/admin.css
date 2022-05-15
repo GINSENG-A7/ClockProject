@@ -246,3 +246,118 @@ body {
 .tab-output .clientsGridWrapper .client input {
   margin: 5px 0 0 0;
 }
+.tab-output .ordersGridWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 20px 20px;
+}
+.tab-output .ordersGridWrapper .order {
+  padding: 10px;
+  outline: 1px dashed;
+}
+.tab-output .ordersGridWrapper .order input {
+  margin: 0;
+  display: inline;
+}
+.tab-output .ordersGridWrapper .order__client-login {
+  display: block;
+}
+.tab-output .ordersGridWrapper .order__client-login p {
+  display: inline;
+}
+.tab-output .ordersGridWrapper .order__client-discount {
+  display: block;
+}
+.tab-output .ordersGridWrapper .order__client-discount p {
+  display: inline;
+}
+.tab-output .ordersGridWrapper .order__totalPrice {
+  display: block;
+}
+.tab-output .ordersGridWrapper .order__totalPrice p {
+  display: inline;
+}
+.tab-output .ordersGridWrapper .order__date {
+  display: block;
+}
+.tab-output .ordersGridWrapper .order__date p {
+  display: inline;
+}
+.tab-output .ordersGridWrapper .order__date input {
+  display: inline;
+  margin: 0;
+}
+.tab-output .ordersGridWrapper .order__entryes {
+  display: block;
+}
+.tab-output .ordersGridWrapper .order__entryes p {
+  display: inline;
+}
+.tab-output .ordersGridWrapper .order__entryes-link {
+  display: block;
+}
+.tab-output .ordersGridWrapper .order__entryes-link button {
+  margin: 5px 0;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px 20px;
+  padding: 10px;
+}
+.card__item {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template: auto 1fr minmax(40px, auto)/1fr;
+}
+.card__img {
+  position: relative;
+  padding: 0 0 100% 0;
+  margin: 0 0 10px 0;
+}
+.card__img .img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 2;
+  transition: all 1s;
+}
+.card__img .img-back {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: all 0.3s;
+  visibility: visible;
+}
+.card__btn {
+  padding: 8px;
+  margin-top: 10px;
+  max-width: 35%;
+  transition: all 1s;
+  cursor: pointer;
+}
+.card__btn a {
+  text-decoration: none;
+}
+.card__item:hover .img {
+  transition: all 0.3s;
+  visibility: hidden !important;
+}
+.card__item:hover .card__btn a {
+  color: #000000;
+}
