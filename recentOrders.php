@@ -236,6 +236,11 @@ else {
 				<?
 				}
 			}
+			else {
+				?>
+				<h2 class="empty__message"></h2>
+				<?
+			}
 			?>
 		</div>
 	</section>

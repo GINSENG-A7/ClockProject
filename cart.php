@@ -24,89 +24,90 @@ else {
 </head>
 <body>
 <div class="wrapper">
-        <header class="header">
-            <div class="header__logo">
-                <a href='' class="header__logo-linkWrapper">
-					<img src="./img/logo.webp" alt="logo">
-				</a>
-                <div class="header__logo-textWrapper">
-                    <span>K.Max.Jeweller</span>
-					<div class="header__logo-textWrapper-phonesWrapper">
-						<a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
-						<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
-					</div>
-                </div>
-            </div>
-            <div class="header__menu">
-                <div class="header__menu-icon">
-                    <span></span>
-                </div>
-                <nav class="header__menu-body">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./shop.php?id=1">Часы</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./shop.php?id=2">Украшения</a>
-                            <span class="nav-arrow"></span>
-                            <ul class="nav-sub">
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=2">Браслеты</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=3">Кольца</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=4">Подвески</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=5">Цепи</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./shop.php?id=6">Аксессуары</a>
-                            <span class="nav-arrow"></span>
-                            <ul class="nav-sub">
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=6">Ремни</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=7">Бритвы</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=8">Портмоне</a></li>
-                                <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
-						<li class="nav-item">
-							<a class="nav-link" <?if ($login == NULL) {echo('href="./userSingUpOrLogIn.php"');}?>>
-								<i class="fa fa-user" style="font-size:24px"></i>
-							</a>
-							<?
-							if ($login != NULL) {
-								?>
-								<span class="nav-arrow"></span>
-								<ul class="nav-sub">
-									<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
-									<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
-									<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
-									<li class="nav-sub__item">
-										<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">
-											<input id="exit_input" type="submit" name="exit_input" style="display: none;">
-										</form>
-										<a id="exit_link" class="nav-sub__link" href="">Выйти</a>
-									</li>
-								</ul>
-								<?
-							}
+	<header class="header">
+		<div class="header__logo">
+			<a href='' class="header__logo-linkWrapper">
+				<img src="./img/logo.webp" alt="logo">
+			</a>
+			<div class="header__logo-textWrapper">
+				<span>K.Max.Jeweller</span>
+				<div class="header__logo-textWrapper-phonesWrapper">
+					<a class="header__logo-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+					<a class="header__logo-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+				</div>
+			</div>
+		</div>
+		<div class="header__menu">
+			<div class="header__menu-icon">
+				<span></span>
+			</div>
+			<nav class="header__menu-body">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link" href="./shop.php?id=1">Часы</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./shop.php?id=2">Украшения</a>
+						<span class="nav-arrow"></span>
+						<ul class="nav-sub">
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=2">Браслеты</a></li>
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=3">Кольца</a></li>
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=4">Подвески</a></li>
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=5">Цепи</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./shop.php?id=6">Аксессуары</a>
+						<span class="nav-arrow"></span>
+						<ul class="nav-sub">
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=6">Ремни</a></li>
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=7">Бритвы</a></li>
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=8">Портмоне</a></li>
+							<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+					<li class="nav-item">
+						<a class="nav-link" <?if ($login == NULL) {echo('href="./userSingUpOrLogIn.php"');}?>>
+							<i class="fa fa-user" style="font-size:24px"></i>
+						</a>
+						<?
+						if ($login != NULL) {
 							?>
-						</li>
-						<li class="nav-item disappearable">
-							<div class="nav-item-textWrapper">
-								<span class = "contact-person">K.Max.Jeweller</span>
-								<a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
-								<a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
-							</div>
-						</li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-		
-		<section class="section-orders-items">
-			<h2  class="title-h2 text-center">Список товаров</h2>
-			<div class="rows_of_entryes">
-				<?
-				$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1)[0];
+							<span class="nav-arrow"></span>
+							<ul class="nav-sub">
+								<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
+								<li class="nav-sub__item">
+									<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">
+										<input id="exit_input" type="submit" name="exit_input" style="display: none;">
+									</form>
+									<a id="exit_link" class="nav-sub__link" href="">Выйти</a>
+								</li>
+							</ul>
+							<?
+						}
+						?>
+					</li>
+					<li class="nav-item disappearable">
+						<div class="nav-item-textWrapper">
+							<span class = "contact-person">K.Max.Jeweller</span>
+							<a class="contact-phone phone" href="tel:8-905-534-09-56">8-905-534-09-56</a>
+							<a class="contact-phone phone" href="tel:8-499-190-09-56">8-499-190-09-56</a>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	<section class="section-orders-items">
+		<h2  class="title-h2 text-center">Список товаров</h2>
+		<div class="rows_of_entryes">
+			<?
+			$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1)[0];
+			if ($cart != NULL && !empty($cart)) {
 				$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $cart['idOrder']);
 				for ($i = 0; $i < count($entryesInOrderArray); $i++) {
 					$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
@@ -125,16 +126,16 @@ else {
 							</div>
 							<div class="rows__item-none_flex_wrapper">
 								<div class="rows__item-flex_wrapper">
-									<div class="rows__item-description">
-										<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+									<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+										<div class="rows__item-description">
 											<div class="title">
 												<?=$entry->title?>
 											</div>
 											<div class="price">
 												<?=$entry->price?> руб
 											</div>
-										</a>
-									</div>
+										</div>
+									</a>
 									<div class="number_wrapper">
 										<button class="number-minus" type="button">-</button>
 										<input name="itemCount[]" class="number_input" type="number" min="1" value="1" readonly>
@@ -154,12 +155,12 @@ else {
 					<input id="orderId" name="orderId" type="hidden" value="<?=$cart['idOrder']?>">
 					<input class="submit_input" type="submit" value="Заказать">
 				</form>
-			</div>
-		</section>
+			<?
+			}
+			?>
+		</div>
+	</section>
 </div>
-
-
-
 	<script src="./js/chekTypeBrowser.js"></script>
 	<script src="./js/cart.js"></script>
 </body>

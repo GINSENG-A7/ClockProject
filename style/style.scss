@@ -151,87 +151,8 @@ body {
 
 /// Section__Form ///
 
-.section-form {
-    padding-top: 40px;
-    padding-bottom: 130px;
-    //background-image: url(../img/2a1ee2_ad7511e40c5546de9b69b70cc1ffa401_mv2.webp);
-	//opacity: 0;
-    width: 100%;
-    .wrapper {
-        max-width: 900px;
-    }
-    .back-font {
-        padding-top: 20px;
-        padding-bottom: 40px;
-        background-position: center;
-        box-sizing: border-box;
-        background-repeat: no-repeat;
-        background-size:cover;
-        border-radius: 5px;
-        
-    }
-    .title-h2{
-        position: relative;
-    }
-    .title-h2::before {
-        content: "";
-        width: 40px;
-        height: 2px;
-        background-color: lavender;
-        position: absolute;
-        top: 120%;
-        right: calc(50% - 20px);
-    }
-}
+@import "emailForm.scss";
 
-.from {
-    
-    display: flex;
-    flex-direction: column;
-    max-width: 750px;
-    margin: 0 auto;
-    margin-top: 60px;
-    border-radius: 15px;
-    padding: 10px;
-    input {
-        color: white;
-    }
-    &__input,&__textarea {
-        border: 0;
-       // border-radius: 5px;
-        margin-bottom: 5px;
-        padding: 10px;
-        border-bottom: 1px solid #6d6d6d;
-		@include adaptiv-font (19, 21);
-        padding-top: 15px;
-        padding-bottom: 10px;
-        text-align: center;
-        background-color:transparent;
-        color: white !important;
-        &:focus {
-            outline: none;
-            border-bottom: 1px solid rgb(255, 255, 255);
-           
-        }
-    }
-	&__textarea  {
-		max-width: 750px;
-	}
-
-    &__button {
-        margin-top: 35px;
-        padding-top: 20px;
-        padding-bottom: 21px;
-        color: $dark;
-        border: none;
-        background-color: rgb(255, 255, 255);
-        border-radius: 5px;
-        font-size: 18px;
-    }
-    &__button:hover {
-        background-color: rgb(240, 240, 240);
-    }
-}
 /// ______________Section_______________ ///
 
 .section-decription {

@@ -38,6 +38,7 @@ var fioValidationIsGood = true;
 var loginPasswordValidationIsGood = true;
 var emailValidationIsGood = true;
 registerButton.addEventListener("click", function () {
+  inputsAreNotEmpty = true;
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
@@ -77,22 +78,12 @@ registerButton.addEventListener("click", function () {
         var input = _step2.value;
 
         switch (input.id) {
-          case "Login" || "Password":
-            var regex2 = /^[a-zA-Z0-9]{4,250}$/;
-            loginPasswordValidationIsGood = regex2.test(input.value);
+          case "Email":
+            var regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            emailValidationIsGood = regex3.test(input.value);
 
-            if (loginPasswordValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании логина или пароля.");
-            }
-
-            break;
-
-          case "Name" || "Surname" || "Patronymic":
-            var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-            fioValidationIsGood = regex1.test(input.value);
-
-            if (fioValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании ФИО.");
+            if (emailValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании эл. почты.");
             }
 
             break;
@@ -107,12 +98,22 @@ registerButton.addEventListener("click", function () {
 
             break;
 
-          case "Email":
-            var regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            emailValidationIsGood = regex3.test(input.value);
+          case "Name" || "Surname" || "Patronymic":
+            var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+            fioValidationIsGood = regex1.test(input.value);
 
-            if (emailValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании эл. почты.");
+            if (fioValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании ФИО.");
+            }
+
+            break;
+
+          case "Login" || "Password":
+            var regex2 = /^[a-zA-Z0-9]{4,250}$/;
+            loginPasswordValidationIsGood = regex2.test(input.value);
+
+            if (loginPasswordValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании логина или пароля.");
             }
 
             break;

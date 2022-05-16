@@ -364,224 +364,87 @@
   overflow: hidden !important;
 }
 
-body {
-  background-color: black;
-  margin: 0;
-  padding: 0;
-}
-
-.invisible {
-  display: none !important;
-}
-
-.rows_of_entryes {
-  margin: 0 auto;
-  max-width: 1030px;
-}
-
-.rows__item {
-  font-size: 34px;
-}
-.rows__item .wrap_link {
-  display: block;
-}
-.rows__item-purchase_form {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 200px;
-  margin-bottom: 35px;
-  box-shadow: 0 1px 20px white, -23px 0 20px -23px rgba(255, 255, 255, 0.8), 23px 0 20px -23px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.1) inset;
-}
-.rows__item-img {
-  margin-left: 20px;
-  margin-top: 10px;
-  min-width: 200px;
-  vertical-align: center;
-  height: 90%;
-  margin-right: 20px;
-}
-.rows__item-img .img {
-  min-height: 100%;
-  min-width: 100%;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.rows__item-none_flex_wrapper {
+.section-form {
+  padding-top: 40px;
+  padding-bottom: 130px;
   width: 100%;
 }
-.rows__item-flex_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: max-content;
-  height: 140px;
-  max-width: 810px;
-  flex-grow: 1;
+.section-form .wrapper {
+  max-width: 900px;
 }
-.rows__item-flex_wrapper .number_wrapper {
-  display: inline-block;
-  position: relative;
-  min-width: 70px;
-  max-width: 100px;
-  margin-right: 20px;
-}
-.rows__item-flex_wrapper .number_wrapper > * {
-  z-index: 5;
-  margin-top: 15px !important;
-}
-.rows__item-flex_wrapper .number_wrapper input[type=number] {
-  display: block;
-  height: 32px;
-  line-height: 32px;
-  width: 100%;
-  padding: 0;
-  margin: 0;
+.section-form .back-font {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-position: center;
   box-sizing: border-box;
-  text-align: center;
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-  appearance: textfield;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
 }
-.rows__item-flex_wrapper .number_wrapper input[type=number]::-webkit-outer-spin-button, .rows__item-flex_wrapper .number_wrapper input[type=number]::-webkit-inner-spin-button {
-  display: none;
+.section-form .title-h2 {
+  position: relative;
 }
-.rows__item-flex_wrapper .number-minus {
+.section-form .title-h2::before {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background-color: lavender;
   position: absolute;
-  top: 1px;
-  left: 1px;
-  bottom: 1px;
-  width: 20px;
-  height: 32px;
-  padding: 0;
-  display: block;
-  text-align: center;
-  border: none;
-  border-right: 1px solid #ddd;
-  font-size: 16px;
-  font-weight: 600;
+  top: 120%;
+  right: calc(50% - 20px);
 }
-.rows__item-flex_wrapper .number-plus {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  bottom: 1px;
-  width: 20px;
-  height: 32px;
-  padding: 0;
-  display: block;
-  text-align: center;
-  border: none;
-  border-left: 1px solid #ddd;
-  font-size: 16px;
-  font-weight: 600;
-}
-.rows__item-description {
+
+.form {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  width: auto;
-  min-width: min-content;
-  height: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border-radius: 15px;
+  padding: 10px;
+}
+.form input {
+  color: white;
+}
+.form__input, .form__textarea {
+  border: 0;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-bottom: 1px solid #6d6d6d;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: transparent;
+  color: white !important;
 }
 @media (max-width: 767px) {
-  .rows__item-description {
-    font-size: calc(20px + 20.4 * ((100vw - 320px) / 1100));
+  .form__input, .form__textarea {
+    font-size: calc(21px + -3.4 * ((100vw - 320px) / 1100));
   }
 }
 @media (min-width: 767px) {
-  .rows__item-description {
-    font-size: calc(20px + 12 * (100vw/ 1100));
+  .form__input, .form__textarea {
+    font-size: calc(21px + -2 * (100vw/ 1100));
   }
 }
-.rows__item-submit_wrapper {
-  display: inline-block;
-  width: 100%;
+.form__input:focus, .form__textarea:focus {
+  outline: none;
+  border-bottom: 1px solid white;
 }
-.rows__item-submit_wrapper .submit_input {
-  margin-top: 10px;
-  width: calc(100% - 20px);
-  height: 40px;
+.form__textarea {
+  max-width: 750px;
+  resize: vertical;
 }
-
-.new_offer_form {
-  margin: 0 auto;
-  width: 100%;
-  height: 40px;
+.form__button {
+  margin-top: 35px;
+  padding-top: 20px;
+  padding-bottom: 21px;
+  color: #22222b;
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 18px;
 }
-.new_offer_form .submit_input {
-  width: 100%;
-  height: 100%;
-}
-
-.rows_of_orders {
-  margin: 0 auto;
-  max-width: 1030px;
-  width: 100%;
-}
-.rows_of_orders .rows__order {
-  font-size: 24px;
-  box-shadow: 0 1px 20px white, -23px 0 20px -23px rgba(255, 255, 255, 0.8), 23px 0 20px -23px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.1) inset;
-}
-.rows_of_orders .rows__order .order {
-  margin: 0 10px;
-}
-.rows_of_orders .rows__order .order .order-orderDate {
-  padding: 10px 0;
-}
-.rows_of_orders .rows__order .order .order-orderDate * {
-  display: inline;
-}
-.rows_of_orders .rows__order .order .order-discount {
-  padding: 10px 0;
-}
-.rows_of_orders .rows__order .order .order-discount * {
-  display: inline;
-}
-.rows_of_orders .rows__order .order .order-totalPrice {
-  padding: 10px 0;
-}
-.rows_of_orders .rows__order .order .order-totalPrice * {
-  display: inline;
-}
-.rows_of_orders .rows__order .entryes {
-  margin: 10px 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: auto;
-  grid-gap: 20px 20px;
-}
-.rows_of_orders .rows__order .entryes .entryWrapper {
-  max-width: 100%;
-  min-width: 200px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.rows_of_orders .rows__order .entryes .entryWrapper .entry-img {
-  height: 100%;
-  width: 100%;
-}
-.rows_of_orders .rows__order .entryes .entryWrapper .entry-img .wrap_link {
-  height: 100%;
-  width: 100%;
-  display: block;
-}
-.rows_of_orders .rows__order .entryes .entryWrapper .entry-img .wrap_link .img {
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.rows_of_orders .rows__order .entryes .entryWrapper .entry-description .wrap_link {
-  display: block;
-}
-.rows_of_orders .rows__order .empty__message {
-  font-size: 40px;
+.form__button:hover {
+  background-color: #f0f0f0;
 }

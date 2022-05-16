@@ -549,13 +549,14 @@ body {
 .rows__item-flex_wrapper .number_wrapper {
   display: inline-block;
   position: relative;
-  width: 100px;
+  min-width: 70px;
+  max-width: 100px;
   margin-right: 20px;
 }
 
 .rows__item-flex_wrapper .number_wrapper > * {
   z-index: 5;
-  margin-top: 50% !important;
+  margin-top: 15px !important;
 }
 
 .rows__item-flex_wrapper .number_wrapper input[type="number"] {
@@ -625,6 +626,19 @@ body {
   min-width: -webkit-min-content;
   min-width: -moz-min-content;
   min-width: min-content;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .rows__item-description {
+    font-size: calc(20px + 20.4 * ((100vw - 320px) / 1100));
+  }
+}
+
+@media (min-width: 767px) {
+  .rows__item-description {
+    font-size: calc(20px + 12 * (100vw/ 1100));
+  }
 }
 
 .rows__item-submit_wrapper {
@@ -647,10 +661,6 @@ body {
 .new_offer_form .submit_input {
   width: 100%;
   height: 100%;
-}
-
-.section-orders-items * {
-  color: #FFF;
 }
 
 .rows_of_orders {
@@ -743,5 +753,9 @@ body {
 
 .rows_of_orders .rows__order .entryes .entryWrapper .entry-description .wrap_link {
   display: block;
+}
+
+.rows_of_orders .rows__order .empty__message {
+  font-size: 40px;
 }
 /*# sourceMappingURL=cart.css.map */

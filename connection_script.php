@@ -187,7 +187,7 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 //-----------------------------Users----------------------------//
 
 function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $address, $post_index, $email) {
-	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, post_index, email, token, discount, role_id) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$address', '$post_index', '$email', DEFAULT, 0, 3)";
+	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, post_index, email, token, discount, idRole) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$address', '$post_index', '$email', DEFAULT, 0, 3)";
 	mysqli_query($connection, $sql);
 }
 

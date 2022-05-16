@@ -9,7 +9,7 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <form id="registrationForm" action="registration_script.php" method="POST">
+                <form id="registrationForm" action="./registration_script.php" method="POST">
                     <div class="wrapper-inputs">
 						<input class="input" id="Login" name="Login" type="text" placeholder="Логин">
 						<input class="input" id="Password" name="Password" type="text" placeholder="Пароль">

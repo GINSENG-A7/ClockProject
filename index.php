@@ -176,12 +176,12 @@
             <h2  class="title-h2 text-center" >Контакты</h2>
             <p class="after-title text-center">У вас остались вопросы? Отправьте нам сообщение!</p>
             <div class="back-font">
-                <form action="" class="from" method="post">
-                    <input class="from__input" type="text" name="name"  placeholder="Имя" value="">
-                    <input class="from__input" type="email" name="email" placeholder="Email" value="">
-                    <input class="from__input" type="tel" name="email" placeholder="Номер телефона" value="">
-                    <textarea class="from__textarea"  name="message"   placeholder="Сообщение"></textarea>
-                    <button class="from__button" type="submit">Отправить</button>
+                <form action="" class="form" method="POST">
+                    <input class="form__input" type="text" name="name"  placeholder="Имя" value="">
+                    <input class="form__input" type="email" name="email" placeholder="Email" value="">
+                    <input class="form__input" type="tel" name="email" placeholder="Номер телефона" value="">
+                    <textarea class="form__textarea"  name="message"   placeholder="Сообщение"></textarea>
+                    <button class="form__button" type="submit">Отправить</button>
                 </form>
             </div>
         </div>

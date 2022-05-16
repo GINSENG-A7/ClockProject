@@ -76,7 +76,8 @@ body {
 				&_wrapper {
 					display: inline-block;
 					position: relative;
-					width: 100px;
+					min-width: 70px;
+					max-width: 100px;
 					margin-right: 20px;
 					// &_fakelink {
 					// 	display: block;
@@ -85,7 +86,7 @@ body {
 					// }
 					& > * {
 						z-index: 5;
-						margin-top: 50% !important;
+						margin-top: 15px !important;
 					}
 				}
 				&_wrapper input[type="number"] {
@@ -145,6 +146,8 @@ body {
 			justify-content: space-evenly;
 			width:auto;
 			min-width: min-content;
+			height: 100%;
+			@include adaptiv-font (32, 20);
 			.title {
 				
 			}
@@ -177,7 +180,7 @@ body {
 //Recent Orders
 .section-orders-items {
 	* {
-		color: #FFF;
+		// color: #FFF;
 	}
 }
 
@@ -256,6 +259,9 @@ body {
 					}
 				}
 			}
+		}
+		.empty__message {
+			font-size: 40px;
 		}
 	}
 }

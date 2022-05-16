@@ -20,7 +20,7 @@
 		$email = $_POST['Email'];
 
 
-		if($login != SelectUserByLogin($clockUsersConn, $login)['login']) {
+		if ($login != SelectUserByLogin($clockUsersConn, $login)['login']) {
 			$user = new AdvancedUser(
 				0,
 				3,
@@ -35,7 +35,8 @@
 				null,
 				0
 			);
-			AddNewUserInDatabase($clockUsersConn, 
+			AddNewUserInDatabase(
+				$clockUsersConn, 
 				$user->login, 
 				$user->password,
 				$user->name,
