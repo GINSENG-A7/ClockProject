@@ -1,3 +1,8 @@
+.error {
+  box-shadow: 0px 0px 4px 3px rgba(255, 0, 0, 0.68) !important;
+  border: 3px solid red !important;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -29,6 +34,10 @@ body {
   box-sizing: border-box;
   background-color: #969696;
   border-radius: 20px;
+  border: 3px solid #646464;
+}
+.container .input:focus {
+  outline: 3px solid cornflowerblue;
 }
 .container .input::placeholder {
   color: #000;
@@ -59,12 +68,38 @@ body {
   height: fit-content;
 }
 .container .button {
+  cursor: pointer;
   width: 100%;
   margin-bottom: 10px;
-  border-radius: 20px;
   height: 40px;
-  background-color: #787878;
+  background-color: gainsboro;
   display: block;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.container .button:hover {
+  color: #FFF !important;
+  background-color: transparent;
+  text-shadow: none;
+}
+.container .button:hover:before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
+}
+.container .button:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: "";
+  color: #000 !important;
+  background: #5a5a5a;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 .container .button p {
   line-height: normal;

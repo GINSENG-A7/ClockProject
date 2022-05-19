@@ -104,8 +104,7 @@ else {
             <h2  class="title-h2 text-center" >Контакты</h2>
             <p class="after-title text-center">У вас остались вопросы? Отправьте нам сообщение, и мы с вами свяжемся.</p>
             <div class="back-font">
-                <form action="/create_ticket_scrpt.php" class="form" method="post">
-					<input class="form__input" type="hidden" name="userId">
+                <form action="/create_ticket_scrpt.php" class="form" method="POST">
 					<input class="form__input" type="text" name="theme"  placeholder="Тема" value="">
                     <textarea class="form__textarea"  name="message"   placeholder="Сообщение"></textarea>
                     <button class="form__button" type="submit">Отправить</button>

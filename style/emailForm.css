@@ -465,6 +465,12 @@
   overflow: hidden !important;
 }
 
+.error {
+  -webkit-box-shadow: 0 15px 10px -10px rgba(255, 0, 0, 0.678) !important;
+          box-shadow: 0 15px 10px -10px rgba(255, 0, 0, 0.678) !important;
+  border-bottom: 1px solid red !important;
+}
+
 .section-form {
   padding-top: 40px;
   padding-bottom: 130px;

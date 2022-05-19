@@ -358,4 +358,18 @@ function UpdatePaidDateAndStatusInOrderById($connection, $newPaidDate, $status_i
 	$sql = "UPDATE `orders` o SET o.paid_date = '".$newPaidDate."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
 	mysqli_query($connection, $sql);
 }
+
+//------------------------Tickets--------------------------//
+
+function AddNewTicket($connection, $theme, $body, $is_open, $ticket_date, $login, $performer_id) {
+	$sql = "INSERT INTO `tickets` (idTicket, theme, body, is_open, ticket_date, `user_id`, performer_id) VALUES (DEFAULT, '$theme', '$body', $is_open, '$ticket_date', (SELECT u.idUser FROM users u WHERE u.login = '$login'), $performer_id)";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function AddNewSimpleTicket($connection, $theme, $body, $is_open, $name, $email, $telephone, $ticket_date) {
+	$sql = "INSERT INTO `simple_tickets` (idTicket, theme, body, is_open, `name`, email, telephone, ticket_date) VALUES (DEFAULT, '$theme', '$body', $is_open, '$name', '$email', '$telephone', '$ticket_date')";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
 ?>

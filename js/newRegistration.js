@@ -17,10 +17,12 @@ form.addEventListener('submit', async (e) => {
 let allInputs = document.querySelectorAll("input[type=text]");
 
 let registerButton = document.querySelector("#registerButton");
+let wrapperInputs = document.querySelector(".wrapper-inputs");
 let inputsAreNotEmpty = true;
 let fioValidationIsGood = true;
 let loginPasswordValidationIsGood = true;
 let emailValidationIsGood = true;
+
 registerButton.addEventListener("click", () => {
 	inputsAreNotEmpty = true;
 	for (const input of allInputs) {
@@ -29,7 +31,7 @@ registerButton.addEventListener("click", () => {
 		}
 	}
 	if (inputsAreNotEmpty == false) {
-		toggleValidationError("Все поля обязательны к заполнению.");
+		toggleValidationError("Все поля обязательны к заполнению.", wrapperInputs);
 	}
 	else {
 		for (const input of allInputs) {
@@ -38,28 +40,44 @@ registerButton.addEventListener("click", () => {
 					let regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 					emailValidationIsGood = regex3.test(input.value);
 					if (emailValidationIsGood == false) {
-						toggleValidationError("Неверныйформат данных при указании эл. почты.");
+						toggleValidationError("Неверныйформат данных при указании эл. почты.", wrapperInputs);
+						input.classList.add("error");
+					}
+					else {
+						input.classList.remove("error");
 					}
 					break;
 				case "PostIndex":
 					let regex4 = /^[0-9]{6}$/;
 					fioValidationIsGood = regex4.test(input.value);
 					if (fioValidationIsGood == false) {
-						toggleValidationError("Неверныйформат данных при указании ФИО.");
+						toggleValidationError("Неверныйформат данных при указании почтового индекса.", wrapperInputs);
+						input.classList.add("error");
+					}
+					else {
+						input.classList.remove("error");
 					}
 					break;
 				case "Name" || "Surname" || "Patronymic":
-						let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-						fioValidationIsGood = regex1.test(input.value);
-						if (fioValidationIsGood == false) {
-							toggleValidationError("Неверныйформат данных при указании ФИО.");
-						}
+					let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+					fioValidationIsGood = regex1.test(input.value);
+					if (fioValidationIsGood == false) {
+						toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
+						input.classList.add("error");
+					}
+					else {
+						input.classList.remove("error");
+					}
 					break;
 				case "Login" || "Password":
 					let regex2 = /^[a-zA-Z0-9]{4,250}$/;
 					loginPasswordValidationIsGood = regex2.test(input.value);
 					if (loginPasswordValidationIsGood == false) {
-						toggleValidationError("Неверныйформат данных при указании логина или пароля.");
+						toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+						input.classList.add("error");
+					}
+					else {
+						input.classList.remove("error");
 					}
 					break;
 			}
@@ -71,7 +89,7 @@ registerButton.addEventListener("click", () => {
 	}
 });
 
-function toggleValidationError(errorMessage) {
+function toggleValidationError(errorMessage, parentElement) {
 	let validationError = document.querySelector(".validationError");
 	if (validationError != null) {
 		validationError.remove();
@@ -79,6 +97,5 @@ function toggleValidationError(errorMessage) {
 	let validationErrorNode = document.createElement("p");
 	validationErrorNode.innerText = errorMessage;
 	validationErrorNode.classList.add('validationError');
-	let lastDiv = document.querySelector(".wrapper-buttons");
-	lastDiv.appendChild(validationErrorNode);
+	parentElement.appendChild(validationErrorNode);
 }

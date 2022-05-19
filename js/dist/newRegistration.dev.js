@@ -33,6 +33,7 @@ form.addEventListener('submit', function _callee(e) {
 });
 var allInputs = document.querySelectorAll("input[type=text]");
 var registerButton = document.querySelector("#registerButton");
+var wrapperInputs = document.querySelector(".wrapper-inputs");
 var inputsAreNotEmpty = true;
 var fioValidationIsGood = true;
 var loginPasswordValidationIsGood = true;
@@ -67,7 +68,7 @@ registerButton.addEventListener("click", function () {
   }
 
   if (inputsAreNotEmpty == false) {
-    toggleValidationError("Все поля обязательны к заполнению.");
+    toggleValidationError("Все поля обязательны к заполнению.", wrapperInputs);
   } else {
     var _iteratorNormalCompletion2 = true;
     var _didIteratorError2 = false;
@@ -83,7 +84,10 @@ registerButton.addEventListener("click", function () {
             emailValidationIsGood = regex3.test(input.value);
 
             if (emailValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании эл. почты.");
+              toggleValidationError("Неверныйформат данных при указании эл. почты.", wrapperInputs);
+              input.classList.add("error");
+            } else {
+              input.classList.remove("error");
             }
 
             break;
@@ -93,7 +97,10 @@ registerButton.addEventListener("click", function () {
             fioValidationIsGood = regex4.test(input.value);
 
             if (fioValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании ФИО.");
+              toggleValidationError("Неверныйформат данных при указании почтового индекса.", wrapperInputs);
+              input.classList.add("error");
+            } else {
+              input.classList.remove("error");
             }
 
             break;
@@ -103,7 +110,10 @@ registerButton.addEventListener("click", function () {
             fioValidationIsGood = regex1.test(input.value);
 
             if (fioValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании ФИО.");
+              toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
+              input.classList.add("error");
+            } else {
+              input.classList.remove("error");
             }
 
             break;
@@ -113,7 +123,10 @@ registerButton.addEventListener("click", function () {
             loginPasswordValidationIsGood = regex2.test(input.value);
 
             if (loginPasswordValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании логина или пароля.");
+              toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+              input.classList.add("error");
+            } else {
+              input.classList.remove("error");
             }
 
             break;
@@ -141,7 +154,7 @@ registerButton.addEventListener("click", function () {
   }
 });
 
-function toggleValidationError(errorMessage) {
+function toggleValidationError(errorMessage, parentElement) {
   var validationError = document.querySelector(".validationError");
 
   if (validationError != null) {
@@ -151,6 +164,5 @@ function toggleValidationError(errorMessage) {
   var validationErrorNode = document.createElement("p");
   validationErrorNode.innerText = errorMessage;
   validationErrorNode.classList.add('validationError');
-  var lastDiv = document.querySelector(".wrapper-buttons");
-  lastDiv.appendChild(validationErrorNode);
+  parentElement.appendChild(validationErrorNode);
 }
