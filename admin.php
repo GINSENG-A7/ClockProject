@@ -1,5 +1,6 @@
 <?include "./connection_script.php"?>
 <?require_once ("./classes/advancedUserClass.php");?>
+<?require_once ("./classes/userClass.php");?>
 <?
 session_start();
 $sectionsArray = SelectAllSections($conn);
@@ -9,6 +10,14 @@ if (isset($_SESSION["login"])) {
 } 
 else {
 	$login = NULL;
+}
+
+function dateCompare($a, $b) 
+{
+    if ($a["ticket_date"] == $b["date"]) {
+        return 0;
+    }
+    return (strtotime($a["ticket_date"]) < strtotime($b["ticket_date"])) ? -1 : 1;
 }
 ?>
 <!DOCTYPE html>
@@ -39,6 +48,9 @@ if ($userArray['idRole'] == 1) {
 		</div>
 		<div>
 			<button class="tab-links">Заказы</button>
+		</div>
+		<div>
+			<button class="tab-links">Запросы</button>
 		</div>
 		<form  action="exit_script.php" method="POST">
 			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">
@@ -262,6 +274,188 @@ if ($userArray['idRole'] == 1) {
 						</form>
 					</div>
 					<?
+				}
+			}
+			?>
+		</div>
+	</div>
+
+	<!-- Tickets content -->
+
+	<div id="Запросы" class="tab-output">
+		<h2 class="OutputH2">Обрабатываемые вами сообщения</h2>
+		<div class="ticketsGridWrapper">
+			<?
+			$managerArray = SelectUserByLogin($clockUsersConn, $login);
+			$manager = new User(
+				$managerArray['idUser'], 
+				$managerArray['idRole'], 
+				$managerArray['login'], 
+				$managerArray['password']
+			);
+			$ticketsArray = SelectAllFromTickets($clockUsersConn, true, $manager->idUser);
+			// print_r($ticketsArray);
+			
+			$simpleTicketsArray = SelectAllFromSimpleTickets($clockUsersConn, true, $manager->idUser);
+			if ($ticketsArray != NULL || $simpleTicketsArray != NULL) {
+				if ($ticketsArray == NULL) {
+					$mergedArray = $simpleTicketsArray;
+				}
+				elseif ($sectionsArray == NULL) {
+					$mergedArray = $ticketsArray;
+				}
+				elseif ($ticketsArray != NULL && $sectionsArray != NULL) {
+					$mergedArray = array_merge($ticketsArray, $simpleTicketsArray);
+				}
+				usort($mergedArray, "dateCompare");
+				// print_r($mergedArray);
+				for ($i = 0; $i < count($mergedArray); $i++) {
+					if ($mergedArray[$i]['user_id'] != NULL) {
+						$user = SelectUserByUserId($clockUsersConn, $mergedArray[$i]["user_id"]);
+						?>
+						<div class="ticket">
+							<form id="ticketForm-<?echo($i)?>" class="ticketForm" action="./close_ticket_script.php" method="POST">
+								<input name="idUser" type="hidden" value="<?echo($user->idUser);?>">
+								<input name="idTicket" type="hidden" value="<?echo($mergedArray[$i]["idTicket"]);?>">
+								<div class="ticket__theme">
+									<p>Тема обращения: </p>
+									<p><?echo($mergedArray[$i]["theme"]);?></p>
+								</div>
+								<div class="ticket__body">
+									<p>Сообщение: </p>
+									<p><?echo($mergedArray[$i]["body"]);?></p>
+								</div>
+								<div class="ticket__date">
+									<p>Дата обращения: </p>
+									<p><?echo($mergedArray[$i]["ticket_date"]);?></p>
+								</div>
+								<div class="ticket__userFIO">
+									<p>Логин пользователя: </p>
+									<p><?echo($user->login);?> </p>
+								</div>
+								<input name="becomeTicketPerformer" type="submit" value="Завершить">
+								<!-- Добавить асинхронное выполнение скрипта -->
+							</form>
+						</div>
+						<?
+					}
+					else {
+						?>
+						<div class="simple_ticket">
+							<form id="ticketForm-<?echo($i)?>" class="ticketForm" action="./close_ticket_script.php" method="POST">
+								<input name="idTicket" type="hidden" value="<?echo($mergedArray[$i]["idTicket"]);?>">
+								<div class="ticket__theme">
+									<p>Тема обращения: </p>
+									<p><?echo($mergedArray[$i]["theme"]);?></p>
+								</div>
+								<div class="ticket__body">
+									<p>Сообщение: </p>
+									<p><?echo($mergedArray[$i]["body"]);?></p>
+								</div>
+								<div class="ticket__date">
+									<p>Дата обращения: </p>
+									<p><?echo($mergedArray[$i]["ticket_date"]);?></p>
+								</div>
+								<div class="ticket__name">
+									<p>Псевдоним гостя: </p>
+									<p><?echo($mergedArray[$i]["name"]);?></p>
+								</div>
+								<div class="ticket__contacts">
+									<p>Контакты гостя: </p>
+									<p><?echo($mergedArray[$i]["telephone"]);?></p>
+									<p><?echo($mergedArray[$i]["email"]);?></p>
+								</div>
+								<input name="becomeTicketPerformer" type="submit" value="Завершить">
+								<!-- Добавить асинхронное выполнение скрипта -->
+							</form>	
+						</div>
+						<?
+					}
+				}
+			}
+			?>
+		</div>
+		<h2 class="OutputH2">Текущие обращения</h2>
+		<div class="ticketsGridWrapper">
+			<?
+			$ticketsArray = SelectAllFromTickets($clockUsersConn, true, NULL);
+			// print_r($ticketsArray);
+			$simpleTicketsArray = SelectAllFromSimpleTickets($clockUsersConn, true, NULL);
+			if ($ticketsArray != NULL || $simpleTicketsArray != NULL) {
+				if ($ticketsArray == NULL) {
+					$mergedArray = $sectionsArray;
+				}
+				elseif ($sectionsArray == NULL) {
+					$mergedArray = $ticketsArray;
+				}
+				elseif ($ticketsArray != NULL && $sectionsArray != NULL) {
+					$mergedArray = array_merge($ticketsArray, $simpleTicketsArray);
+				}
+				usort($mergedArray, "dateCompare");
+				// print_r($mergedArray);
+				// print_r($mergedArray);
+				for ($i = 0; $i < count($mergedArray); $i++) {
+					if ($mergedArray[$i]['user_id'] != NULL) {
+						$user = SelectUserByUserId($clockUsersConn, $mergedArray[$i]["user_id"]);
+						?>
+						<div class="ticket">
+							<form id="ticketForm-<?echo($i)?>" class="ticketForm" action="./perform_ticket_script.php" method="POST">
+								<input name="idUser" type="hidden" value="<?echo($user->idUser);?>">
+								<input name="idTicket" type="hidden" value="<?echo($mergedArray[$i]["idTicket"]);?>">
+								<div class="ticket__theme">
+									<p>Тема обращения: </p>
+									<p><?echo($mergedArray[$i]["theme"]);?></p>
+								</div>
+								<div class="ticket__body">
+									<p>Сообщение: </p>
+									<p><?echo($mergedArray[$i]["body"]);?></p>
+								</div>
+								<div class="ticket__date">
+									<p>Дата обращения: </p>
+									<p><?echo($mergedArray[$i]["ticket_date"]);?></p>
+								</div>
+								<div class="ticket__userFIO">
+									<p>Логин пользователя: </p>
+									<p><?echo($user->login);?> </p>
+								</div>
+								<input name="becomeTicketPerformer" type="submit" value="Ответить">
+								<!-- Добавить асинхронное выполнение скрипта -->
+							</form>
+						</div>
+						<?
+					}
+					else {
+						?>
+						<div class="simple_ticket">
+							<form id="ticketForm-<?echo($i)?>" class="ticketForm" action="./perform_ticket_script.php" method="POST">
+								<input name="idTicket" type="hidden" value="<?echo($mergedArray[$i]["idTicket"]);?>">
+								<div class="ticket__theme">
+									<p>Тема обращения: </p>
+									<p><?echo($mergedArray[$i]["theme"]);?></p>
+								</div>
+								<div class="ticket__body">
+									<p>Сообщение: </p>
+									<p><?echo($mergedArray[$i]["body"]);?></p>
+								</div>
+								<div class="ticket__date">
+									<p>Дата обращения: </p>
+									<p><?echo($mergedArray[$i]["ticket_date"]);?></p>
+								</div>
+								<div class="ticket__name">
+									<p>Псевдоним гостя: </p>
+									<p><?echo($mergedArray[$i]["name"]);?></p>
+								</div>
+								<div class="ticket__contacts">
+									<p>Контакты гостя: </p>
+									<p><?echo($mergedArray[$i]["telephone"]);?></p>
+									<p><?echo($mergedArray[$i]["email"]);?></p>
+								</div>
+								<input name="becomeTicketPerformer" type="submit" value="Ответить">
+								<!-- Добавить асинхронное выполнение скрипта -->
+							</form>	
+						</div>
+						<?
+					}
 				}
 			}
 			?>

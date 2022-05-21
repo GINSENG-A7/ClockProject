@@ -129,3 +129,26 @@ for (const button of orderLinkWrappedButtonsArray) {
 		button.closest("a").click();
 	});
 }
+
+let ticketForms = document.querySelectorAll(".ticketForm");
+for (const form of ticketForms) {
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(form.action, {
+			method: 'POST',
+			body: new FormData(form)
+		});
+		let formAction = form.action.substring(form.action.lastIndexOf("/") + 1);
+		if (response.ok) {
+			if (formAction == "perform_ticket_script.php") {
+				alert("Вы назначены ответственным за разрешение данного обращения.");
+			}
+			else if (formAction == "close_ticket_script.php") {
+				alert("Обращение было закрыто.");
+			}
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}

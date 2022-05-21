@@ -324,24 +324,36 @@ body {
 					display: block;
 					p {
 						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
 					}
 				}
 				&__client-discount {
 					display: block;
 					p {
 						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
 					}
 				}
 				&__totalPrice {
 					display: block;
 					p {
 						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
 					}
 				}
 				&__date {
 					display: block;
 					p {
 						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
 					}
 					input {
 						display: inline;
@@ -352,6 +364,9 @@ body {
 					display: block;
 					p {
 						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
 					}
 					&-link {
 						display: block;
@@ -359,6 +374,85 @@ body {
 							margin: 5px 0;
 						}
 					}
+				}
+			}
+		}
+
+		.ticketsGridWrapper {
+			display: grid;
+			grid-template-columns:repeat(auto-fit, minmax(189px,1fr));
+			grid-template-rows:repeat(1, 1fr);
+			grid-gap: 20px 20px;
+			.ticket, .simple_ticket{
+				padding: 10px;
+				outline: 1px dashed;
+				input {
+					margin: 0;
+					display: inline;
+				}
+				&__theme {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
+				&__body {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
+				&__date {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
+				&__userFIO {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
+
+				&__name {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
+				&__contacts {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
+				input[type=submit] {
+					margin-top: 5px;
 				}
 			}
 		}

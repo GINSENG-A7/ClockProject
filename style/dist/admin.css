@@ -266,11 +266,17 @@ body {
 .tab-output .ordersGridWrapper .order__client-login p {
   display: inline;
 }
+.tab-output .ordersGridWrapper .order__client-login p:first-child {
+  font-weight: 600;
+}
 .tab-output .ordersGridWrapper .order__client-discount {
   display: block;
 }
 .tab-output .ordersGridWrapper .order__client-discount p {
   display: inline;
+}
+.tab-output .ordersGridWrapper .order__client-discount p:first-child {
+  font-weight: 600;
 }
 .tab-output .ordersGridWrapper .order__totalPrice {
   display: block;
@@ -278,11 +284,17 @@ body {
 .tab-output .ordersGridWrapper .order__totalPrice p {
   display: inline;
 }
+.tab-output .ordersGridWrapper .order__totalPrice p:first-child {
+  font-weight: 600;
+}
 .tab-output .ordersGridWrapper .order__date {
   display: block;
 }
 .tab-output .ordersGridWrapper .order__date p {
   display: inline;
+}
+.tab-output .ordersGridWrapper .order__date p:first-child {
+  font-weight: 600;
 }
 .tab-output .ordersGridWrapper .order__date input {
   display: inline;
@@ -294,11 +306,91 @@ body {
 .tab-output .ordersGridWrapper .order__entryes p {
   display: inline;
 }
+.tab-output .ordersGridWrapper .order__entryes p:first-child {
+  font-weight: 600;
+}
 .tab-output .ordersGridWrapper .order__entryes-link {
   display: block;
 }
 .tab-output .ordersGridWrapper .order__entryes-link button {
   margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(189px, 1fr));
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 20px 20px;
+}
+.tab-output .ticketsGridWrapper .ticket, .tab-output .ticketsGridWrapper .simple_ticket {
+  padding: 10px;
+  outline: 1px dashed;
+}
+.tab-output .ticketsGridWrapper .ticket input, .tab-output .ticketsGridWrapper .simple_ticket input {
+  margin: 0;
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__theme, .tab-output .ticketsGridWrapper .simple_ticket__theme {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__theme p, .tab-output .ticketsGridWrapper .simple_ticket__theme p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__theme p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__theme p:first-child {
+  font-weight: 600;
+}
+.tab-output .ticketsGridWrapper .ticket__body, .tab-output .ticketsGridWrapper .simple_ticket__body {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__body p, .tab-output .ticketsGridWrapper .simple_ticket__body p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__body p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__body p:first-child {
+  font-weight: 600;
+}
+.tab-output .ticketsGridWrapper .ticket__date, .tab-output .ticketsGridWrapper .simple_ticket__date {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__date p, .tab-output .ticketsGridWrapper .simple_ticket__date p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__date p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__date p:first-child {
+  font-weight: 600;
+}
+.tab-output .ticketsGridWrapper .ticket__userFIO, .tab-output .ticketsGridWrapper .simple_ticket__userFIO {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__userFIO p, .tab-output .ticketsGridWrapper .simple_ticket__userFIO p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__userFIO p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__userFIO p:first-child {
+  font-weight: 600;
+}
+.tab-output .ticketsGridWrapper .ticket__name, .tab-output .ticketsGridWrapper .simple_ticket__name {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__name p, .tab-output .ticketsGridWrapper .simple_ticket__name p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__name p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__name p:first-child {
+  font-weight: 600;
+}
+.tab-output .ticketsGridWrapper .ticket__contacts, .tab-output .ticketsGridWrapper .simple_ticket__contacts {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__contacts p, .tab-output .ticketsGridWrapper .simple_ticket__contacts p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__contacts p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__contacts p:first-child {
+  font-weight: 600;
+}
+.tab-output .ticketsGridWrapper .ticket input[type=submit], .tab-output .ticketsGridWrapper .simple_ticket input[type=submit] {
+  margin-top: 5px;
 }
 
 .card {

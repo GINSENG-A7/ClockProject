@@ -368,7 +368,69 @@ function AddNewTicket($connection, $theme, $body, $is_open, $ticket_date, $login
 }
 
 function AddNewSimpleTicket($connection, $theme, $body, $is_open, $name, $email, $telephone, $ticket_date) {
-	$sql = "INSERT INTO `simple_tickets` (idTicket, theme, body, is_open, `name`, email, telephone, ticket_date) VALUES (DEFAULT, '$theme', '$body', $is_open, '$name', '$email', '$telephone', '$ticket_date')";
+	$sql = "INSERT INTO `simple_tickets` (idTicket, theme, body, is_open, `name`, email, telephone, ticket_date, performer_id) VALUES (DEFAULT, '$theme', '$body', $is_open, '$name', '$email', '$telephone', '$ticket_date', 'NULL')";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function SelectAllFromSimpleTickets($connection, $is_open, $performer_id) {
+	$sql = "SELECT * FROM `simple_tickets` WHERE is_open = ".$is_open." AND performer_id = ".$performer_id."";
+	if ($performer_id == NULL) {
+		$sql = "SELECT * FROM `simple_tickets` WHERE is_open = ".$is_open." AND performer_id IS NULL";
+	}
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+		$array[] = array(
+			'idTicket'=>$row['idTicket'],
+			'theme'=>$row['theme'],
+			'body'=>$row['body'],
+			'is_open'=>$row['is_open'],
+			'name'=>$row['name'],
+			'email'=>$row['email'],
+			'telephone'=>$row['telephone'],
+			'ticket_date'=>$row['ticket_date'],
+			'performer_id'=>$row['performer_id']
+		);
+    }
+    return $array;
+}
+
+function SelectAllFromTickets($connection, $is_open, $performer_id) {
+	$sql = "SELECT * FROM `tickets` WHERE is_open = ".$is_open." AND performer_id = ".$performer_id."";
+	if ($performer_id == NULL) {
+		$sql = "SELECT * FROM `tickets` WHERE is_open = ".$is_open." AND performer_id IS NULL";
+	}
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idTicket'=>$row['idTicket'],
+			'theme'=>$row['theme'],
+			'body'=>$row['body'],
+			'is_open'=>$row['is_open'],
+			'ticket_date'=>$row['ticket_date'],
+			'user_id'=>$row['user_id'],
+			'performer_id'=>$row['performer_id']
+		);
+    }
+    return $array;
+}
+
+function UpdateTicketStatusAndPerformer($connection, $performer_id, $is_open, $idTicket) {
+	$sql = "UPDATE `tickets` t SET t.performer_id = ".$performer_id.", t.is_open = ".$is_open." WHERE t.idTicket = ".$idTicket."";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function UpdateSimpleTicketStatusAndPerformer($connection, $performer_id, $is_open, $idTicket) {
+	$sql = "UPDATE `simple_tickets` s SET s.performer_id = ".$performer_id.", s.is_open = ".$is_open." WHERE s.idTicket = ".$idTicket."";
 	print_r($sql);
 	mysqli_query($connection, $sql);
 }

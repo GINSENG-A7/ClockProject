@@ -1,0 +1,27 @@
+.footer {
+  color: white;
+  background-color: #1e1e1e;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer div {
+  display: flex;
+  align-items: center;
+}
+.footer a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.footer a i {
+  margin-right: 5px;
+}
+@media (max-width: 877px) {
+  .footer div a p {
+    display: none;
+  }
+}
