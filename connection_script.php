@@ -144,6 +144,13 @@ function SelectValuesFromSizesBySectionId($connection, $section_id) {
     return $array;
 }
 
+function SelectSizeById($connection, $idSize) {
+	$sql = "SELECT * FROM `sizes` WHERE idSize = ".$idSize."";
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_array($result);
+    return $row;
+}
+
 function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice) {
 	$sql = "UPDATE entryes SET title = '$newTitle', body = '$newBody', price = $newPrice WHERE idEntry = $idEntry";
 	mysqli_query($connection, $sql);
@@ -364,8 +371,8 @@ function AddNewOrderToUser($connection, $order_date, $login, $status_id) {
 	mysqli_query($connection, $sql);
 }
 
-function AddNewEntryToOrder($connection, $order_id, $entry_id) {
-	$sql = "INSERT INTO `entryes_in_order` (idEntry_in_order, historicalPrice, order_id, entry_id) VALUES (DEFAULT, NULL, $order_id, $entry_id)";
+function AddNewEntryToOrder($connection, $order_id, $entry_id, $size_id) {
+	$sql = "INSERT INTO `entryes_in_order` (idEntry_in_order, historicalPrice, order_id, entry_id, size_id) VALUES (DEFAULT, NULL, $order_id, $entry_id, $size_id)";
 	mysqli_query($connection, $sql);
 }
 

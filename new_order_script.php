@@ -20,7 +20,7 @@
 				if($entryesInOrderArray[$a]['entry_id'] == $_POST["itemId"][$i]) {
 					for ($j = 0; $j < $_POST["itemCount"][$i] - 1; $j++) {
 						print_r($_POST["itemId"][$i]);
-						AddNewEntryToOrder($clockUsersConn, $idOrder, $_POST["itemId"][$i]);
+						AddNewEntryToOrder($clockUsersConn, $idOrder, $entryesInOrderArray[$a]['entry_id'], $entryesInOrderArray[$a]['size_id']);
 					}
 				}
 			}	

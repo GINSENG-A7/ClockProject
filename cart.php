@@ -112,6 +112,7 @@ else {
 				for ($i = 0; $i < count($entryesInOrderArray); $i++) {
 					$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
 					$entry->setImages($conn);
+					$entry->setSizes($conn);
 					// print_r($entry->imagesArray[0]->path);
 				?>
 					<div class="rows__item">
@@ -141,6 +142,32 @@ else {
 										<button class="number-minus" type="button">-</button>
 										<input name="itemCount[]" class="number_input" type="number" min="1" value="1" readonly>
 										<button class="number-plus" type="button">+</button>
+										<?
+										if ($entryesInOrderArray[$i]['size_id'] != NULL) {
+											$currentSize = SelectSizeById($conn, $entryesInOrderArray[$i]['size_id']);
+										?>
+											<select name="sizeIdSelect">
+												<?
+												for ($j = 0; $j < count($entry->sizesArray); $j++) {
+													print_r($currentSize['idSize']);
+													print_r($entry->sizesArray[$j]['idSize']);
+													print_r('<br>');
+													if ($entry->sizesArray[$j]['idSize'] == $currentSize['idSize']) {
+														?>
+															<option selected="selected" class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+														<?
+													}
+													else {
+														?>
+															<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+														<?
+													}
+												}
+												?>
+											</select>
+										<?
+										}
+										?>
 									</div>
 								</div>
 								<div class="rows__item-submit_wrapper">

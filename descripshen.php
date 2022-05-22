@@ -159,17 +159,17 @@
 										}
 										else {
 											?>
-											<select class="sizeSelect">
+											<select class="sizeSelect" name="sizeIdSelect">
 											<?
 											// print_r($entry->sizesArray);
 											for ($i = 0; $i < count($cartItems); $i++) {
 												if ($cartItems[$i]['entry_id'] == $entry->idEntry) {
-													$itemIsNotInCart == false;
+													$itemIsNotInCart = false;
 													//Вывод без одного размера
 													for ($j = 0; $j < count($entry->sizesArray); $j++) {
 														if($cartItems[$i]['size_id'] != $entry->sizesArray[$j]['idSize']) {
 															?>
-															<option class="sizeSelect-item" id="item-<?=$i?>-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+															<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
 															<?
 														}
 													}
@@ -180,17 +180,24 @@
 												for ($j = 0; $j < count($entry->sizesArray); $j++) {
 													print_r($sizesArray[$j]['size_id']);
 													?>
-													<option class="sizeSelect-item" id="item-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+													<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
 													<?
 												}
 											}
 											?>
 											</select>
+											<input id="addToCartForm" type="submit" value="Добавить в корзину">
 											<?
 										}
 									}
 								}
 								else {
+									for ($j = 0; $j < count($entry->sizesArray); $j++) {
+										print_r($sizesArray[$j]['size_id']);
+										?>
+										<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+										<?
+									}
 								?>
 									<input id="addToCartForm" type="submit" value="Добавить в корзину">
 								<?
