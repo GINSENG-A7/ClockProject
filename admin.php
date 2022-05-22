@@ -52,7 +52,7 @@ if ($userArray['idRole'] == 1) {
 		<div>
 			<button class="tab-links">Запросы</button>
 		</div>
-		<form  action="exit_script.php" method="POST">
+		<form  action="./exit_script.php" method="POST" class="exit_form">
 			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">
 		</form>
 	</div>

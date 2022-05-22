@@ -123,21 +123,21 @@ for (var _i7 = 0; _i7 < insertImageForms.length; _i7++) {
 var updateClientDiscountForms = document.querySelectorAll(".clientForm");
 
 var _loop4 = function _loop4(_i8) {
-  updateClientDiscountForms[_i8].addEventListener('submit', function _callee(e) {
+  updateClientDiscountForms[_i8].addEventListener('submit', function _callee2(e) {
     var response;
-    return regeneratorRuntime.async(function _callee$(_context) {
+    return regeneratorRuntime.async(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             e.preventDefault();
-            _context.next = 3;
+            _context2.next = 3;
             return regeneratorRuntime.awrap(fetch('../update_client_discount_script.php', {
               method: 'POST',
               body: new FormData(updateClientDiscountForms[_i8])
             }));
 
           case 3:
-            response = _context.sent;
+            response = _context2.sent;
 
             if (response.ok) {
               alert("Данные учётной записи успешно обновлены");
@@ -147,7 +147,7 @@ var _loop4 = function _loop4(_i8) {
 
           case 5:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
     });
@@ -198,21 +198,21 @@ var _iteratorError2 = undefined;
 try {
   var _loop6 = function _loop6() {
     var form = _step2.value;
-    form.addEventListener('submit', function _callee2(e) {
+    form.addEventListener('submit', function _callee3(e) {
       var response, formAction;
-      return regeneratorRuntime.async(function _callee2$(_context2) {
+      return regeneratorRuntime.async(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               e.preventDefault();
-              _context2.next = 3;
+              _context3.next = 3;
               return regeneratorRuntime.awrap(fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form)
               }));
 
             case 3:
-              response = _context2.sent;
+              response = _context3.sent;
               formAction = form.action.substring(form.action.lastIndexOf("/") + 1);
 
               if (response.ok) {
@@ -227,7 +227,7 @@ try {
 
             case 6:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       });
@@ -251,3 +251,35 @@ try {
     }
   }
 }
+
+var exitForm = document.querySelector(".exit_form");
+exitForm.addEventListener('submit', function _callee(e) {
+  var response, formAction;
+  return regeneratorRuntime.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          e.preventDefault();
+          _context.next = 3;
+          return regeneratorRuntime.awrap(fetch(exitForm.action, {
+            method: 'POST',
+            body: new FormData(exitForm)
+          }));
+
+        case 3:
+          response = _context.sent;
+          formAction = form.action.substring(form.action.lastIndexOf("/") + 1);
+
+          if (response.ok) {
+            alert("Вы успешно вышли из учётной записи.");
+          } else {
+            alert("Request error");
+          }
+
+        case 6:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+});

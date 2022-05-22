@@ -9,6 +9,7 @@ class Entry
     public $body;
     public $price;
     public $imagesArray;
+	public $sizesArray;
 
     public function __construct($idEntry, $title, $body, $price, $idSection) {
         $this->idEntry = $idEntry;
@@ -20,6 +21,10 @@ class Entry
 
     public function setImages($conn){
         $this->imagesArray = SelectAllImagesByEntryId($conn, $this->idEntry);
+    }
+
+	public function setSizes($conn){
+        $this->sizesArray = SelectValuesFromSizesBySectionId($conn, $this->idSection);
     }
 }
 ?>

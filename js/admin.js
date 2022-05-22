@@ -152,3 +152,19 @@ for (const form of ticketForms) {
 		}
 	});
 }
+
+let exitForm = document.querySelector(".exit_form");
+exitForm.addEventListener('submit', async (e) => {
+	e.preventDefault();
+	let response = await fetch(exitForm.action, {
+		method: 'POST',
+		body: new FormData(exitForm)
+	});
+	let formAction = form.action.substring(form.action.lastIndexOf("/") + 1);
+	if (response.ok) {
+		alert("Вы успешно вышли из учётной записи.");
+	}
+	else {
+		alert("Request error");
+	}
+});

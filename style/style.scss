@@ -160,59 +160,89 @@ body {
     height: 82vh;
 }
 
-@media  (max-width: 675px) {
+@media  (max-width: 821px) {
     .section-decription {
         height: 100%;
     }
     .decription {
         display: block !important;
      
-    }
-    .decription__img {
-        width: 100% !important;
-        display: block !important;
-    }
-    .decription__click {
-        display: flex;
-        height: 125px !important;
-        cursor: pointer;
-    }
-    .decription__item {
-        height: 100px !important;
-        width: 100px !important;
+		&__img {
+			max-width: 100% !important;
+			display: block !important;
+			min-width: 390px !important;
+		}
+		&__click {
+			display: flex;
+			height: 125px !important;
+			cursor: pointer;
+			width: 100% !important;
+			justify-content: space-between !important;
+		}
+		&__item {
+			height: auto !important;
+			width: 100% !important;
+			margin: 2px !important;
+			overflow: hidden;
+			img {
+				height: auto !important;
+				max-width: 100% !important;
+				min-width: 64px !important;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+				// display: inline-block !important;
+				// vertical-align: middle !important;
+				position: relative !important;
+				top: 50% !important;
+				left: 0 !important;
+				transform: translate(0, -50%) !important;
+				
+			}
+		}
+		&__text {
+			max-width: 100% !important;
+		}
     }
 }
 .decription {
     display: flex;
     margin: 20px;
     justify-content: space-between;
-    max-width: 900px;
+    // max-width: 900px;
     &__img {
-       
-        width: 60%;
-        display: flex;
+		max-width: 60%;
+		display: flex;
+		min-width: 420px;
     }
     &__item {
       //  background-color: red;
         margin: 10px;
-        height: 50px;
-        width: 50px;
+        height: auto;
+        width: auto;
         img {
-            width: 100%;
-            height: 100%;
+			height: 100%;
+			width: 100%;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
         }
     }
     &__show {
         height: 100%;
         width: 100%;
         img {
-            width: 100%;
-            height: 100%;
+			height: auto;
+			width: 100%;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
         }
     }
 
     &__click {
         height: 100%;
+		width: 20%;
     }
 
     &__item-1 {
@@ -226,20 +256,21 @@ body {
     }
 
     &__text {
-        max-width: 300px;
-        margin: 10px;
+		max-width: 35%;
+		margin: 10px;
+		height: 100%;
     }
 
     &__title {
-
+		@include adaptiv-font (30, 20);
     }
 
     &__price {
-
+		@include adaptiv-font (22, 14);
     }
 
     &__body {
-
+		@include adaptiv-font (22, 14);
     }
 }
 

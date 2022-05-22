@@ -117,6 +117,7 @@ else {
 					<div class="rows__item">
 						<form id="deleteItemForm" class="rows__item-purchase_form" method="POST" action="./delete_from_cart_script.php">
 							<input id="itemId" name="itemId[]" type="hidden" value="<?=$entry->idEntry?>">
+							<input id="entryesInOrderId" name="entryesInOrderId" type="hidden" value="<?=$entryesInOrderArray[$i]['idEntry_in_order']?>">
 							<div class="rows__item-img">
 								<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
 									<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">

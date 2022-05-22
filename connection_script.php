@@ -106,7 +106,7 @@ function SelectEntryByEntryId($connection, $idEntry) {
 }
 
 function SelectSectionNameById($connection, $idSection) {
-	$sql = "SELECT sectionName FROM sections WHERE idSection = '".$idSection."'";
+	$sql = "SELECT sectionName FROM sections WHERE idSection = ".$idSection."";
     $result = mysqli_query($connection, $sql)->fetch_assoc();
 	return $result['sectionName'];
 }
@@ -125,6 +125,20 @@ function SelectAllSections($connection) {
         $array[] = array(
 			'idSection'=>$row['idSection'],
 			'sectionName'=>$row['sectionName']
+		);
+    }
+    return $array;
+}
+
+function SelectValuesFromSizesBySectionId($connection, $section_id) {
+	$sql = "SELECT * FROM `sizes` WHERE section_id = ".$section_id."";
+    $result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idSize'=>$row['idSize'],
+			'value'=>$row['value'],
+			'section_id'=>$row['section_id']
 		);
     }
     return $array;
@@ -328,10 +342,21 @@ function SelectEntryesInOrderByOrderId($connection, $idOrder) {
 			'idEntry_in_order'=>$row['idEntry_in_order'],
 			'historicalPrice'=>$row['historicalPrice'],
 			'order_id'=>$row['order_id'],
-			'entry_id'=>$row['entry_id']
+			'entry_id'=>$row['entry_id'],
+			'size_id'=>$row['size_id']
 		);
     }
     return $array;
+}
+
+function SelectEntryesInOrderById($connection, $entryesInOrderId) {
+	$sql = "SELECT * FROM entryes_in_order WHERE idEntry_in_order = ".$entryesInOrderId."";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	$row = mysqli_fetch_array($result);
+    return $row;
 }
 
 function AddNewOrderToUser($connection, $order_date, $login, $status_id) {
@@ -356,6 +381,12 @@ function UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($connection, $
 
 function UpdatePaidDateAndStatusInOrderById($connection, $newPaidDate, $status_id, $idOrder) {
 	$sql = "UPDATE `orders` o SET o.paid_date = '".$newPaidDate."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
+	mysqli_query($connection, $sql);
+}
+
+function DeleteEntryInOrderByEntryId($connection, $entryesInOrderId) {
+	$sql = "DELETE FROM `entryes_in_order` eio WHERE eio.idEntry_in_order = ".$entryesInOrderId."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
