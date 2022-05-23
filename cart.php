@@ -146,7 +146,7 @@ else {
 										if ($entryesInOrderArray[$i]['size_id'] != NULL) {
 											$currentSize = SelectSizeById($conn, $entryesInOrderArray[$i]['size_id']);
 										?>
-											<select name="sizeIdSelect">
+											<select name="sizeIdSelect" class="sizeSelect">
 												<?
 												for ($j = 0; $j < count($entry->sizesArray); $j++) {
 													print_r($currentSize['idSize']);

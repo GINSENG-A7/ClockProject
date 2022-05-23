@@ -49,5 +49,17 @@ for (const numberInput of numberInputsArray) {
 
 
 	div.appendChild(idInputClone);
+
+	let select = numberInput.form.querySelector(".sizeSelect");
+	if (select != undefined) {
+		let selectClone = select.cloneNode(true);
+		select.addEventListener('change', function (e) {
+			let value = parseInt(e.target.value);
+			selectClone.defaultValue = value;
+		});
+	
+		div.appendChild(selectClone);
+	}
+
 	newOfferForm.appendChild(div);
 }

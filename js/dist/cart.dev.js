@@ -77,6 +77,17 @@ try {
     div.className = "invisible";
     div.appendChild(hiddenInputClone);
     div.appendChild(idInputClone);
+    var select = numberInput.form.querySelector(".sizeSelect");
+
+    if (select != undefined) {
+      var selectClone = select.cloneNode(true);
+      select.addEventListener('change', function (e) {
+        var value = parseInt(e.target.value);
+        selectClone.defaultValue = value;
+      });
+      div.appendChild(selectClone);
+    }
+
     newOfferForm.appendChild(div);
   };
 
