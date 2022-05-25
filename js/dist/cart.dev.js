@@ -56,7 +56,7 @@ function PropagationOff(arrayOfElements) {
   }
 }
 
-var newOfferForm = document.querySelector("#newOfferForm");
+var cloneFormsWrapper = document.querySelector(".cloneFormsWrapper");
 var numberInputsArray = document.querySelectorAll(".number_input");
 var _iteratorNormalCompletion2 = true;
 var _didIteratorError2 = false;
@@ -65,30 +65,70 @@ var _iteratorError2 = undefined;
 try {
   var _loop2 = function _loop2() {
     var numberInput = _step2.value;
-    var idInput = numberInput.form.querySelector("#itemId");
     var hiddenInputClone = numberInput.cloneNode(false);
     hiddenInputClone.removeAttribute('readonly');
-    var idInputClone = idInput.cloneNode(false);
     numberInput.addEventListener('change', function (e) {
       var value = parseInt(e.target.value);
       hiddenInputClone.defaultValue = value;
     });
-    var div = document.createElement('div');
-    div.className = "invisible";
-    div.appendChild(hiddenInputClone);
-    div.appendChild(idInputClone);
+    var form = document.createElement('form');
+    form.className = "invisible";
+    form.action = "/new_order_script.php";
+    form.appendChild(hiddenInputClone); // Асинхронные отпарвки форм
+
+    form.addEventListener('submit', function _callee(e) {
+      var response;
+      return regeneratorRuntime.async(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              _context.next = 3;
+              return regeneratorRuntime.awrap(fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+              }));
+
+            case 3:
+              response = _context.sent;
+
+              if (response.ok) {
+                alert("Ваш заказ обрабатывается, ожидайте отправки.");
+              } else {
+                alert("Request error");
+              }
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    });
+    var iIdInput = numberInput.form.querySelector("#itemId");
+    var iIdInputClone = iIdInput.cloneNode(false);
+    form.appendChild(iIdInputClone);
+    var eioIdInput = numberInput.form.querySelector("#entryesInOrderId");
+    var eioIdInputClone = eioIdInput.cloneNode(false);
+    form.appendChild(eioIdInputClone);
+    var oIdInput = numberInput.form.querySelector("#orderId");
+    var oIdInputClone = oIdInput.cloneNode(false);
+    form.appendChild(oIdInputClone);
     var select = numberInput.form.querySelector(".sizeSelect");
 
     if (select != undefined) {
       var selectClone = select.cloneNode(true);
       select.addEventListener('change', function (e) {
-        var value = parseInt(e.target.value);
-        selectClone.defaultValue = value;
+        var value = e.target.value;
+        selectClone.value = value;
       });
-      div.appendChild(selectClone);
+      form.appendChild(selectClone);
     }
 
-    newOfferForm.appendChild(div);
+    var invisibleSubmit = document.createElement("input");
+    invisibleSubmit.type = "submit";
+    form.appendChild(invisibleSubmit);
+    cloneFormsWrapper.appendChild(form);
   };
 
   for (var _iterator2 = numberInputsArray[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
@@ -108,3 +148,31 @@ try {
     }
   }
 }
+
+var newOrderButton = document.querySelector("#newOrderButton");
+var submitInputsArray = cloneFormsWrapper.querySelectorAll('input[type="submit"]');
+newOrderButton.addEventListener('click', function (event) {
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = submitInputsArray[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var submitInput = _step3.value;
+      submitInput.click();
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+        _iterator3["return"]();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+});

@@ -31,35 +31,69 @@ function PropagationOff(arrayOfElements) {
 	}
 }
 
-let newOfferForm = document.querySelector("#newOfferForm");
+let cloneFormsWrapper = document.querySelector(".cloneFormsWrapper");
 let numberInputsArray = document.querySelectorAll(".number_input");
 for (const numberInput of numberInputsArray) {
-	let idInput = numberInput.form.querySelector("#itemId");
 	let hiddenInputClone = numberInput.cloneNode(false);
 	hiddenInputClone.removeAttribute('readonly')
-	let idInputClone = idInput.cloneNode(false);
 	numberInput.addEventListener('change', function (e) {
 		let value = parseInt(e.target.value);
 		hiddenInputClone.defaultValue = value;
 	});
 	
-	let div = document.createElement('div');
-	div.className = "invisible";
-	div.appendChild(hiddenInputClone);
+	let form = document.createElement('form');
+	form.className = "invisible";
+	form.action = "/new_order_script.php";
+	form.appendChild(hiddenInputClone);
+	// Асинхронные отпарвки форм
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(form.action, {
+			method: 'POST',
+			body: new FormData(form)
+		});
+		if (response.ok) {
+			alert("Ваш заказ обрабатывается, ожидайте отправки.");
+		}
+		else {
+			alert("Request error");
+		}
+	});
 
+	let iIdInput = numberInput.form.querySelector("#itemId");
+	let iIdInputClone = iIdInput.cloneNode(false);
+	form.appendChild(iIdInputClone);
 
-	div.appendChild(idInputClone);
+	let eioIdInput = numberInput.form.querySelector("#entryesInOrderId");
+	let eioIdInputClone = eioIdInput.cloneNode(false);
+	form.appendChild(eioIdInputClone);
+
+	let oIdInput = numberInput.form.querySelector("#orderId");
+	let oIdInputClone = oIdInput.cloneNode(false);
+	form.appendChild(oIdInputClone);
 
 	let select = numberInput.form.querySelector(".sizeSelect");
 	if (select != undefined) {
 		let selectClone = select.cloneNode(true);
 		select.addEventListener('change', function (e) {
-			let value = parseInt(e.target.value);
-			selectClone.defaultValue = value;
+			let value = e.target.value;
+			selectClone.value = value;
 		});
 	
-		div.appendChild(selectClone);
+		form.appendChild(selectClone);
 	}
 
-	newOfferForm.appendChild(div);
+	let invisibleSubmit = document.createElement("input");
+	invisibleSubmit.type = "submit";
+	form.appendChild(invisibleSubmit);
+
+	cloneFormsWrapper.appendChild(form);
 }
+
+let newOrderButton = document.querySelector("#newOrderButton");
+let submitInputsArray = cloneFormsWrapper.querySelectorAll('input[type="submit"]');
+newOrderButton.addEventListener('click', (event) => {
+	for (const submitInput of submitInputsArray) {
+		submitInput.click();
+	}
+});

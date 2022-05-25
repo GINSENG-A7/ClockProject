@@ -16,7 +16,12 @@
 						<input class="input" id="Name" name="Name" type="text" placeholder="Имя">
 						<input class="input" id="Surname" name="Surname" type="text" placeholder="Фамилия">
 						<input class="input" id="Patronymic" name="Patronymic" type="text" placeholder="Отчество">
-						<input class="input" id="Address" name="Address" type="text" placeholder="Адрес">
+						<!-- <input class="input" id="Address" name="Address" type="text" placeholder="Адрес"> -->
+						<input class="input" id="District" name="District" type="text" placeholder="Область">
+						<input class="input" id="City" name="City" type="text" placeholder="Город">
+						<input class="input" id="Street" name="Street" type="text" placeholder="Улица">
+						<input class="input" id="House" name="House" type="text" placeholder="Дом">
+						<input class="input" id="Flat" name="Flat" type="text" placeholder="Квартира">
 						<input class="input" id="PostIndex" name="PostIndex" type="text" placeholder="Почтовый индекс">
 						<input class="input" id="Email" name="Email" type="text" placeholder="Эл. почта">
 

@@ -381,6 +381,11 @@ function UpdateHistoricalPriceInAllEntryesInOrderById($connection, $historicalPr
 	mysqli_query($connection, $sql);
 }
 
+function UpdateHistoricalPriceAndSizeInAllEntryesInOrderById($connection, $historicalPrice, $size_id, $entry_id) {
+	$sql = "UPDATE `entryes_in_order` eio SET eio.historicalPrice = ".$historicalPrice.", eio.size_id = ".$size_id." WHERE eio.entry_id = ".$entry_id."";
+	mysqli_query($connection, $sql);
+}
+
 function UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($connection, $newOrderDate, $status_id, $idOrder, $login) {
 	$sql = "UPDATE `orders` o SET o.order_date = '".$newOrderDate."', o.status_id = ".$status_id.", o.historicalDiscount = (SELECT u.discount FROM users u WHERE u.login = '".$login."') WHERE o.idOrder = ".$idOrder."";
 	mysqli_query($connection, $sql);

@@ -7,7 +7,11 @@
 	isset($_POST['Name']) &&
 	isset($_POST['Surname']) &&
 	isset($_POST['Patronymic']) && 
-	isset($_POST['Address']) &&
+	isset($_POST['District']) &&
+	isset($_POST['City']) &&
+	isset($_POST['Street']) &&
+	isset($_POST['House']) &&
+	isset($_POST['Flat']) &&
 	isset($_POST['PostIndex']) &&
 	isset($_POST['Email'])) {
 		$login = $_POST['Login'];
@@ -16,6 +20,11 @@
 		$surname = $_POST['Surname'];
 		$patronymic = $_POST['Patronymic'];
 		$address = $_POST['Address'];
+		$district = $_POST['District'];
+		$city = $_POST['City'];
+		$street = $_POST['Street'];
+		$house = $_POST['House'];
+		$flat = $_POST['Flat'];
 		$postIndex = $_POST['PostIndex'];
 		$email = $_POST['Email'];
 
@@ -29,12 +38,17 @@
 				$name,
 				$surname,
 				$patronymic,
-				$address,
+				$district,
+				$city,
+				$street,
+				$house,
+				$flat,
 				$postIndex,
 				$email,
 				null,
 				0
 			);
+			//Изменить добавление на новый формат адреса
 			AddNewUserInDatabase(
 				$clockUsersConn, 
 				$user->login, 

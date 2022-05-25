@@ -48,7 +48,7 @@ registerButton.addEventListener("click", function () {
     for (var _iterator = allInputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var _input = _step.value;
 
-      if (_input.value == "") {
+      if (_input.value == "" && _input.id != "Flat") {
         inputsAreNotEmpty = false;
       }
     }

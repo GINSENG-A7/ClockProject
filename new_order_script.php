@@ -9,29 +9,23 @@
 	else {
 		$login = NULL;
 	}
-	if(isset($_POST["itemId"]) && isset($_POST["itemCount"]) && isset($_POST["orderId"])) {
-		print_r($_POST["itemId"]);
-		print_r($_POST["itemCount"]);
-		$entryesArray = array();
+	if (isset($_POST["itemId"]) && isset($_POST['entryesInOrderId']) && isset($_POST["itemCount"]) && isset($_POST["orderId"]) && isset($_POST["sizeIdSelect"])) {
+		$entry = SelectEntryByEntryId($conn, $_POST["itemId"]);
+		$idEntryesInOrder = $_POST['entryesInOrderId'];
 		$idOrder = $_POST["orderId"];
-		$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $idOrder);
-		for ($a = 0; $a < count($entryesInOrderArray); $a++) {
-			for ($i = 0; $i < count($_POST["itemId"]); $i++) {
-				if($entryesInOrderArray[$a]['entry_id'] == $_POST["itemId"][$i]) {
-					for ($j = 0; $j < $_POST["itemCount"][$i] - 1; $j++) {
-						print_r($_POST["itemId"][$i]);
-						AddNewEntryToOrder($clockUsersConn, $idOrder, $entryesInOrderArray[$a]['entry_id'], $entryesInOrderArray[$a]['size_id']);
-					}
-				}
-			}	
-			array_push($entryesArray, SelectEntryByEntryId($conn, $entryesInOrderArray[$a]['entry_id']));
-		}
-		for ($i = 0; $i < count($entryesArray); $i++) {
-			// print_r($entryesArray[$i]->price);
-			UpdateHistoricalPriceInAllEntryesInOrderById($clockUsersConn, $entryesArray[$i]->price, $entryesArray[$i]->idEntry);
-		}
+		$itemCount = $_POST["itemCount"];
+		$idSize = $_POST["sizeIdSelect"];
+		//Добавить изменение размера
+		UpdateHistoricalPriceAndSizeInAllEntryesInOrderById($clockUsersConn, $entry->price, $idSize, $entry->idEntry);
 		UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($clockUsersConn, date('Y-m-d H:i:s'), 2, $idOrder, $login);
-		// print_r($entryesArray);
-
+	}
+	else if (isset($_POST["itemId"]) && isset($_POST['entryesInOrderId']) && isset($_POST["itemCount"]) && isset($_POST["orderId"])) {
+		$idEntry = $_POST["itemId"];
+		$idEntryesInOrder = $_POST['entryesInOrderId'];
+		$idOrder = $_POST["orderId"];
+		$itemCount = $_POST["itemCount"];
+		$idSize = $_POST["sizeIdSelect"];
+		UpdateHistoricalPriceInAllEntryesInOrderById($clockUsersConn, $entry->price, $entry->idEntry);
+		UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($clockUsersConn, date('Y-m-d H:i:s'), 2, $idOrder, $login);
 	}
 ?>

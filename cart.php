@@ -117,8 +117,9 @@ else {
 				?>
 					<div class="rows__item">
 						<form id="deleteItemForm" class="rows__item-purchase_form" method="POST" action="./delete_from_cart_script.php">
-							<input id="itemId" name="itemId[]" type="hidden" value="<?=$entry->idEntry?>">
+							<input id="itemId" name="itemId" type="hidden" value="<?=$entry->idEntry?>">
 							<input id="entryesInOrderId" name="entryesInOrderId" type="hidden" value="<?=$entryesInOrderArray[$i]['idEntry_in_order']?>">
+							<input id="orderId" name="orderId" type="hidden" value="<?=$cart['idOrder']?>">
 							<div class="rows__item-img">
 								<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
 									<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
@@ -140,7 +141,7 @@ else {
 									</a>
 									<div class="number_wrapper">
 										<button class="number-minus" type="button">-</button>
-										<input name="itemCount[]" class="number_input" type="number" min="1" value="1" readonly>
+										<input name="itemCount" class="number_input" type="number" min="1" value="1" readonly>
 										<button class="number-plus" type="button">+</button>
 										<?
 										if ($entryesInOrderArray[$i]['size_id'] != NULL) {
@@ -154,12 +155,12 @@ else {
 													print_r('<br>');
 													if ($entry->sizesArray[$j]['idSize'] == $currentSize['idSize']) {
 														?>
-															<option selected="selected" class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+															<option selected="selected" class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?=$j?>"><?=$entry->sizesArray[$j]['value']?></option>
 														<?
 													}
 													else {
 														?>
-															<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+															<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?=$j?>"><?=$entry->sizesArray[$j]['value']?></option>
 														<?
 													}
 												}
@@ -179,10 +180,10 @@ else {
 				<?
 				}
 				?>
-				<form id="newOfferForm" class="new_offer_form" method="POST" action="./new_order_script.php">
-					<input id="orderId" name="orderId" type="hidden" value="<?=$cart['idOrder']?>">
-					<input class="submit_input" type="submit" value="Заказать">
-				</form>
+				<button id="newOrderButton" class="submit_input">Заказать</button>
+				<div class="cloneFormsWrapper">
+
+				</div>
 			<?
 			}
 			?>

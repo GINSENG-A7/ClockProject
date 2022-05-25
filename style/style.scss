@@ -12,6 +12,17 @@ body {
     background-color: black;
     margin: 0;
     padding: 0;
+	a {
+		text-decoration: none;
+		color: $light;
+		&:hover {
+			color: #FFF;
+			text-decoration: underline;
+		}
+		&:visited {
+			color: $light;
+		}
+	}
 }
 .wrapper {
 
@@ -75,7 +86,7 @@ body {
         padding: 10px;
 
         &__decription {
-            color: lightyellow;
+            color: $light;
         }
         &__item{
             display: grid;

@@ -152,6 +152,18 @@ else {
 												</div>
 											</a>
 										</div>
+										<?
+										if ($entryesInOrderArray[$j]["size_id"] != NULL) {
+											?>
+											<div class="entry-size">
+												<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+													<div class="size-title">Размер: </div>
+													<div class="size-value"><?=$entryesInOrderArray[$j]["size_id"]?></div>
+												</a>
+											</div>
+											<?
+										}
+										?>
 									</div>
 									<?
 								}
@@ -221,6 +233,18 @@ else {
 												</div>
 											</a>
 										</div>
+										<?
+										if ($entryesInOrderArray[$j]["size_id"] != NULL) {
+											?>
+											<div class="entry-size">
+												<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+													<div class="size-title">Размер: </div>
+													<div class="size-value"><?=$entryesInOrderArray[$j]["size_id"]?></div>
+												</a>
+											</div>
+											<?
+										}
+										?>
 									</div>
 									<?
 								}

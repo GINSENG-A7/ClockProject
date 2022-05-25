@@ -26,7 +26,7 @@ let emailValidationIsGood = true;
 registerButton.addEventListener("click", () => {
 	inputsAreNotEmpty = true;
 	for (const input of allInputs) {
-		if (input.value == "") {
+		if (input.value == "" && input.id != "Flat") {
 			inputsAreNotEmpty = false;
 		}
 	}
