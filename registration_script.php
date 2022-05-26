@@ -56,7 +56,11 @@
 				$user->name,
 				$user->surname,
 				$user->patronymic,
-				$user->address,
+				$user->district,
+				$user->city,
+				$suer->street,
+				$user->house,
+				$user->flat,
 				$user->postIndex,
 				$user->email
 			);

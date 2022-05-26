@@ -9,7 +9,7 @@ form.addEventListener('submit', function _callee(e) {
         case 0:
           e.preventDefault();
           _context.next = 3;
-          return regeneratorRuntime.awrap(fetch('../registration_script.php', {
+          return regeneratorRuntime.awrap(fetch(form.action, {
             method: 'POST',
             body: new FormData(form)
           }));
@@ -78,58 +78,52 @@ registerButton.addEventListener("click", function () {
       for (var _iterator2 = allInputs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
         var input = _step2.value;
 
-        switch (input.id) {
-          case "Email":
-            var regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            emailValidationIsGood = regex3.test(input.value);
+        if (input.id == "Email") {
+          var regex3 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          emailValidationIsGood = regex3.test(input.value);
 
-            if (emailValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании эл. почты.", wrapperInputs);
-              input.classList.add("error");
-            } else {
-              input.classList.remove("error");
-            }
+          if (emailValidationIsGood == false) {
+            toggleValidationError("Неверныйформат данных при указании эл. почты.", wrapperInputs);
+            input.classList.add("error");
+          } else {
+            input.classList.remove("error");
+          }
+        }
 
-            break;
+        if (input.id == "PostIndex") {
+          var regex4 = /^[0-9]{6}$/;
+          fioValidationIsGood = regex4.test(input.value);
 
-          case "PostIndex":
-            var regex4 = /^[0-9]{6}$/;
-            fioValidationIsGood = regex4.test(input.value);
+          if (fioValidationIsGood == false) {
+            toggleValidationError("Неверныйформат данных при указании почтового индекса.", wrapperInputs);
+            input.classList.add("error");
+          } else {
+            input.classList.remove("error");
+          }
+        }
 
-            if (fioValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании почтового индекса.", wrapperInputs);
-              input.classList.add("error");
-            } else {
-              input.classList.remove("error");
-            }
+        if (input.id == "Name" || input.id == "Surname" || input.id == "Patronymic") {
+          var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+          fioValidationIsGood = regex1.test(input.value);
 
-            break;
+          if (fioValidationIsGood == false) {
+            toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
+            input.classList.add("error");
+          } else {
+            input.classList.remove("error");
+          }
+        }
 
-          case "Name" || "Surname" || "Patronymic":
-            var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-            fioValidationIsGood = regex1.test(input.value);
+        if (input.id == "Login" || input.id == "Password") {
+          var regex2 = /^[a-zA-Z0-9]{4,250}$/;
+          loginPasswordValidationIsGood = regex2.test(input.value);
 
-            if (fioValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
-              input.classList.add("error");
-            } else {
-              input.classList.remove("error");
-            }
-
-            break;
-
-          case "Login" || "Password":
-            var regex2 = /^[a-zA-Z0-9]{4,250}$/;
-            loginPasswordValidationIsGood = regex2.test(input.value);
-
-            if (loginPasswordValidationIsGood == false) {
-              toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
-              input.classList.add("error");
-            } else {
-              input.classList.remove("error");
-            }
-
-            break;
+          if (loginPasswordValidationIsGood == false) {
+            toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+            input.classList.add("error");
+          } else {
+            input.classList.remove("error");
+          }
         }
       }
     } catch (err) {

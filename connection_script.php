@@ -207,8 +207,8 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 
 //-----------------------------Users----------------------------//
 
-function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $address, $post_index, $email) {
-	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, address, post_index, email, token, discount, idRole) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$address', '$post_index', '$email', DEFAULT, 0, 3)";
+function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $district, $city, $street, $house, $flat, $post_index, $email) {
+	$sql = "INSERT INTO `users` (idUser, login, password, name, surname, patronymic, district, city, street, house, flat, post_index, email, token, discount, idRole) VALUES (DEFAULT, '$login', '".md5($password)."', '$name', '$surname', '$patronymic', '$district', '$city', '$street', '$house', '$flat', '$post_index', '$email', DEFAULT, 0, 3)";
 	mysqli_query($connection, $sql);
 }
 
@@ -234,7 +234,7 @@ function CheckUserAuthorizationData($connection, $login, $password) {
 function SelectUserByLogin($connection, $login) {
 	$sql = "SELECT * FROM `users` WHERE login = '".$login."'";
 	$result = mysqli_query($connection, $sql);
-	$row = mysqli_fetch_array($result);
+	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
 
@@ -251,7 +251,11 @@ function SelectUserByUserId($connection, $idUser) {
 			$row["name"],
 			$row["surname"],
 			$row["patronymic"],
-			$row["address"],
+			$row["district"],
+			$row["city"],
+			$row["street"],
+			$row["house"],
+			$row["flat"],
 			$row["post_index"],
 			$row["email"],
 			$row["token"],
@@ -284,6 +288,16 @@ function SelectAllUsersByRoleId($connection, $idRole) {
 
 function UpdateUsersDiscount($connection, $newDiscount, $idUser) {
 	$sql = "UPDATE `users` u SET u.discount = ".$newDiscount." WHERE u.idUser = ".$idUser."";
+	mysqli_query($connection, $sql);
+}
+
+function UpdateUsersData($connection, $login, $name, $surname, $patronymic, $district, $city, $street, $house, $flat, $postIndex) {
+	$sql = "UPDATE `users` u SET u.name = ".$name.", u.surname = ".$surname.", u.patronymic = ".$patronymic.", u.district = ".$district.", u.city = ".$city.", u.street = ".$street.", u.house = ".$house.", u.falt = ".$flat.", u.post_index = ".$postIndex." WHERE u.login = ".$login."";
+	mysqli_query($connection, $sql);
+}
+
+function UpdateUsersPassword($connection, $login, $newPassword) {
+	$sql = "UPDATE `users` u SET u.password = ".md5($newPassword)." WHERE u.login = ".$login."";
 	mysqli_query($connection, $sql);
 }
 //------------------------Cart_and_orders--------------------------//

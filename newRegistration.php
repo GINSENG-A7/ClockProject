@@ -36,7 +36,7 @@
 							if ($_COOKIE["authorize_response"] == false) {
 								?>
 								<script>
-									toggleValidationError("Неверное имя пользователя или логин.");
+									toggleValidationError("Неверное имя пользователя или логин.", form);
 								</script>
 								<?
 								setcookie ("authorize_response", "", time() - 3600); //удаление куки
