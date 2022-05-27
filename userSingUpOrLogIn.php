@@ -19,7 +19,7 @@
     <body>
         <div class="wrapper">
             <div class="container">
-                <form id="loginOrRegisterForm" action="checkPassword.php" method="POST">
+                <form id="loginOrRegisterForm" action="./authorize_script.php" method="POST">
                     <div class="wrapper-inputs">
                         <input class="input" name="Login" id="loginInput" type="text" placeholder="Логин"><br>
                         <input class="input" name="Password" id="passwordInput" type="password" placeholder="Пароль"><br>

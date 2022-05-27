@@ -38,8 +38,13 @@ var inputsAreNotEmpty = true;
 var fioValidationIsGood = true;
 var loginPasswordValidationIsGood = true;
 var emailValidationIsGood = true;
+var postIndexValidationIsGood = true;
 registerButton.addEventListener("click", function () {
   inputsAreNotEmpty = true;
+  fioValidationIsGood = true;
+  loginPasswordValidationIsGood = true;
+  emailValidationIsGood = true;
+  postIndexValidationIsGood = true;
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
@@ -92,9 +97,9 @@ registerButton.addEventListener("click", function () {
 
         if (input.id == "PostIndex") {
           var regex4 = /^[0-9]{6}$/;
-          fioValidationIsGood = regex4.test(input.value);
+          postIndexValidationIsGood = regex4.test(input.value);
 
-          if (fioValidationIsGood == false) {
+          if (postIndexValidationIsGood == false) {
             toggleValidationError("Неверныйформат данных при указании почтового индекса.", wrapperInputs);
             input.classList.add("error");
           } else {
@@ -103,26 +108,47 @@ registerButton.addEventListener("click", function () {
         }
 
         if (input.id == "Name" || input.id == "Surname" || input.id == "Patronymic") {
-          var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-          fioValidationIsGood = regex1.test(input.value);
+          if (fioValidationIsGood == true) {
+            var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+            fioValidationIsGood = regex1.test(input.value);
 
-          if (fioValidationIsGood == false) {
-            toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
-            input.classList.add("error");
-          } else {
-            input.classList.remove("error");
+            if (fioValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
+              input.classList.add("error");
+            } else {
+              input.classList.remove("error");
+            }
           }
         }
 
-        if (input.id == "Login" || input.id == "Password") {
-          var regex2 = /^[a-zA-Z0-9]{4,250}$/;
-          loginPasswordValidationIsGood = regex2.test(input.value);
+        var passwordInput = void 0;
 
-          if (loginPasswordValidationIsGood == false) {
-            toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+        if (input.id == "Login" || input.id == "Password") {
+          if (input.id == "Password") {
+            passwordInput = input;
+          }
+
+          if (loginPasswordValidationIsGood == true) {
+            var regex2 = /^[a-zA-Z0-9]{4,250}$/;
+            loginPasswordValidationIsGood = regex2.test(input.value);
+
+            if (loginPasswordValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+              input.classList.add("error");
+            } else {
+              input.classList.remove("error");
+            }
+          }
+        }
+
+        if (input.id == "PasswordCheck") {
+          if (input.value == passwordInput.value) {
+            toggleValidationError("Пароли не совпадают.", wrapperInputs);
             input.classList.add("error");
+            passwordInput.classList.add("error");
           } else {
             input.classList.remove("error");
+            passwordInput.classList.remove("error");
           }
         }
       }
@@ -142,7 +168,7 @@ registerButton.addEventListener("click", function () {
     }
   }
 
-  if (inputsAreNotEmpty == true && fioValidationIsGood == true && loginPasswordValidationIsGood == true && emailValidationIsGood == true) {
+  if (inputsAreNotEmpty == true && fioValidationIsGood == true && loginPasswordValidationIsGood == true && emailValidationIsGood == true && postIndexValidationIsGood == true) {
     var registerInput = document.querySelector("#SingUp");
     registerInput.click();
   }

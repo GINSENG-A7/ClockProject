@@ -3,7 +3,6 @@
 var form = document.querySelector("#loginOrRegisterForm");
 var loginButton = document.querySelector("#loginButton");
 loginButton.addEventListener("click", function () {
-  form.action = "authorize_script.php";
   form.addEventListener('submit', function _callee(e) {
     var response;
     return regeneratorRuntime.async(function _callee$(_context) {
@@ -12,7 +11,7 @@ loginButton.addEventListener("click", function () {
           case 0:
             e.preventDefault();
             _context.next = 3;
-            return regeneratorRuntime.awrap(fetch('../authorize_script.php', {
+            return regeneratorRuntime.awrap(fetch(form.action, {
               method: 'POST',
               body: new FormData(form)
             }));

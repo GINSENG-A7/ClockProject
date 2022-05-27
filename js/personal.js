@@ -20,10 +20,15 @@ let dataInputsAreNotEmpty = true;
 let fioValidationIsGood = true;
 let loginValidationIsGood = true;
 let emailValidationIsGood = true;
+let postIndexValidationIsGood = true;
 
 changeDataButton.addEventListener("click", (event) => {
 	event.preventDefault();
 	dataInputsAreNotEmpty = true;
+	fioValidationIsGood = true;
+	loginValidationIsGood = true;
+	emailValidationIsGood = true;
+	postIndexValidationIsGood = true;
 	for (const input of allDataInputs) {
 		if (input.value == "" && input.id != "Flat") {
 			dataInputsAreNotEmpty = false;
@@ -47,8 +52,8 @@ changeDataButton.addEventListener("click", (event) => {
 			}
 			if (input.id == "PostIndex") {
 				let regex4 = /^[0-9]{6}$/;
-				fioValidationIsGood = regex4.test(input.value);
-				if (fioValidationIsGood == false) {
+				postIndexValidationIsGood = regex4.test(input.value);
+				if (postIndexValidationIsGood == false) {
 					toggleValidationError("Неверныйформат данных при указании почтового индекса.", dataForm);
 					input.classList.add("error");
 				}
@@ -57,14 +62,16 @@ changeDataButton.addEventListener("click", (event) => {
 				}								
 			}
 			if (input.id == "Name" || input.id == "Surname" || input.id == "Patronymic") {
-				let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-				fioValidationIsGood = regex1.test(input.value);
-				if (fioValidationIsGood == false) {
-					toggleValidationError("Неверныйформат данных при указании ФИО.", dataForm);
-					input.classList.add("error");
-				}
-				else {
-					input.classList.remove("error");
+				if (fioValidationIsGood == true) {
+					if (fioValidationIsGood == false) {
+						toggleValidationError("Неверныйформат данных при указании ФИО.", dataForm);
+						input.classList.add("error");
+					}
+					else {
+						let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+						fioValidationIsGood = regex1.test(input.value);
+						input.classList.remove("error");
+					}
 				}
 			}
 			if (input.id == "Login") {
@@ -80,7 +87,7 @@ changeDataButton.addEventListener("click", (event) => {
 			}
 		}
 	}
-	if (dataInputsAreNotEmpty == true && fioValidationIsGood == true && loginValidationIsGood == true && emailValidationIsGood == true) {
+	if (dataInputsAreNotEmpty == true && fioValidationIsGood == true && loginValidationIsGood == true && emailValidationIsGood == true && postIndexValidationIsGood == true) {
 		// let changeDataInput = dataForm.querySelector("#ChangeData");
 		// changeDataInput.click();
 	}
@@ -111,6 +118,9 @@ let newPasswordValidationIsGood = true;
 changePasswordButton.addEventListener("click", (event) => {
 	event.preventDefault();
 	passwordInputsAreNotEmpty = true;
+	oldPasswordValidationIsGood = true;
+	newPasswordValidationIsGood = true;
+
 	for (const input of allPasswordsInputs) {
 		if (input.value == "") {
 			passwordInputsAreNotEmpty = false;

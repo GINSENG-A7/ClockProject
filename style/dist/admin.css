@@ -48,6 +48,44 @@ body {
   resize: none;
   margin-top: 0px;
 }
+.tab-content .sizes {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  width: 100%;
+  height: 131px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.tab-content .sizes .sizeForm {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: fit-content;
+  float: left;
+}
+.tab-content .sizes .sizeForm-value {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #ccc;
+}
+.tab-content .sizes .sizeForm-value p {
+  margin: 0;
+  top: 50%;
+}
+.tab-content .sizes .sizeForm-newValue {
+  width: 70px;
+  height: 64px;
+}
+.tab-content .sizes .sizeForm input {
+  max-width: 80px !important;
+  min-width: 70px !important;
+  margin: 0;
+}
 .tab-content .wrapper {
   display: flex;
   flex-direction: row;
@@ -97,11 +135,12 @@ body {
   margin-top: 0px;
 }
 .tab-output .wrapper {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   margin: 10px 0px;
-  width: 100%;
+  width: calc(100% - 128px);
+  margin-right: 6px;
 }
 .tab-output .wrapper span {
   min-width: 119px;
@@ -115,6 +154,23 @@ body {
 }
 .tab-output .wrapper-price {
   width: 100%;
+}
+.tab-output .radioWrapper {
+  background-color: aquamarine;
+  height: 100px;
+  width: 117px;
+  display: block;
+  margin-top: -69px;
+  position: absolute;
+  margin-top: -117px;
+  margin-left: calc(100% - 144px);
+}
+.tab-output .radioWrapper p input {
+  display: inline-block !important;
+  width: 13px !important;
+  min-width: auto;
+  margin: 0;
+  margin-left: 12px;
 }
 .tab-output .fileInputWrapper {
   overflow: hidden;
@@ -199,7 +255,7 @@ body {
 }
 .tab-output .clientsGridWrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 20px 20px;
 }
@@ -207,44 +263,50 @@ body {
   padding: 10px;
   outline: 1px dashed;
 }
-.tab-output .clientsGridWrapper .client-login {
-  display: block;
+.tab-output .clientsGridWrapper .client div {
+  display: grid;
+  grid-template-columns: minmax(77px, 1fr) minmax(189px, 2fr);
+  grid-template-rows: auto;
+  align-items: center;
+  height: 35px;
+  width: 100%;
 }
 .tab-output .clientsGridWrapper .client-login p {
   display: inline;
 }
-.tab-output .clientsGridWrapper .client-name {
-  display: block;
+.tab-output .clientsGridWrapper .client-email p {
+  display: inline;
+}
+.tab-output .clientsGridWrapper .client-role p {
+  display: inline;
+}
+.tab-output .clientsGridWrapper .client-role select {
+  display: inline;
 }
 .tab-output .clientsGridWrapper .client-name p {
   display: inline;
 }
-.tab-output .clientsGridWrapper .client-surname {
-  display: block;
-}
 .tab-output .clientsGridWrapper .client-surname p {
   display: inline;
 }
-.tab-output .clientsGridWrapper .client-patronymic {
-  display: block;
-}
 .tab-output .clientsGridWrapper .client-patronymic p {
   display: inline;
-}
-.tab-output .clientsGridWrapper .client-discount {
-  display: block;
 }
 .tab-output .clientsGridWrapper .client-discount p {
   display: inline;
 }
 .tab-output .clientsGridWrapper .client-discount input {
-  max-width: 40px;
-  min-width: 40px;
   display: inline;
   margin: 0;
 }
 .tab-output .clientsGridWrapper .client input {
   margin: 5px 0 0 0;
+}
+.tab-output .clientsGridWrapper .client #client-update__input {
+  margin-top: 10px;
+}
+.tab-output .clientsGridWrapper .client-delete__button {
+  margin-top: 10px;
 }
 .tab-output .ordersGridWrapper {
   display: grid;

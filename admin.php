@@ -33,7 +33,7 @@ function dateCompare($a, $b)
 </head>
 <?
 $userArray = SelectUserByLogin($clockUsersConn, $login);
-if ($userArray['idRole'] == 1) {
+if ($userArray['idRole'] == 2) {
 ?>
 <body>
 	<input id="sectionsArray" type="hidden" value="sectionsArray"  data-sectionsArrayLength="<?echo(count($sectionsArray))?>">

@@ -22,9 +22,14 @@ let inputsAreNotEmpty = true;
 let fioValidationIsGood = true;
 let loginPasswordValidationIsGood = true;
 let emailValidationIsGood = true;
+let postIndexValidationIsGood = true;
 
 registerButton.addEventListener("click", () => {
 	inputsAreNotEmpty = true;
+	fioValidationIsGood = true;
+	loginPasswordValidationIsGood = true;
+	emailValidationIsGood = true;
+	postIndexValidationIsGood = true;
 	for (const input of allInputs) {
 		if (input.value == "" && input.id != "Flat") {
 			inputsAreNotEmpty = false;
@@ -48,8 +53,8 @@ registerButton.addEventListener("click", () => {
 			}
 			if (input.id == "PostIndex") {
 				let regex4 = /^[0-9]{6}$/;
-				fioValidationIsGood = regex4.test(input.value);
-				if (fioValidationIsGood == false) {
+				postIndexValidationIsGood = regex4.test(input.value);
+				if (postIndexValidationIsGood == false) {
 					toggleValidationError("Неверныйформат данных при указании почтового индекса.", wrapperInputs);
 					input.classList.add("error");
 				}
@@ -58,30 +63,49 @@ registerButton.addEventListener("click", () => {
 				}
 			}
 			if (input.id == "Name" || input.id == "Surname" || input.id == "Patronymic") {
-				let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-				fioValidationIsGood = regex1.test(input.value);
-				if (fioValidationIsGood == false) {
-					toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
-					input.classList.add("error");
-				}
-				else {
-					input.classList.remove("error");
+				if (fioValidationIsGood == true) {
+					let regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+					fioValidationIsGood = regex1.test(input.value);
+					if (fioValidationIsGood == false) {
+						toggleValidationError("Неверныйформат данных при указании ФИО.", wrapperInputs);
+						input.classList.add("error");
+					}
+					else {
+						input.classList.remove("error");
+					}
 				}
 			}
+			let passwordInput;
 			if (input.id == "Login" || input.id == "Password") {
-				let regex2 = /^[a-zA-Z0-9]{4,250}$/;
-				loginPasswordValidationIsGood = regex2.test(input.value);
-				if (loginPasswordValidationIsGood == false) {
-					toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+				if (input.id == "Password") {
+					passwordInput = input;
+				}
+				if (loginPasswordValidationIsGood == true) {
+					let regex2 = /^[a-zA-Z0-9]{4,250}$/;
+					loginPasswordValidationIsGood = regex2.test(input.value);
+					if (loginPasswordValidationIsGood == false) {
+						toggleValidationError("Неверныйформат данных при указании логина или пароля.", wrapperInputs);
+						input.classList.add("error");
+					}
+					else {
+						input.classList.remove("error");
+					}
+				}
+			}
+			if (input.id == "PasswordCheck") {
+				if (input.value == passwordInput.value) {
+					toggleValidationError("Пароли не совпадают.", wrapperInputs);
 					input.classList.add("error");
+					passwordInput.classList.add("error");
 				}
 				else {
 					input.classList.remove("error");
+					passwordInput.classList.remove("error");
 				}
 			}
 		}
 	}
-	if (inputsAreNotEmpty == true && fioValidationIsGood == true && loginPasswordValidationIsGood == true && emailValidationIsGood == true) {
+	if (inputsAreNotEmpty == true && fioValidationIsGood == true && loginPasswordValidationIsGood == true && emailValidationIsGood == true && postIndexValidationIsGood == true) {
 		let registerInput = document.querySelector("#SingUp");
 		registerInput.click();
 	}

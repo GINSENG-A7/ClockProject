@@ -37,9 +37,14 @@ var dataInputsAreNotEmpty = true;
 var fioValidationIsGood = true;
 var loginValidationIsGood = true;
 var emailValidationIsGood = true;
+var postIndexValidationIsGood = true;
 changeDataButton.addEventListener("click", function (event) {
   event.preventDefault();
   dataInputsAreNotEmpty = true;
+  fioValidationIsGood = true;
+  loginValidationIsGood = true;
+  emailValidationIsGood = true;
+  postIndexValidationIsGood = true;
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
@@ -92,9 +97,9 @@ changeDataButton.addEventListener("click", function (event) {
 
         if (input.id == "PostIndex") {
           var regex4 = /^[0-9]{6}$/;
-          fioValidationIsGood = regex4.test(input.value);
+          postIndexValidationIsGood = regex4.test(input.value);
 
-          if (fioValidationIsGood == false) {
+          if (postIndexValidationIsGood == false) {
             toggleValidationError("Неверныйформат данных при указании почтового индекса.", dataForm);
             input.classList.add("error");
           } else {
@@ -103,14 +108,15 @@ changeDataButton.addEventListener("click", function (event) {
         }
 
         if (input.id == "Name" || input.id == "Surname" || input.id == "Patronymic") {
-          var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
-          fioValidationIsGood = regex1.test(input.value);
-
-          if (fioValidationIsGood == false) {
-            toggleValidationError("Неверныйформат данных при указании ФИО.", dataForm);
-            input.classList.add("error");
-          } else {
-            input.classList.remove("error");
+          if (fioValidationIsGood == true) {
+            if (fioValidationIsGood == false) {
+              toggleValidationError("Неверныйформат данных при указании ФИО.", dataForm);
+              input.classList.add("error");
+            } else {
+              var regex1 = /^[a-zA-Zа-яА-ЯёЁ']{2,250}$/;
+              fioValidationIsGood = regex1.test(input.value);
+              input.classList.remove("error");
+            }
           }
         }
 
@@ -142,7 +148,7 @@ changeDataButton.addEventListener("click", function (event) {
     }
   }
 
-  if (dataInputsAreNotEmpty == true && fioValidationIsGood == true && loginValidationIsGood == true && emailValidationIsGood == true) {// let changeDataInput = dataForm.querySelector("#ChangeData");
+  if (dataInputsAreNotEmpty == true && fioValidationIsGood == true && loginValidationIsGood == true && emailValidationIsGood == true && postIndexValidationIsGood == true) {// let changeDataInput = dataForm.querySelector("#ChangeData");
     // changeDataInput.click();
   }
 });
@@ -185,6 +191,8 @@ var newPasswordValidationIsGood = true;
 changePasswordButton.addEventListener("click", function (event) {
   event.preventDefault();
   passwordInputsAreNotEmpty = true;
+  oldPasswordValidationIsGood = true;
+  newPasswordValidationIsGood = true;
   var _iteratorNormalCompletion3 = true;
   var _didIteratorError3 = false;
   var _iteratorError3 = undefined;

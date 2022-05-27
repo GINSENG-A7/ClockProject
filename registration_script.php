@@ -30,47 +30,53 @@
 
 
 		if ($login != SelectUserByLogin($clockUsersConn, $login)['login']) {
-			$user = new AdvancedUser(
-				0,
-				3,
-				$login,
-				$password,
-				$name,
-				$surname,
-				$patronymic,
-				$district,
-				$city,
-				$street,
-				$house,
-				$flat,
-				$postIndex,
-				$email,
-				null,
-				0
-			);
-			//Изменить добавление на новый формат адреса
-			AddNewUserInDatabase(
-				$clockUsersConn, 
-				$user->login, 
-				$user->password,
-				$user->name,
-				$user->surname,
-				$user->patronymic,
-				$user->district,
-				$user->city,
-				$suer->street,
-				$user->house,
-				$user->flat,
-				$user->postIndex,
-				$user->email
-			);
-			$user->idUser = SelectUserByLogin($clockUsersConn, $user->login)['idUser'];
-			$_SESSION["login"] = $user->login;
-			?>
-			<script>
-				window.location.replace("/index.php");
-			</script>
-			<?
+			if (SelectUserByEmail($conn, $email) == NULL) {
+				$user = new AdvancedUser(
+					0,
+					3,
+					$login,
+					$password,
+					$name,
+					$surname,
+					$patronymic,
+					$district,
+					$city,
+					$street,
+					$house,
+					$flat,
+					$postIndex,
+					$email,
+					null,
+					0
+				);
+				//Изменить добавление на новый формат адреса
+				AddNewUserInDatabase(
+					$clockUsersConn, 
+					$user->login, 
+					$user->password,
+					$user->name,
+					$user->surname,
+					$user->patronymic,
+					$user->district,
+					$user->city,
+					$suer->street,
+					$user->house,
+					$user->flat,
+					$user->postIndex,
+					$user->email
+				);
+				$user->idUser = SelectUserByLogin($clockUsersConn, $user->login)['idUser'];
+				$_SESSION["login"] = $user->login;
+				?>
+				<script>
+					window.location.replace("/index.php");
+				</script>
+				<?
+			}
+			else {
+				session_destroy();
+				setcookie("email_response", false);
+			}
 		}
 		else {
 			session_destroy();

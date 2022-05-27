@@ -58,6 +58,70 @@ body {
   margin-top: 0px;
 }
 
+.tab-content .sizes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 2px;
+  width: 100%;
+  height: 131px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.tab-content .sizes .sizeForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  float: left;
+}
+
+.tab-content .sizes .sizeForm-value {
+  width: 70px;
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  background-color: #ccc;
+}
+
+.tab-content .sizes .sizeForm-value p {
+  margin: 0;
+  top: 50%;
+}
+
+.tab-content .sizes .sizeForm-newValue {
+  width: 70px;
+  height: 64px;
+}
+
+.tab-content .sizes .sizeForm input {
+  max-width: 80px !important;
+  min-width: 70px !important;
+  margin: 0;
+}
+
 .tab-content .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -126,9 +190,9 @@ body {
 }
 
 .tab-output .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -137,7 +201,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin: 10px 0px;
-  width: 100%;
+  width: calc(100% - 128px);
+  margin-right: 6px;
 }
 
 .tab-output .wrapper span {
@@ -155,6 +220,25 @@ body {
 
 .tab-output .wrapper-price {
   width: 100%;
+}
+
+.tab-output .radioWrapper {
+  background-color: aquamarine;
+  height: 100px;
+  width: 117px;
+  display: block;
+  margin-top: -69px;
+  position: absolute;
+  margin-top: -117px;
+  margin-left: calc(100% - 144px);
+}
+
+.tab-output .radioWrapper p input {
+  display: inline-block !important;
+  width: 13px !important;
+  min-width: auto;
+  margin: 0;
+  margin-left: 12px;
 }
 
 .tab-output .fileInputWrapper {
@@ -262,8 +346,8 @@ body {
 .tab-output .clientsGridWrapper {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(150px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  -ms-grid-columns: (minmax(286px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
   -ms-grid-rows: (1fr)[1];
       grid-template-rows: repeat(1, 1fr);
   grid-gap: 20px 20px;
@@ -274,40 +358,46 @@ body {
   outline: 1px dashed;
 }
 
-.tab-output .clientsGridWrapper .client-login {
-  display: block;
+.tab-output .clientsGridWrapper .client div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: minmax(77px, 1fr) minmax(189px, 2fr);
+      grid-template-columns: minmax(77px, 1fr) minmax(189px, 2fr);
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 35px;
+  width: 100%;
 }
 
 .tab-output .clientsGridWrapper .client-login p {
   display: inline;
 }
 
-.tab-output .clientsGridWrapper .client-name {
-  display: block;
+.tab-output .clientsGridWrapper .client-email p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-role p {
+  display: inline;
+}
+
+.tab-output .clientsGridWrapper .client-role select {
+  display: inline;
 }
 
 .tab-output .clientsGridWrapper .client-name p {
   display: inline;
 }
 
-.tab-output .clientsGridWrapper .client-surname {
-  display: block;
-}
-
 .tab-output .clientsGridWrapper .client-surname p {
   display: inline;
 }
 
-.tab-output .clientsGridWrapper .client-patronymic {
-  display: block;
-}
-
 .tab-output .clientsGridWrapper .client-patronymic p {
   display: inline;
-}
-
-.tab-output .clientsGridWrapper .client-discount {
-  display: block;
 }
 
 .tab-output .clientsGridWrapper .client-discount p {
@@ -315,14 +405,20 @@ body {
 }
 
 .tab-output .clientsGridWrapper .client-discount input {
-  max-width: 40px;
-  min-width: 40px;
   display: inline;
   margin: 0;
 }
 
 .tab-output .clientsGridWrapper .client input {
   margin: 5px 0 0 0;
+}
+
+.tab-output .clientsGridWrapper .client #client-update__input {
+  margin-top: 10px;
+}
+
+.tab-output .clientsGridWrapper .client-delete__button {
+  margin-top: 10px;
 }
 
 .tab-output .ordersGridWrapper {

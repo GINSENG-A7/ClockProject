@@ -13,6 +13,7 @@
                     <div class="wrapper-inputs">
 						<input class="input" id="Login" name="Login" type="text" placeholder="Логин">
 						<input class="input" id="Password" name="Password" type="text" placeholder="Пароль">
+						<input class="input" id="Password" name="PasswordCheck" type="text" placeholder="Пароль">
 						<input class="input" id="Name" name="Name" type="text" placeholder="Имя">
 						<input class="input" id="Surname" name="Surname" type="text" placeholder="Фамилия">
 						<input class="input" id="Patronymic" name="Patronymic" type="text" placeholder="Отчество">
@@ -36,10 +37,20 @@
 							if ($_COOKIE["authorize_response"] == false) {
 								?>
 								<script>
-									toggleValidationError("Неверное имя пользователя или логин.", form);
+									toggleValidationError("Пользователь с таким логином уже зарегистрирован.", form);
 								</script>
 								<?
 								setcookie ("authorize_response", "", time() - 3600); //удаление куки
+							}
+						}
+						if (isset($_COOKIE["email_response"])) {
+							if ($_COOKIE["email_response"] == false) {
+								?>
+								<script>
+									toggleValidationError("Пользователь с такой эл. почтой уже зарегистрирован.", form);
+								</script>
+								<?
+								setcookie ("email_response", "", time() - 3600); //удаление куки
 							}
 						}
 					?>

@@ -132,12 +132,14 @@ function SelectAllSections($connection) {
 
 function SelectValuesFromSizesBySectionId($connection, $section_id) {
 	$sql = "SELECT * FROM `sizes` WHERE section_id = ".$section_id."";
+	// print_r($sql);
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
         $array[] = array(
 			'idSize'=>$row['idSize'],
 			'value'=>$row['value'],
+			'isActive'=>$row['isActive'],
 			'section_id'=>$row['section_id']
 		);
     }
@@ -149,6 +151,12 @@ function SelectSizeById($connection, $idSize) {
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_array($result);
     return $row;
+}
+
+function UpdateSizeIsActiveById($connection, $isActive, $idSize) {
+	$sql = "UPDATE `sizes` SET isActive = ".$isActive." WHERE idSize = ".$idSize."";
+	print_r($sql);
+	mysqli_query($connection, $sql);
 }
 
 function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice) {
@@ -238,6 +246,16 @@ function SelectUserByLogin($connection, $login) {
 	return $row;
 }
 
+function SelectUserByEmail($connection, $email) {
+	$sql = "SELECT * FROM `users` WHERE email = '".$email."'";
+	$result = mysqli_query($connection, $sql);
+	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_assoc($result);
+		return $row;
+	}
+	return NULL;
+}
+
 function SelectUserByUserId($connection, $idUser) {
 	$sql = "SELECT * FROM `users` WHERE idUser = ".$idUser."";
 	$result = mysqli_query($connection, $sql);
@@ -266,10 +284,24 @@ function SelectUserByUserId($connection, $idUser) {
 	return NULL;
 }
 
+function SelectAllFromRoles($connection) {
+	$sql = "SELECT * FROM `roles`";
+	$result = mysqli_query($connection, $sql);
+	while($row = mysqli_fetch_array($result))
+	{
+		$array[] = array(
+			'idRole'=>$row['idRole'],
+			'role'=>$row['role']
+		);
+	}
+	// print_r($array);
+	return $array;
+}
+
 function SelectRoleById($connection, $idRole) {
 	$sql = "SELECT r.role FROM `roles` r WHERE r.idRole = ".$idRole."";
 	$result = mysqli_query($connection, $sql);
-	$row = mysqli_fetch_array($result);
+	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
 
@@ -292,13 +324,27 @@ function UpdateUsersDiscount($connection, $newDiscount, $idUser) {
 }
 
 function UpdateUsersData($connection, $login, $name, $surname, $patronymic, $district, $city, $street, $house, $flat, $postIndex) {
-	$sql = "UPDATE `users` u SET u.name = ".$name.", u.surname = ".$surname.", u.patronymic = ".$patronymic.", u.district = ".$district.", u.city = ".$city.", u.street = ".$street.", u.house = ".$house.", u.falt = ".$flat.", u.post_index = ".$postIndex." WHERE u.login = ".$login."";
+	$sql = "UPDATE `users` u SET u.name = '".$name."', u.surname = '".$surname."', u.patronymic = '".$patronymic."', u.district = '".$district."', u.city = '".$city."', u.street = '".$street."', u.house = '".$house."', u.falt = '".$flat."', u.post_index = ".$postIndex." WHERE u.login = '".$login."'";
 	mysqli_query($connection, $sql);
 }
 
 function UpdateUsersPassword($connection, $login, $newPassword) {
-	$sql = "UPDATE `users` u SET u.password = ".md5($newPassword)." WHERE u.login = ".$login."";
+	$sql = "UPDATE `users` u SET u.password = ".md5($newPassword)." WHERE u.login = '".$login."'";
 	mysqli_query($connection, $sql);
+}
+
+function UpdateUsersDataAsAdmin($connection, $idUser, $login, $name, $surname, $patronymic, $district, $city, $street, $house, $flat, $postIndex, $discount, $idRole) {
+	$sql = "UPDATE `users` u SET u.login = '".$login."', u.name = '".$name."', u.surname = '".$surname."', u.patronymic = '".$patronymic."', u.district = '".$district."', u.city = '".$city."', u.street = '".$street."', u.house = '".$house."', u.falt = '".$flat."', u.post_index = ".$postIndex.", u.discount = ".$discount.", u.idRole = ".$idRole." WHERE u.idUser = ".$idUser."";
+	mysqli_query($connection, $sql);
+}
+
+function DeleteUserCascade($connection, $entyesConnection, $idUser) {
+	$sql1 = "DELETE FROM `users` WHERE idUser = ".$idUser."";
+	mysqli_query($connection, $sql1);
+	$sql2 = "DELETE FROM `comments` WHERE user_id = ".$idUser."";
+	mysqli_query($entyesConnection, $sql2);
+	$sql3 = "DELETE FROM `tickets` WHERE user_id = ".$idUser."";
+	mysqli_query($connection, $sql3);
 }
 //------------------------Cart_and_orders--------------------------//
 function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {

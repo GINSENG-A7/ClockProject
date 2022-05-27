@@ -2,11 +2,10 @@ let form = document.querySelector("#loginOrRegisterForm");
 
 let loginButton = document.querySelector("#loginButton");
 loginButton.addEventListener("click", () => {
-	form.action = "authorize_script.php";
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		let response = await fetch('../authorize_script.php', {
+		let response = await fetch(form.action, {
 			method: 'POST',
 			body: new FormData(form)
 		});
