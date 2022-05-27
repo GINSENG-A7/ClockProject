@@ -3,36 +3,20 @@
 var form = document.querySelector("#loginOrRegisterForm");
 var loginButton = document.querySelector("#loginButton");
 loginButton.addEventListener("click", function () {
-  form.addEventListener('submit', function _callee(e) {
-    var response;
-    return regeneratorRuntime.async(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            e.preventDefault();
-            _context.next = 3;
-            return regeneratorRuntime.awrap(fetch(form.action, {
-              method: 'POST',
-              body: new FormData(form)
-            }));
-
-          case 3:
-            response = _context.sent;
-
-            if (response.ok) {
-              window.location.replace("../index.php");
-              alert("Вы успешно авторизированы.");
-            } else {
-              alert("Request error");
-            }
-
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    });
-  });
+  // form.addEventListener('submit', async (e) => {
+  // 	e.preventDefault();
+  // 	let response = await fetch(form.action, {
+  // 		method: 'POST',
+  // 		body: new FormData(form)
+  // 	});
+  // 	if (response.ok) {
+  // 		// window.location.replace("../index.php");
+  // 		// alert("Вы успешно авторизированы.");
+  // 	}
+  // 	else {
+  // 		alert("Request error");
+  // 	}
+  // })
   var singInInput = document.querySelector("#SingIn");
   singInInput.click();
 });
@@ -44,7 +28,7 @@ loginVKButton.addEventListener("click", function () {
 });
 var registerButton = document.querySelector("#registerButton");
 registerButton.addEventListener("click", function () {
-  form.action = "newRegistration.php";
+  form.action = "/newRegistration.php";
   var registerInput = document.querySelector("#SingUp");
   registerInput.click();
 });

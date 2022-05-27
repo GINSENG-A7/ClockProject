@@ -465,6 +465,52 @@
   overflow: hidden !important;
 }
 
+.footer {
+  color: white;
+  background-color: #1e1e1e;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.footer a i {
+  margin-right: 5px;
+}
+
+@media (max-width: 877px) {
+  .footer div a p {
+    display: none;
+  }
+}
+
 .error {
   -webkit-box-shadow: 0px 0px 4px 3px rgba(255, 0, 0, 0.68) !important;
           box-shadow: 0px 0px 4px 3px rgba(255, 0, 0, 0.68) !important;

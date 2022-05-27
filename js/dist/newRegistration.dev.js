@@ -1,36 +1,20 @@
 "use strict";
 
-var form = document.querySelector('#registrationForm');
-form.addEventListener('submit', function _callee(e) {
-  var response;
-  return regeneratorRuntime.async(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          e.preventDefault();
-          _context.next = 3;
-          return regeneratorRuntime.awrap(fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form)
-          }));
+var form = document.querySelector('#registrationForm'); // form.addEventListener('submit', async (e) => {
+// 	e.preventDefault();
+// 	let response = await fetch(form.action, {
+// 		method: 'POST',
+// 		body: new FormData(form)
+// 	});
+// 	if (response.ok) {
+// 		window.location.replace("../index.php");
+// 		alert("Учётная запись успешно создана");
+// 	}
+// 	else {
+// 		alert("Request error");
+// 	}
+// });
 
-        case 3:
-          response = _context.sent;
-
-          if (response.ok) {
-            window.location.replace("../index.php");
-            alert("Учётная запись успешно создана");
-          } else {
-            alert("Request error");
-          }
-
-        case 5:
-        case "end":
-          return _context.stop();
-      }
-    }
-  });
-});
 var allInputs = document.querySelectorAll("input[type=text]");
 var registerButton = document.querySelector("#registerButton");
 var wrapperInputs = document.querySelector(".wrapper-inputs");

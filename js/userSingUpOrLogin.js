@@ -3,20 +3,20 @@ let form = document.querySelector("#loginOrRegisterForm");
 let loginButton = document.querySelector("#loginButton");
 loginButton.addEventListener("click", () => {
 
-	form.addEventListener('submit', async (e) => {
-		e.preventDefault();
-		let response = await fetch(form.action, {
-			method: 'POST',
-			body: new FormData(form)
-		});
-		if (response.ok) {
-			window.location.replace("../index.php");
-			alert("Вы успешно авторизированы.");
-		}
-		else {
-			alert("Request error");
-		}
-	})
+	// form.addEventListener('submit', async (e) => {
+	// 	e.preventDefault();
+	// 	let response = await fetch(form.action, {
+	// 		method: 'POST',
+	// 		body: new FormData(form)
+	// 	});
+	// 	if (response.ok) {
+	// 		// window.location.replace("../index.php");
+	// 		// alert("Вы успешно авторизированы.");
+	// 	}
+	// 	else {
+	// 		alert("Request error");
+	// 	}
+	// })
 
 	let singInInput = document.querySelector("#SingIn");
 	singInInput.click();
@@ -31,7 +31,7 @@ loginVKButton.addEventListener("click", () => {
 
 let registerButton = document.querySelector("#registerButton");
 registerButton.addEventListener("click", () => {
-	form.action = "newRegistration.php";
+	form.action = "/newRegistration.php";
 	let registerInput = document.querySelector("#SingUp");
 	registerInput.click();
 });

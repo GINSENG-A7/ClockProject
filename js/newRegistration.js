@@ -1,18 +1,18 @@
 let form = document.querySelector('#registrationForm');
-form.addEventListener('submit', async (e) => {
-	e.preventDefault();
-	let response = await fetch(form.action, {
-		method: 'POST',
-		body: new FormData(form)
-	});
-	if (response.ok) {
-		window.location.replace("../index.php");
-		alert("Учётная запись успешно создана");
-	}
-	else {
-		alert("Request error");
-	}
-});
+// form.addEventListener('submit', async (e) => {
+// 	e.preventDefault();
+// 	let response = await fetch(form.action, {
+// 		method: 'POST',
+// 		body: new FormData(form)
+// 	});
+// 	if (response.ok) {
+// 		window.location.replace("../index.php");
+// 		alert("Учётная запись успешно создана");
+// 	}
+// 	else {
+// 		alert("Request error");
+// 	}
+// });
 
 let allInputs = document.querySelectorAll("input[type=text]");
 

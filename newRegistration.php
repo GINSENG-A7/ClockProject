@@ -7,13 +7,14 @@
     </head>
 
     <body>
+		
         <div class="wrapper">
             <div class="container">
                 <form id="registrationForm" action="./registration_script.php" method="POST">
                     <div class="wrapper-inputs">
 						<input class="input" id="Login" name="Login" type="text" placeholder="Логин">
 						<input class="input" id="Password" name="Password" type="text" placeholder="Пароль">
-						<input class="input" id="Password" name="PasswordCheck" type="text" placeholder="Пароль">
+						<input class="input" id="Password" name="PasswordCheck" type="text" placeholder="Повторите пароль">
 						<input class="input" id="Name" name="Name" type="text" placeholder="Имя">
 						<input class="input" id="Surname" name="Surname" type="text" placeholder="Фамилия">
 						<input class="input" id="Patronymic" name="Patronymic" type="text" placeholder="Отчество">

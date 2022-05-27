@@ -22,13 +22,17 @@
 				if ($role == "admin") {
 					?>
 					<script>
-						window.location.replace("/admin.php");
+						window.location.replace("/super_admin.php");
 					</script>
 					<?
 				}
 				else {
 					$_SESSION["login"] = $resultArray['login'];
-					//редирект на страницу менеджера
+					?>
+					<script>
+						window.location.replace("/admin.php");
+					</script>
+					<?
 				}
 			}
 			else {

@@ -26,7 +26,7 @@ else {
 <div class="wrapper">
 	<header class="header">
 		<div class="header__logo">
-			<a href='' class="header__logo-linkWrapper">
+			<a href='./index.php' class="header__logo-linkWrapper">
 				<img src="./img/logo.webp" alt="logo">
 			</a>
 			<div class="header__logo-textWrapper">
@@ -76,9 +76,10 @@ else {
 							?>
 							<span class="nav-arrow"></span>
 							<ul class="nav-sub">
-								<li class="nav-sub__item"><a class="nav-sub__link" href="">Корзина</a></li>
-								<li class="nav-sub__item"><a class="nav-sub__link" href="">Заказы</a></li>
-								<li class="nav-sub__item"><a class="nav-sub__link" href="">Связаться с менеджером</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="/cart.php">Корзина</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="/recentOrders.php">Заказы</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="/personal.php">Личный кабинет</a></li>
+								<li class="nav-sub__item"><a class="nav-sub__link" href="/emailForm.php">Связаться с менеджером</a></li>
 								<li class="nav-sub__item">
 									<form id="exit_form" action="/exit_script.php" method="post" style="display: none;">
 										<input id="exit_input" type="submit" name="exit_input" style="display: none;">
@@ -101,7 +102,7 @@ else {
 			</nav>
 		</div>
 	</header>
-	
+	<hr>
 	<section class="section-orders-items">
 		<h2  class="title-h2 text-center">Список товаров</h2>
 		<div class="rows_of_entryes">
@@ -190,6 +191,21 @@ else {
 		</div>
 	</section>
 </div>
+<footer>
+	<div class="wrapper"></div>
+		<div class="footer">
+			<div>
+				<a href="tel:8 495 123 45 67"><i class="zmdi zmdi-phone"></i> <p>(+7 (495) 123-45-67)</p></a>
+				<a href="https://maps.google.com/?q='Волоколамское шоссе 60, корп.2. Москва'"> <i class="zmdi zmdi-pin-drop"></i><p>(Волоколамское шоссе 60, корп.2. Москва)</p></a>
+				<a href="mailto:jew-77-krom@yandex.ru"><i class="zmdi zmdi-email"></i> <p>(jew-77-krom@yandex.ru)</p></a>
+				<a href="#"><i class="zmdi zmdi-facebook"></i></a>
+			</div>
+			<div>
+				<p> ©2021 K.Max.Jeweller.</p> 
+			</div>
+		</div>
+	</div>   
+</footer>
 	<script src="./js/chekTypeBrowser.js"></script>
 	<script src="./js/cart.js"></script>
 </body>
