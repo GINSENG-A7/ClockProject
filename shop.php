@@ -105,6 +105,15 @@ else {
 
     </div>
     <hr/>
+	<section class="section-filters">
+		<form action="./apply_filtres_script.php">
+			<p style="color: #FFF;">Минимальная цена</p>
+			<input name="min-price" type="text">
+			<p style="color: #FFF;">Максимальная цена</p>
+			<input name="max-price" type="text">
+			<input type="submit" value="Применить">
+		</form>
+	</section>
     <section class="section-about">
         <div class="wrapper">
             <h2  class="title-h2 text-center" >Список товаров</h2>

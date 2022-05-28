@@ -8,13 +8,15 @@
 	else {
 		$login = NULL;
 	}
-	if (isset($_POST['sizeId'])) {
+	if (isset($_POST['valueSize']) &&
+		isset($_POST['sectionIdSize'])) {
+		$value = $_POST['valueSize'];
+		$section_id = $_POST['sectionIdSize'];
 
-		$idSize = $_POST['sizeId'];
-		DeleteSizeById($conn, $idSize);
+		AddNewSize($conn, $value, true, $section_id);
 		?>
 		<script>
-			alert("Данные успешно удалены");
+			alert("Данные успешно добавлены");
 		</script>
 		<?
 	}

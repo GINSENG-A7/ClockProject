@@ -25,22 +25,27 @@
 		$email = $_POST['clientEmail'];
 		$discount = $_POST['clientDiscount'];
 
-		$userArray = SelectUserByUserId($conn, $idUser);
+		$userArray = SelectUserByUserId($clockUsersConn, $idUser);
+		print_r($name);
+		print_r($surname);
+		print_r($patronymic);
+		print_r($email);
+		print_r($discount);
 
 		$user = new AdvancedUser(
 			$idUser,
 			$roleId,
 			$clientLogin,
-			$userArray['password'],
+			$userArray->password,
 			$name,
 			$surname,
 			$patronymic,
-			$userArray['district'],
-			$userArray['city'],
-			$userArray['street'],
-			$userArray['house'],
-			$userArray['flat'],
-			$userArray['postIndex'],
+			$userArray->district,
+			$userArray->city,
+			$userArray->street,
+			$userArray->house,
+			$userArray->flat,
+			$userArray->postIndex,
 			$email,
 			null,
 			$discount / 100

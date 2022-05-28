@@ -72,26 +72,42 @@ var _iteratorError = undefined;
 try {
   var _loop2 = function _loop2() {
     var sizeForm = _step.value;
-    // sizeForm.addEventListener('submit', async (e) => {
-    // 	e.preventDefault();
-    // 	let response = await fetch(sizeForm.action, {
-    // 		method: 'POST',
-    // 		body: new FormData(sizeForm)
-    // 	});
-    // 	if (response.ok) {
-    // 		alert("Размер больше не активен");
-    // 	}
-    // 	else {
-    // 		alert("Request error");
-    // 	}
-    // });
+    sizeForm.addEventListener('submit', function _callee(e) {
+      var response;
+      return regeneratorRuntime.async(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              _context.next = 3;
+              return regeneratorRuntime.awrap(fetch(sizeForm.action, {
+                method: 'POST',
+                body: new FormData(sizeForm)
+              }));
+
+            case 3:
+              response = _context.sent;
+
+              if (response.ok) {
+                alert("Размер больше не активен");
+              } else {
+                alert("Request error");
+              }
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    });
     var submitInput = sizeForm.querySelector(".sizeForm-disable");
     var deleteButton = sizeForm.querySelector(".sizeForm-delete");
     deleteButton.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      if (confirm("Вы уверены, что хотите полностью удалить все данные пользователя?")) {
+      if (confirm("Вы уверены, что хотите полностью удалить данный размер?")) {
         if (submitInput.name == "disableSize") {
           submitInput.name = "ableSize";
           submitInput.value = "Вернуть";
@@ -100,7 +116,7 @@ try {
           submitInput.value = "Убрать";
         }
 
-        clientForm.action = "./delete_size_script.php";
+        submitInput.form.action = "./delete_size_script.php";
         submitInput.click();
       }
     });
@@ -132,24 +148,24 @@ var _iteratorError2 = undefined;
 try {
   var _loop3 = function _loop3() {
     var clientForm = _step2.value;
-    clientForm.addEventListener('submit', function _callee(e) {
+    clientForm.addEventListener('submit', function _callee2(e) {
       var response;
-      return regeneratorRuntime.async(function _callee$(_context) {
+      return regeneratorRuntime.async(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               e.preventDefault();
-              _context.next = 3;
+              _context2.next = 3;
               return regeneratorRuntime.awrap(fetch(clientForm.action, {
                 method: 'POST',
                 body: new FormData(clientForm)
               }));
 
             case 3:
-              response = _context.sent;
+              response = _context2.sent;
 
               if (response.ok) {
-                window.location.replace("../index.php");
+                // window.location.replace("../index.php");
                 alert("Учётная запись успешно создана");
               } else {
                 alert("Request error");
@@ -157,7 +173,7 @@ try {
 
             case 5:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
       });

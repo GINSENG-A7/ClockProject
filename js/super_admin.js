@@ -65,26 +65,26 @@ function openTab(event, tabName) {
 let sizeFormsArray = document.querySelectorAll(".sizeEditForm");
 
 for (const sizeForm of sizeFormsArray) {
-	// sizeForm.addEventListener('submit', async (e) => {
-	// 	e.preventDefault();
-	// 	let response = await fetch(sizeForm.action, {
-	// 		method: 'POST',
-	// 		body: new FormData(sizeForm)
-	// 	});
-	// 	if (response.ok) {
-	// 		alert("Размер больше не активен");
-	// 	}
-	// 	else {
-	// 		alert("Request error");
-	// 	}
-	// });
+	sizeForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(sizeForm.action, {
+			method: 'POST',
+			body: new FormData(sizeForm)
+		});
+		if (response.ok) {
+			alert("Размер больше не активен");
+		}
+		else {
+			alert("Request error");
+		}
+	});
 
 	let submitInput = sizeForm.querySelector(".sizeForm-disable");
 	let deleteButton = sizeForm.querySelector(".sizeForm-delete");
 	deleteButton.addEventListener("click", (event) => {
 		event.preventDefault();
 		event.stopImmediatePropagation();
-		if (confirm("Вы уверены, что хотите полностью удалить все данные пользователя?")) {
+		if (confirm("Вы уверены, что хотите полностью удалить данный размер?")) {
 			if (submitInput.name == "disableSize") {
 				submitInput.name = "ableSize";
 				submitInput.value = "Вернуть";
@@ -93,7 +93,7 @@ for (const sizeForm of sizeFormsArray) {
 				submitInput.name = "disableSize";
 				submitInput.value = "Убрать";
 			}
-			clientForm.action = "./delete_size_script.php";
+			submitInput.form.action = "./delete_size_script.php";
 			submitInput.click();
 		}
 	})
@@ -110,7 +110,7 @@ for (const clientForm of clientFormsArray) {
 			body: new FormData(clientForm)
 		});
 		if (response.ok) {
-			window.location.replace("../index.php");
+			// window.location.replace("../index.php");
 			alert("Учётная запись успешно создана");
 		}
 		else {

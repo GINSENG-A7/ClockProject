@@ -45,7 +45,7 @@ function AddNewEntry($connection, $title, $body, $price, $idSection) {
 }
 
 function SelectAllFromEntryes($connection) {
-	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection FROM entryes e";
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive FROM entryes e";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
@@ -54,14 +54,15 @@ function SelectAllFromEntryes($connection) {
 			$row['title'],
 			$row['body'],
 			$row['price'],
-			$row['idSection']
+			$row['idSection'],
+			$row['isActive']
 		);
     }
     return $array;
 }
 
 function SelectAllFromEntryesBySectionId($connection, $idSection) {
-	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection FROM entryes e WHERE e.idSection = ".$idSection."";
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive FROM entryes e WHERE e.idSection = ".$idSection."";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
@@ -70,11 +71,13 @@ function SelectAllFromEntryesBySectionId($connection, $idSection) {
 			$row['title'],
 			$row['body'],
 			$row['price'],
-			$row['idSection']
+			$row['idSection'],
+			$row['isActive']
 		);
     }
     return $array;
 }
+
 
 function SelectAllImagesByEntryId($connection, $idEntry) {
 	$sql = "SELECT idImage, `path` FROM images WHERE idEntry = ".$idEntry."";
@@ -99,7 +102,8 @@ function SelectEntryByEntryId($connection, $idEntry) {
 			$row['title'],
 			$row['body'],
 			$row['price'],
-			$row['idSection']
+			$row['idSection'],
+			$row['isActive']
 		);
     }
     return $entry;
@@ -153,6 +157,16 @@ function SelectSizeById($connection, $idSize) {
     return $row;
 }
 
+function AddNewSize($connection, $value, $isActive, $section_id) {
+	$sql = "INSERT INTO `sizes` (idSize, `value`, isActive, section_id) VALUES (DEFAULT, '".$value."', ".$isActive.", ".$section_id.")";
+	mysqli_query($connection, $sql);
+}
+
+function DeleteSizeById($connection, $idSize) {
+	$sql = "DELETE FROM `sizes` WHERE idSize = ".$idSize."";
+	mysqli_query($connection, $sql);
+}
+
 function UpdateSizeIsActiveById($connection, $isActive, $idSize) {
 	$sql = "UPDATE `sizes` SET isActive = ".$isActive." WHERE idSize = ".$idSize."";
 	print_r($sql);
@@ -160,7 +174,12 @@ function UpdateSizeIsActiveById($connection, $isActive, $idSize) {
 }
 
 function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice) {
-	$sql = "UPDATE entryes SET title = '$newTitle', body = '$newBody', price = $newPrice WHERE idEntry = $idEntry";
+	$sql = "UPDATE entryes SET title = '".$newTitle."', body = '".$newBody."', price = '$newPrice' WHERE idEntry = ".$idEntry."";
+	mysqli_query($connection, $sql);
+}
+function UpdateEntryActivityById($connection, $idEntry, $isActive) {
+	$sql = "UPDATE entryes SET isActive = ".$isActive." WHERE idEntry = ".$idEntry."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 	
@@ -204,7 +223,8 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 			$row['title'],
 			$row['body'],
 			$row['price'],
-			$row['idSection']
+			$row['idSection'],
+			$row['isActive']
 		);
 		$tempEntry->setImages($connection);
 
@@ -334,7 +354,8 @@ function UpdateUsersPassword($connection, $login, $newPassword) {
 }
 
 function UpdateUsersDataAsAdmin($connection, $idUser, $login, $name, $surname, $patronymic, $district, $city, $street, $house, $flat, $postIndex, $discount, $idRole) {
-	$sql = "UPDATE `users` u SET u.login = '".$login."', u.name = '".$name."', u.surname = '".$surname."', u.patronymic = '".$patronymic."', u.district = '".$district."', u.city = '".$city."', u.street = '".$street."', u.house = '".$house."', u.falt = '".$flat."', u.post_index = ".$postIndex.", u.discount = ".$discount.", u.idRole = ".$idRole." WHERE u.idUser = ".$idUser."";
+	$sql = "UPDATE `users` u SET u.login = '".$login."', u.name = '".$name."', u.surname = '".$surname."', u.patronymic = '".$patronymic."', u.district = '".$district."', u.city = '".$city."', u.street = '".$street."', u.house = '".$house."', u.flat = '".$flat."', u.post_index = ".$postIndex.", u.discount = ".$discount.", u.idRole = ".$idRole." WHERE u.idUser = ".$idUser."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 

@@ -79,9 +79,10 @@ if ($userArray['idRole'] == 1) {
 						}
 					}
 					?>
-					<form id="sizeForm-add" class="sizeForm" action="add_new_size.php" method="post">
-						<input class="sizeForm-newValue" name="sizeForm-value">
+					<form id="sizeForm-add" class="sizeForm" action="./add_new_size.php" method="post">
+						<input class="sizeForm-newValue" name="valueSize">
 						<input class="sizeForm-add" name="addSize" type="submit" value="+">
+						<input type="hidden" name="sectionIdSize" value="<?=$sectionsArray[$i]['idSection']?>">
 					</form>
 				</div>
 		</div>
@@ -132,7 +133,7 @@ if ($userArray['idRole'] == 1) {
 						?>
 							<div class="entry-wrapper">
 								<input id="entryesBySectionArray" type="hidden" value="entryesBySectionArray" data-entryesBySectionArrayLength="<?echo(count($entryesBySectionArray))?>"> 
-								<form id="outputForm-<?echo($i)?>-<?echo($j)?>" class="outputForm" method="POST" action="dataUpdater.php" >
+								<form id="outputForm-<?echo($i)?>-<?echo($j)?>" class="outputForm" method="POST" action="./dataUpdater.php" >
 									<div class="wrapper">
 										<span class="wrapper-span">Наименование</span>
 										<textarea class="wrapper-title" name="Title" id="title" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->title)?></textarea>
@@ -146,8 +147,8 @@ if ($userArray['idRole'] == 1) {
 										<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->body)?></textarea>
 									</div>
 									<div class="radioWrapper">
-										<p><input type="radio" name="IsActive" value="Enabled"> Активен</p> 
-										<p><input type="radio" name="IsActive" value="Disabled"> Неактивен</p> 
+										<p><input type="radio" name="IsActive" value="Enabled" <?if($entryesBySectionArray[$j]->isActive == true) {echo("checked");}?>> Активен</p> 
+										<p><input type="radio" name="IsActive" value="Disabled" <?if($entryesBySectionArray[$j]->isActive == false) {echo("checked");}?>> Неактивен</p> 
 									</div>
 									<div class="fileInputWrapper">
 										<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
