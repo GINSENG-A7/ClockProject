@@ -19,6 +19,8 @@ function dateCompare($a, $b)
     }
     return (strtotime($a["ticket_date"]) < strtotime($b["ticket_date"])) ? -1 : 1;
 }
+
+$materialsArray = SelectAllMaterials($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +53,9 @@ if ($userArray['idRole'] == 2) {
 		</div>
 		<div>
 			<button class="tab-links">Запросы</button>
+		</div>
+		<div>
+			<button class="tab-links">Материалы</button>
 		</div>
 		<form  action="./exit_script.php" method="POST" class="exit_form">
 			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">
@@ -116,6 +121,25 @@ if ($userArray['idRole'] == 2) {
 									<div class="wrapper">
 										<span class="wrapper-span">Описание</span>
 										<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->body)?></textarea>
+									</div>
+									<div class="wrapper">
+										<span class="wrapper-span">Материал</span>
+										<select name="Material" id="material">
+											<?
+											for ($y = 0; $y < count($materialsArray); $y++) { 
+												if ($materialsArray[$y]['idMaterial'] == $entryesBySectionArray[$j]->idMaterial) {
+													?>
+													<option value="<?=$materialsArray[$y]['idMaterial']?>" selected><?=$materialsArray[$y]['value']?></option>
+													<?
+												}
+												else {
+													?>
+													<option value="<?=$materialsArray[$y]['idMaterial']?>"><?=$materialsArray[$y]['value']?></option>
+													<?
+												}
+											}
+											?>
+										</select>
 									</div>
 									<div class="fileInputWrapper">
 										<input type="file" id="files" name="files[]" multiple class="custom-file-input" />
@@ -212,9 +236,8 @@ if ($userArray['idRole'] == 2) {
 							<p><?echo($user->patronymic);?></p>
 						</div>
 						<div class="client-discount">
-							<p>Скидка: </p>
+							<p>Скидка(%): </p>
 							<input name="clientDiscount" class="client-discount__input" type="number" value="<?echo($user->discount);?>" min="0" max="100">
-							<p> %</p>
 						</div>
 						<input id="client-update__input" type="submit" value="Обновить данные">
 					</form>
@@ -463,6 +486,47 @@ if ($userArray['idRole'] == 2) {
 				}
 			}
 			?>
+		</div>
+	</div>
+
+	<!-- Materials content -->
+
+	<div id="Материалы" class="tab-output">
+		<h2 class="OutputH2"></h2>
+		<div class="materialsWrapper">
+			<?
+			$materialsArray = SelectAllMaterials($conn);
+			if ($materialsArray != NULL) {
+				for ($i = 0; $i < count($materialsArray); $i++) {
+					$material = $materialsArray[$i];
+					?>
+					<div class="material">
+						<form id="materialForm-<?echo($i)?>" class="materialForm" action="./delete_material_script.php" method="POST">
+							<input name="idMaterial" type="hidden" value="<?echo($material["idMaterial"]);?>">
+							<div class="material__value">
+								<p><?echo($material["value"]);?></p>
+							</div>
+
+							<!-- <input class="material__delete" name="deleteMaterial" type="submit" value="X"> -->
+						</form>
+					</div>
+					<?
+				}
+			}
+			?>
+			<div class="material">
+				<form id="materialForm-add" class="materialForm" action="./add_new_material_script.php" method="POST">
+					<input name="idMaterial" type="hidden" value="<?echo($material["idMaterial"]);?>">
+					<div class="material__label">
+						<p>Материал: </p>
+					</div>
+					<div class="material__value">
+						<input name="valueMaterial" type="text">
+					</div>
+
+					<input class="material__add" name="addMaterial" type="submit" value="Добавить">
+				</form>
+			</div>
 		</div>
 	</div>
 

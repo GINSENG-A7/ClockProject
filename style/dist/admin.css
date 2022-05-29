@@ -454,6 +454,31 @@ body {
 .tab-output .ticketsGridWrapper .ticket input[type=submit], .tab-output .ticketsGridWrapper .simple_ticket input[type=submit] {
   margin-top: 5px;
 }
+.tab-output .materialsWrapper .materialForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  height: 21px;
+}
+.tab-output .materialsWrapper .materialForm input {
+  display: inline-block;
+  margin: 0;
+}
+.tab-output .materialsWrapper .materialForm p {
+  margin: 0;
+}
+.tab-output .materialsWrapper .material__value {
+  display: inline-block;
+}
+.tab-output .materialsWrapper .material__delete {
+  display: inline-block;
+}
+.tab-output .materialsWrapper .material__add {
+  display: inline-block;
+}
 
 .card {
   display: grid;

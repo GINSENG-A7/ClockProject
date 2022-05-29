@@ -268,7 +268,7 @@ exitForm.addEventListener('submit', function _callee(e) {
 
         case 3:
           response = _context.sent;
-          formAction = form.action.substring(form.action.lastIndexOf("/") + 1);
+          formAction = exitForm.action.substring(exitForm.action.lastIndexOf("/") + 1);
 
           if (response.ok) {
             alert("Вы успешно вышли из учётной записи.");

@@ -5,6 +5,7 @@ class Entry
 {
     public $idEntry;
     public $idSection;
+	public $idMaterial;
 	public $title;
     public $body;
     public $price;
@@ -12,13 +13,14 @@ class Entry
 	public $sizesArray;
 	public $isActive;
 
-    public function __construct($idEntry, $title, $body, $price, $idSection, $isActive) {
+    public function __construct($idEntry, $title, $body, $price, $idSection, $isActive, $idMaterial) {
         $this->idEntry = $idEntry;
         $this->title = $title;
         $this->body = $body;
         $this->price = $price;
 		$this->idSection = $idSection;
 		$this->isActive = $isActive;
+		$this->idMaterial = $idMaterial;
     }
 
     public function setImages($conn){

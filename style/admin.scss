@@ -541,6 +541,45 @@ body {
 				}
 			}
 		}
+		.materialsWrapper {
+			.material {
+				&Form {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: center;
+					background-color: #ddd;
+					margin-bottom: 10px;
+					height: 21px;
+					input {
+						display: inline-block;
+						margin: 0;
+					}
+					p {
+						margin: 0;
+					}
+				}
+				&__value {
+					display: inline-block;
+				}
+				&__delete {
+					display: inline-block;
+					// position: absolute;
+					// height: 15px;
+					// width: 15px;
+					// background-color: transparent;
+					// color: red;
+					// border-style: none;
+					// outline-style: none;
+					// margin: 0;
+					// padding: 0;
+					// margin-left: -15px;
+				}
+				&__add {
+					display: inline-block;
+				}
+			}
+		}
 	}
 }
 

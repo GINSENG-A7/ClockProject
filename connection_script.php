@@ -45,7 +45,7 @@ function AddNewEntry($connection, $title, $body, $price, $idSection) {
 }
 
 function SelectAllFromEntryes($connection) {
-	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive FROM entryes e";
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
@@ -55,14 +55,15 @@ function SelectAllFromEntryes($connection) {
 			$row['body'],
 			$row['price'],
 			$row['idSection'],
-			$row['isActive']
+			$row['isActive'],
+			$row['idMaterial']
 		);
     }
     return $array;
 }
 
 function SelectAllFromEntryesBySectionId($connection, $idSection) {
-	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive FROM entryes e WHERE e.idSection = ".$idSection."";
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e WHERE e.idSection = ".$idSection."";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
@@ -72,7 +73,8 @@ function SelectAllFromEntryesBySectionId($connection, $idSection) {
 			$row['body'],
 			$row['price'],
 			$row['idSection'],
-			$row['isActive']
+			$row['isActive'],
+			$row['idMaterial']
 		);
     }
     return $array;
@@ -103,7 +105,8 @@ function SelectEntryByEntryId($connection, $idEntry) {
 			$row['body'],
 			$row['price'],
 			$row['idSection'],
-			$row['isActive']
+			$row['isActive'],
+			$row['idMaterial']
 		);
     }
     return $entry;
@@ -224,7 +227,8 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
 			$row['body'],
 			$row['price'],
 			$row['idSection'],
-			$row['isActive']
+			$row['isActive'],
+			$row['idMaterial']
 		);
 		$tempEntry->setImages($connection);
 
@@ -555,6 +559,36 @@ function UpdateTicketStatusAndPerformer($connection, $performer_id, $is_open, $i
 
 function UpdateSimpleTicketStatusAndPerformer($connection, $performer_id, $is_open, $idTicket) {
 	$sql = "UPDATE `simple_tickets` s SET s.performer_id = ".$performer_id.", s.is_open = ".$is_open." WHERE s.idTicket = ".$idTicket."";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+//----------------------Materials--------------------//
+
+function SelectAllMaterials($connection) {
+	$sql = "SELECT * FROM materials";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idMaterial'=>$row['idMaterial'],
+			'value'=>$row['value']
+		);
+    }
+    return $array;
+}
+
+function AddNewMaterial($connection, $value) {
+	$sql = "INSERT INTO `materials` (idMaterial, `value`) VALUES (DEFAULT, '".$value."')";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function DeleteMaterialById($connection, $idMaterial) {
+	$sql = "DELETE FROM `materials` m WHERE m.idMaterial = ".$idMaterial."";
 	print_r($sql);
 	mysqli_query($connection, $sql);
 }

@@ -11,6 +11,7 @@ if (isset($_SESSION["login"])) {
 else {
 	$login = NULL;
 }
+$materialsArray = SelectAllMaterials($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -365,6 +366,47 @@ if ($userArray['idRole'] == 1) {
 				<?
 			}
 			?>
+		</div>
+	</div>
+
+	<!-- Materials content -->
+
+	<div id="Материалы" class="tab-output">
+		<h2 class="OutputH2"></h2>
+		<div class="materialsWrapper">
+			<?
+			$materialsArray = SelectAllMaterials($conn);
+			if ($materialsArray != NULL) {
+				for ($i = 0; $i < count($materialsArray); $i++) {
+					$material = $materialsArray[$i];
+					?>
+					<div class="material">
+						<form id="materialForm-<?echo($i)?>" class="materialForm" action="./delete_material_script.php" method="POST">
+							<input name="idMaterial" type="hidden" value="<?echo($material["idMaterial"]);?>">
+							<div class="material__value">
+								<p><?echo($material["value"]);?></p>
+							</div>
+
+							<input class="material__delete" name="deleteMaterial" type="submit" value="Удалить">
+						</form>
+					</div>
+					<?
+				}
+			}
+			?>
+			<div class="material">
+				<form id="materialForm-add" class="materialForm" action="./add_new_material_script.php" method="POST">
+					<input name="idMaterial" type="hidden" value="<?echo($material["idMaterial"]);?>">
+					<div class="material__label">
+						<p>Материал: </p>
+					</div>
+					<div class="material__value">
+						<input name="valueMaterial" type="text">
+					</div>
+
+					<input class="material__add" name="addMaterial" type="submit" value="Добавить">
+				</form>
+			</div>
 		</div>
 	</div>
 
