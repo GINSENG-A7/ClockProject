@@ -73,6 +73,75 @@ body {
     background-repeat: no-repeat;
     background-size:cover;
 }
+//----------------Shop-----------------//
+.section-filters {
+	.filters {
+		&GridWrapper {
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(345px, 345px));
+			justify-items: center;
+			justify-content: center;
+			column-gap: 10px;
+			.materialWrapper {
+				height: 100%;
+				width: 100%;
+				p {
+					display: inline-block;
+					width: fit-content;
+					margin: 0;
+				}
+				label {
+					color: #FFF;
+				}
+				.checkboxesWrapper {
+					width: fit-content;
+					display: inline-block;
+					margin-right: 10px;
+					* {
+						margin: 10px 0;
+					}
+				}
+			}
+		}
+		&_form {
+			max-width: 1000px;
+			margin: 0 auto;
+			p {
+				color: #FFF;
+			}
+			.apply_filters_button {
+				min-width: 340px;
+				max-width: 440px;
+				margin: 15px auto;
+				display: block;
+			}
+			.filtersWrapper {
+				display: grid;
+				grid-template-columns: 130px minmax(100px, 300px);
+				grid-template-rows: repeat(1, 50px);
+				grid-template-rows: 26px;
+				height: 50px;
+				align-content: space-between;
+				justify-content: center;
+				align-items: baseline;
+				// grid-template-rows: 1fr;
+				// display: inline-block;
+				p {
+					width: 130px;
+					height: 26px;
+					display: inline-block;
+				}
+				input {
+					display: inline-block;
+					min-width: 140px;
+					max-width: 100%;
+					height: 20px;
+				}
+			}
+		}
+	}
+}
 .section-about {
     
     .wrapper {
@@ -308,8 +377,8 @@ body {
             }
         }
         .section-about .card__img .img  {
-            width: 97%;
-            margin: 5px;
+            width: 100%;
+            // margin: 5px;
         }
     }
     @media (min-width: 428px)  {
@@ -334,8 +403,8 @@ body {
             }
         }
         .section-about .card__img .img  {
-            width: 97%;
-            margin: 5px;
+            width: 100%;
+            // margin: 5px;
         }
     }
 }

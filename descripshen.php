@@ -131,8 +131,11 @@
                             <div class = "decription__price">
                                 <?=$entry->price?> ₽
                             </div>
-                            <div class = "decription__body">
+							<div class = "decription__material">
                                 <?=$entry->body?>
+                            </div>
+                            <div class = "decription__body">
+                                <?=SelectMaterialById($conn, $entry->idMaterial)['value']?>
                             </div>
 							<form id="addToCartForm" name="addToCartForm" action="add_to_cart_script.php" method="POST">
 								<input id="entryIdInput" name="entryIdInput" type="hidden" value="<?=$_GET['id']?>">
@@ -159,6 +162,7 @@
 											}
 										}
 										else {
+											print_r("sfghfdgjgdhkjgfhdj");
 											?>
 											<select class="sizeSelect" name="sizeIdSelect">
 											<?
@@ -198,12 +202,18 @@
 								}
 								else {
 									if(!empty($entry->sizesArray) && $entry->sizesArray != NULL) {
+										?>
+										<select class="sizeSelect" name="sizeIdSelect">
+										<?
 										for ($j = 0; $j < count($entry->sizesArray); $j++) {
 											print_r($sizesArray[$j]['size_id']);
 											?>
 											<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?$j?>"><?=$entry->sizesArray[$j]['value']?></option>
 											<?
 										}
+										?>
+										</select>
+										<?
 									}
 								?>
 									<input id="addToCartForm" type="submit" value="Добавить в корзину">

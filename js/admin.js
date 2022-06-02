@@ -163,6 +163,7 @@ exitForm.addEventListener('submit', async (e) => {
 	let formAction = exitForm.action.substring(exitForm.action.lastIndexOf("/") + 1);
 	if (response.ok) {
 		alert("Вы успешно вышли из учётной записи.");
+		window.location.replace("../index.php");
 	}
 	else {
 		alert("Request error");

@@ -913,6 +913,98 @@ body a:visited {
   background-size: cover;
 }
 
+.section-filters .filtersGridWrapper {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(345px, 345px))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(345px, 345px));
+  justify-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+}
+
+.section-filters .filtersGridWrapper .materialWrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.section-filters .filtersGridWrapper .materialWrapper p {
+  display: inline-block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
+.section-filters .filtersGridWrapper .materialWrapper label {
+  color: #FFF;
+}
+
+.section-filters .filtersGridWrapper .materialWrapper .checkboxesWrapper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.section-filters .filtersGridWrapper .materialWrapper .checkboxesWrapper * {
+  margin: 10px 0;
+}
+
+.section-filters .filters_form {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-filters .filters_form p {
+  color: #FFF;
+}
+
+.section-filters .filters_form .apply_filters_button {
+  min-width: 340px;
+  max-width: 440px;
+  margin: 15px auto;
+  display: block;
+}
+
+.section-filters .filters_form .filtersWrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 130px minmax(100px, 300px);
+      grid-template-columns: 130px minmax(100px, 300px);
+  -ms-grid-rows: (50px)[1];
+      grid-template-rows: repeat(1, 50px);
+  -ms-grid-rows: 26px;
+      grid-template-rows: 26px;
+  height: 50px;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.section-filters .filters_form .filtersWrapper p {
+  width: 130px;
+  height: 26px;
+  display: inline-block;
+}
+
+.section-filters .filters_form .filtersWrapper input {
+  display: inline-block;
+  min-width: 140px;
+  max-width: 100%;
+  height: 20px;
+}
+
 .section-about .wrapper {
   max-width: 1000px;
 }
@@ -1763,8 +1855,7 @@ body a:visited {
     margin: 15px;
   }
   ._touch .section-about .card__img .img {
-    width: 97%;
-    margin: 5px;
+    width: 100%;
   }
 }
 
@@ -1785,8 +1876,7 @@ body a:visited {
     margin: 15px;
   }
   ._touch .section-about .card__img .img {
-    width: 97%;
-    margin: 5px;
+    width: 100%;
   }
 }
 

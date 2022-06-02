@@ -80,6 +80,23 @@ function SelectAllFromEntryesBySectionId($connection, $idSection) {
     return $array;
 }
 
+function SelectAllFromEntryesByFilters($connection, $minPrice, $maxPrice, $idSection, $materialsArray) {
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e WHERE e.price > ".floatval($minPrice)." AND e.price < ".floatval($maxPrice)." AND e.idSection = ".$idSection." AND e.idMaterial IN (".implode(",", $materialsArray).")";
+    $result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $array[] = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection'],
+			$row['isActive'],
+			$row['idMaterial']
+		);
+    }
+    return $array;
+}
 
 function SelectAllImagesByEntryId($connection, $idEntry) {
 	$sql = "SELECT idImage, `path` FROM images WHERE idEntry = ".$idEntry."";
@@ -579,6 +596,16 @@ function SelectAllMaterials($connection) {
 		);
     }
     return $array;
+}
+
+function SelectMaterialById($connection, $idMaterial) {
+	$sql = "SELECT * FROM materials WHERE idMaterial = ".$idMaterial."";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	$row = mysqli_fetch_assoc($result);
+    return $row;
 }
 
 function AddNewMaterial($connection, $value) {

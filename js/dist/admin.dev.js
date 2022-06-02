@@ -272,6 +272,7 @@ exitForm.addEventListener('submit', function _callee(e) {
 
           if (response.ok) {
             alert("Вы успешно вышли из учётной записи.");
+            window.location.replace("../index.php");
           } else {
             alert("Request error");
           }
