@@ -128,6 +128,28 @@ for (const button of orderLinkWrappedButtonsArray) {
 		event.preventDefault();
 		button.closest("a").click();
 	});
+	button.form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(form.action, {
+			method: 'POST',
+			body: new FormData(form)
+		});
+		if (response.ok) {
+			alert("Данные успешно обновлены");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}
+let cancelOrderButtonsArray = document.querySelectorAll('.cancel_order_btn');
+for (const cancelOrderButton of cancelOrderButtonsArray) {
+	cancelOrderButton.addEventListener("click", (event) => {
+		event.preventDefault();
+		event.stopPropagation();
+		cancelOrderButton.form.action = "../cancel_order.php";
+		cancelOrderButton.previousElementSibling.click();
+	});
 }
 
 let ticketForms = document.querySelectorAll(".ticketForm");

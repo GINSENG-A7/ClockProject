@@ -74,37 +74,22 @@ try {
     var form = document.createElement('form');
     form.className = "invisible";
     form.action = "/new_order_script.php";
+    form.method = 'POST';
     form.appendChild(hiddenInputClone); // Асинхронные отпарвки форм
+    // form.addEventListener('submit', async (e) => {
+    // 	e.preventDefault();
+    // 	let response = await fetch(form.action, {
+    // 		method: 'POST',
+    // 		body: new FormData(form)
+    // 	});
+    // 	if (response.ok) {
+    // 		alert("Ваш заказ обрабатывается, ожидайте отправки.");
+    // 	}
+    // 	else {
+    // 		alert("Request error");
+    // 	}
+    // });
 
-    form.addEventListener('submit', function _callee(e) {
-      var response;
-      return regeneratorRuntime.async(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              e.preventDefault();
-              _context.next = 3;
-              return regeneratorRuntime.awrap(fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form)
-              }));
-
-            case 3:
-              response = _context.sent;
-
-              if (response.ok) {
-                alert("Ваш заказ обрабатывается, ожидайте отправки.");
-              } else {
-                alert("Request error");
-              }
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      });
-    });
     var iIdInput = numberInput.form.querySelector("#itemId");
     var iIdInputClone = iIdInput.cloneNode(false);
     form.appendChild(iIdInputClone);

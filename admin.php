@@ -52,6 +52,9 @@ if ($userArray['idRole'] == 2) {
 			<button class="tab-links">Заказы</button>
 		</div>
 		<div>
+			<button class="tab-links">Отправления</button>
+		</div>
+		<div>
 			<button class="tab-links">Запросы</button>
 		</div>
 		<div>
@@ -217,7 +220,7 @@ if ($userArray['idRole'] == 2) {
 				);
 				?>
 				<div class="client">
-					<form id="clientForm-<?echo($i)?>" class="clientForm" action="update_client_data_script.php" method="POST">
+					<form id="clientForm-<?echo($i)?>" class="clientForm" action="./update_client_data_script.php" method="POST">
 						<input name="idUser" type="hidden" value="<?echo($user->idUser);?>">
 						<div class="client-login">
 							<p>Логин: </p>
@@ -251,7 +254,7 @@ if ($userArray['idRole'] == 2) {
 	<!-- Orders content -->
 
 	<div id="Заказы" class="tab-output">
-		<h2 class="OutputH2"></h2>
+		<h2 class="OutputH2">Отправления</h2>
 		<div class="ordersGridWrapper">
 			<?
 			$ordersArray = SelectAllFromOrdersByStatus($clockUsersConn, 2);
@@ -260,9 +263,9 @@ if ($userArray['idRole'] == 2) {
 					$user = SelectUserByUserId($clockUsersConn, $ordersArray[$i]["user_id"]);
 					?>
 					<div class="order">
-						<form id="orderForm-<?echo($i)?>" class="orderForm" action="confirm_user_payment.php" method="POST">
+						<form id="orderForm-<?echo($i)?>" class="orderForm" action="./send_track.php" method="POST">
 							<input name="idUser" type="hidden" value="<?echo($user->idUser);?>">
-							<input name="idOrder" type="hidden" value="<?echo($ordersArray["idOrder"]);?>">
+							<input name="idOrder" type="hidden" value="<?echo($ordersArray[$i]["idOrder"]);?>">
 							<div class="order__client-login">
 								<p>Логин: </p>
 								<p><?echo($user->login);?></p>
@@ -287,6 +290,69 @@ if ($userArray['idRole'] == 2) {
 								<p>Дата заказа: </p>
 								<p><?echo($ordersArray[$i]["order_date"]);?></p>
 							</div>
+							<div class="order__track">
+								<p>Трек номер: </p>
+								<input type="text" name="track">
+							</div>
+							<div class="order__entryes">
+								<a class="order__entryes-link" href="./entryesInOrder.php?id=<?=$ordersArray[$i]["idOrder"];?>">
+									<button>Товары в заказе</button>
+								</a>
+							</div>
+							
+							<input name="sendTrack" type="submit" value="Отправить трек-номер">
+							<button class="cancel_order">Отменить заказ</button>
+							<!-- Добавить асинхронное выполнение скрипта -->
+						</form>
+					</div>
+					<?
+				}
+			}
+			?>
+		</div>
+	</div>
+
+	<div id="Отправления" class="tab-output">
+		<h2 class="OutputH2">Отправления</h2>
+		<div class="ordersGridWrapper">
+			<?
+			$ordersArray = SelectAllFromOrdersByStatus($clockUsersConn, 5);
+			if ($ordersArray != NULL) {
+				for ($i = 0; $i < count($ordersArray); $i++) {
+					$user = SelectUserByUserId($clockUsersConn, $ordersArray[$i]["user_id"]);
+					?>
+					<div class="order">
+						<form id="orderForm-<?echo($i)?>" class="orderForm" action="./confirm_user_payment.php" method="POST">
+							<input name="idUser" type="hidden" value="<?echo($user->idUser);?>">
+							<input name="idOrder" type="hidden" value="<?echo($ordersArray[$i]["idOrder"]);?>">
+							<div class="order__client-login">
+								<p>Логин: </p>
+								<p><?echo($user->login);?></p>
+							</div>
+							<div class="order__client-discount">
+								<p>Скидка: </p>
+								<p><?echo($user->discount * 100);?></p>
+								<p> %</p>
+							</div>
+							<div class="order__totalPrice">
+								<?
+								$totalPrice = 0;
+								$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $ordersArray[$i]["idOrder"]);
+								for ($j = 0; $j < count($entryesInOrderArray); $j++) {
+									$totalPrice += $entryesInOrderArray[$j]['historicalPrice'] - ($entryesInOrderArray[$j]['historicalPrice'] * $user->discount);
+								}
+								?>
+								<p>Cтоимость заказа: </p>
+								<p><?echo($totalPrice);?> ₽</p>
+							</div>
+							<div class="order__date">
+								<p>Дата заказа: </p>
+								<p><?echo($ordersArray[$i]["order_date"]);?></p>
+							</div>
+							<div class="order__track">
+								<p>Трек номер: </p>
+								<p><?echo($ordersArray[$i]["track"]);?></p>
+							</div>
 							<div class="order__date">
 								<p>Дата оплаты: </p>
 								<input type="datetime-local" name="paidDate">
@@ -296,7 +362,9 @@ if ($userArray['idRole'] == 2) {
 									<button>Товары в заказе</button>
 								</a>
 							</div>
+							
 							<input name="confirmUserPayment" type="submit" value="Подтвердить оплату">
+							<button class="cancel_order_btn">Отменить заказ</button>
 							<!-- Добавить асинхронное выполнение скрипта -->
 						</form>
 					</div>

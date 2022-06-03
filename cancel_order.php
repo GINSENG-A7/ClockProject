@@ -9,11 +9,11 @@ if (isset($_SESSION["login"])) {
 else {
 	$login = NULL;
 }
-if(isset($_POST["paidDate"]) && isset($_POST["idOrder"])) {
+if(isset($_POST["idOrder"])) {
 	$paidDateAsStr = $_POST["paidDate"];
 	$paidDateFormated = date('Y-m-d H:i:s', strtotime($paidDateAsStr));
 	print($paidDateFormated);
 	
-	UpdatePaidDateAndStatusInOrderById($clockUsersConn, $paidDateFormated, 4, $_POST["idOrder"]);
+	UpdatePaidDateAndStatusInOrderById($clockUsersConn, "NULL", 3, $_POST["idOrder"]);
 }
 ?>

@@ -44,21 +44,22 @@ for (const numberInput of numberInputsArray) {
 	let form = document.createElement('form');
 	form.className = "invisible";
 	form.action = "/new_order_script.php";
+	form.method = 'POST';
 	form.appendChild(hiddenInputClone);
 	// Асинхронные отпарвки форм
-	form.addEventListener('submit', async (e) => {
-		e.preventDefault();
-		let response = await fetch(form.action, {
-			method: 'POST',
-			body: new FormData(form)
-		});
-		if (response.ok) {
-			alert("Ваш заказ обрабатывается, ожидайте отправки.");
-		}
-		else {
-			alert("Request error");
-		}
-	});
+	// form.addEventListener('submit', async (e) => {
+	// 	e.preventDefault();
+	// 	let response = await fetch(form.action, {
+	// 		method: 'POST',
+	// 		body: new FormData(form)
+	// 	});
+	// 	if (response.ok) {
+	// 		alert("Ваш заказ обрабатывается, ожидайте отправки.");
+	// 	}
+	// 	else {
+	// 		alert("Request error");
+	// 	}
+	// });
 
 	let iIdInput = numberInput.form.querySelector("#itemId");
 	let iIdInputClone = iIdInput.cloneNode(false);

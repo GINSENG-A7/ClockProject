@@ -170,6 +170,35 @@ try {
       event.preventDefault();
       button.closest("a").click();
     });
+    button.form.addEventListener('submit', function _callee3(e) {
+      var response;
+      return regeneratorRuntime.async(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              _context3.next = 3;
+              return regeneratorRuntime.awrap(fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+              }));
+
+            case 3:
+              response = _context3.sent;
+
+              if (response.ok) {
+                alert("Данные успешно обновлены");
+              } else {
+                alert("Request error");
+              }
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      });
+    });
   };
 
   for (var _iterator = orderLinkWrappedButtonsArray[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
@@ -190,29 +219,63 @@ try {
   }
 }
 
-var ticketForms = document.querySelectorAll(".ticketForm");
+var cancelOrderButtonsArray = document.querySelectorAll('.cancel_order_btn');
 var _iteratorNormalCompletion2 = true;
 var _didIteratorError2 = false;
 var _iteratorError2 = undefined;
 
 try {
   var _loop6 = function _loop6() {
-    var form = _step2.value;
-    form.addEventListener('submit', function _callee3(e) {
+    var cancelOrderButton = _step2.value;
+    cancelOrderButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      cancelOrderButton.form.action = "../cancel_order.php";
+      cancelOrderButton.previousElementSibling.click();
+    });
+  };
+
+  for (var _iterator2 = cancelOrderButtonsArray[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+    _loop6();
+  }
+} catch (err) {
+  _didIteratorError2 = true;
+  _iteratorError2 = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+      _iterator2["return"]();
+    }
+  } finally {
+    if (_didIteratorError2) {
+      throw _iteratorError2;
+    }
+  }
+}
+
+var ticketForms = document.querySelectorAll(".ticketForm");
+var _iteratorNormalCompletion3 = true;
+var _didIteratorError3 = false;
+var _iteratorError3 = undefined;
+
+try {
+  var _loop7 = function _loop7() {
+    var form = _step3.value;
+    form.addEventListener('submit', function _callee4(e) {
       var response, formAction;
-      return regeneratorRuntime.async(function _callee3$(_context3) {
+      return regeneratorRuntime.async(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               e.preventDefault();
-              _context3.next = 3;
+              _context4.next = 3;
               return regeneratorRuntime.awrap(fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form)
               }));
 
             case 3:
-              response = _context3.sent;
+              response = _context4.sent;
               formAction = form.action.substring(form.action.lastIndexOf("/") + 1);
 
               if (response.ok) {
@@ -227,27 +290,27 @@ try {
 
             case 6:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
       });
     });
   };
 
-  for (var _iterator2 = ticketForms[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-    _loop6();
+  for (var _iterator3 = ticketForms[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+    _loop7();
   }
 } catch (err) {
-  _didIteratorError2 = true;
-  _iteratorError2 = err;
+  _didIteratorError3 = true;
+  _iteratorError3 = err;
 } finally {
   try {
-    if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-      _iterator2["return"]();
+    if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+      _iterator3["return"]();
     }
   } finally {
-    if (_didIteratorError2) {
-      throw _iteratorError2;
+    if (_didIteratorError3) {
+      throw _iteratorError3;
     }
   }
 }

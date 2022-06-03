@@ -22,7 +22,12 @@
 		// print_r($sectionId);
 		// print_r($materialId);
 
-		header("Location: ./shop.php?min-price=0&max-price=9999999&section=3&material%5B%5D=on&material%5B%5D=on&material%5B%5D=on");
+		$headerString = "./shop.php?min-price=".$minPrice."&max-price=".$maxPrice."&section=".$sectionId."";
+		for ($i = 0; $i < count($materialId); $i++) { 
+			$headerString .= "&material%5B%5D=".$materialId[$i]."";
+		}
+
+		header("Location: ./shop.php?min-price=".$minPrice."&max-price=".$maxPrice."&section=".$sectionId."&material%5B%5D=on&material%5B%5D=on&material%5B%5D=on");
 	}
 	else {
 		throw new Exception('POST data is not set.');

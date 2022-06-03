@@ -475,16 +475,19 @@ function AddNewOrderToUser($connection, $order_date, $login, $status_id) {
 
 function AddNewEntryToOrder($connection, $order_id, $entry_id, $size_id) {
 	$sql = "INSERT INTO `entryes_in_order` (idEntry_in_order, historicalPrice, order_id, entry_id, size_id) VALUES (DEFAULT, NULL, $order_id, $entry_id, $size_id)";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
 function UpdateHistoricalPriceInAllEntryesInOrderById($connection, $historicalPrice, $entry_id) {
 	$sql = "UPDATE `entryes_in_order` eio SET eio.historicalPrice = ".$historicalPrice." WHERE eio.entry_id = ".$entry_id."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
 function UpdateHistoricalPriceAndSizeInAllEntryesInOrderById($connection, $historicalPrice, $size_id, $entry_id) {
 	$sql = "UPDATE `entryes_in_order` eio SET eio.historicalPrice = ".$historicalPrice.", eio.size_id = ".$size_id." WHERE eio.entry_id = ".$entry_id."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
@@ -495,6 +498,12 @@ function UpdateOrderDateAndStatusAndHistoricalDiscountInOrderById($connection, $
 
 function UpdatePaidDateAndStatusInOrderById($connection, $newPaidDate, $status_id, $idOrder) {
 	$sql = "UPDATE `orders` o SET o.paid_date = '".$newPaidDate."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
+	mysqli_query($connection, $sql);
+}
+
+function UpdateTrackAndStatusInOrderById($connection, $track, $status_id, $idOrder) {
+	$sql = "UPDATE `orders` o SET o.track = '".$track."', o.status_id = ".$status_id." WHERE o.idOrder = ".$idOrder."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
