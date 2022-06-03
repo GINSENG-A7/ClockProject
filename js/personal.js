@@ -94,20 +94,20 @@ changeDataButton.addEventListener("click", (event) => {
 });
 
 let passwordForm = document.getElementsByClassName("personal__password-form")[0];
-passwordForm.addEventListener('submit', async (e) => {
-	e.preventDefault();
-	let response = await fetch(passwordForm.action, {
-		method: 'POST',
-		body: new FormData(passwordForm)
-	});
-	if (response.ok) {
-		window.location.replace("../personal.php");
-		alert("Пароль успешно измененён.");
-	}
-	else {
-		alert("Request error");
-	}
-});
+// passwordForm.addEventListener('submit', async (e) => {
+// 	e.preventDefault();
+// 	let response = await fetch(passwordForm.action, {
+// 		method: 'POST',
+// 		body: new FormData(passwordForm)
+// 	});
+// 	if (response.ok) {
+// 		window.location.replace("../personal.php");
+// 		alert("Пароль успешно измененён.");
+// 	}
+// 	else {
+// 		alert("Request error");
+// 	}
+// });
 let allPasswordsInputs = passwordForm.querySelectorAll("input[type=password]");
 
 let changePasswordButton = document.querySelector("#changePasswordButton");
@@ -117,6 +117,7 @@ let newPasswordValidationIsGood = true;
 
 changePasswordButton.addEventListener("click", (event) => {
 	event.preventDefault();
+	event.stopImmediatePropagation();
 	passwordInputsAreNotEmpty = true;
 	oldPasswordValidationIsGood = true;
 	newPasswordValidationIsGood = true;
@@ -130,8 +131,8 @@ changePasswordButton.addEventListener("click", (event) => {
 		toggleValidationError("Все поля обязательны к заполнению.", passwordForm);
 	}
 	else {
-		let oldPW;
-		let newPW;
+		let oldPW = document.querySelector('#OldPassword');
+		let newPW = document.querySelector('#NewPassword');
 		for (const input of allPasswordsInputs) {
 			if (input.id == "OldPassword") {
 				let regex1 = /^[a-zA-Z0-9]{4,250}$/;
@@ -177,8 +178,8 @@ changePasswordButton.addEventListener("click", (event) => {
 		}
 	}
 	if (passwordInputsAreNotEmpty == true && oldPasswordValidationIsGood == true && newPasswordValidationIsGood == true) {
-		// let changePasswordInput = passwordForm.querySelector("#PasswordData");
-		// changePasswordInput.click();
+		let changePasswordInput = passwordForm.querySelector("#ChangePassword");
+		changePasswordInput.click();
 	}
 });
 

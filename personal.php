@@ -182,7 +182,7 @@
 				</div>
 				<button id="changeDataButton" class="button">Изменить данные</button>
 			</form>
-			<form class="personal__password-form" action="./change_password_script.php">
+			<form class="personal__password-form" action="./change_password_script.php" method="POST">
 				<div class="wrapper-inputs">
 					<div class="wrapper-inputs__passwordChange">
 						<p class="section_title">Смена пароля</p>
@@ -201,11 +201,11 @@
 					</div>
 				</div>
 				<input class="input" id="ChangePassword" type="submit"style="display: none;">
-				<button id="changePasswordButton" class="button">Сменить пароль</button>
+				<button id="changePasswordButton" class="button" type="button">Сменить пароль</button>
 			</form>
 			<?
-				if (isset($_COOKIE["authorize_response"])) {
-					if ($_COOKIE["authorize_response"] == false) {
+				if (isset($_COOKIE["password_response"])) {
+					if ($_COOKIE["password_response"] == false) {
 						?>
 						<script>
 							toggleValidationError("Неверно введён текущий пароль.", passwordForm);

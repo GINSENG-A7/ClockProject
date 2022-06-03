@@ -1,28 +1,47 @@
-<?require_once("./connection_script.php");?>
-<?
-session_start();
-$sectionsArray = SelectAllSections($conn);
-if (isset($_SESSION["login"])) {
-	$login = $_SESSION["login"];
-	// print_r($login);
-} 
-else {
-	$login = NULL;
-}
-?>
+<?include "./connection_script.php"?>
+<?require_once("./classes/advancedUserClass.php");?>
+<?session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./style/style.css" rel="stylesheet">
+    <link href="./style/personal.css" rel="stylesheet">
     <link rel="shortcut icon" href="./img/logo.webp" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Cart</title>
+    <title>K.Max.Jeweller</title>
 </head>
 <body>
+<?
+	if (isset($_SESSION["login"])) {
+		$login = $_SESSION["login"];
+		// print_r($login);\
+		$userArray = SelectUserByLogin($clockUsersConn, $login);
+		$user = new AdvancedUser(
+			$userArray["idUser"],
+			$userArray["idRole"],
+			$userArray["login"],
+			$userArray["password"],
+			$userArray["name"],
+			$userArray["surname"],
+			$userArray["patronymic"],
+			$userArray["district"],
+			$userArray["city"],
+			$userArray["street"],
+			$userArray["house"],
+			$userArray["flat"],
+			$userArray["post_index"],
+			$userArray["email"],
+			$userArray["token"],
+			$userArray["discount"]
+		);
+	} 
+	else {
+		$login = NULL;
+	}
+?>
 	<header class="header">
 		<div class="header__logo">
 			<a href='./index.php' class="header__logo-linkWrapper">
@@ -102,47 +121,36 @@ else {
 		</div>
 	</header>
 	<hr>
-	<div class="card">
-		<?
-		if (isset( $_GET['id'] ) && !empty( $_GET['id'] )) {
-			$order = SelectAllFromOrdersByOrderId($clockUsersConn, $_GET['id']);
-			if ($order != NULL) {
-				$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $_GET['id']);
-				// print_r($entryesInOrderArray);
-				for ($i = 0; $i < count($entryesInOrderArray); $i++) {
-					$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
-					$entry->setImages($conn);
-					?> 
-					<div class="card__item">
-						<a href="./descripshen.php?id=<?=$entry->idEntry?>">
-							<div class="card__img">
-								<div class = "img" style= "background-image: url('<?=$entry->imagesArray[0]->path?>')">
-
-								</div>
-								<div class = "img-back" style= "background-image: url('<?=$entry->imagesArray[1]->path?>')">
-
-								</div>
-							</div>
-							<div class="card__decription">
-								<div class="card__title">
-									<?=$entry->title?>
-								</div>
-								<div class="card__price">
-									<?=$entry->price?> руб
-								</div>
-							</div>
-						</a>
-						<div class="card__btn">
-							<a href="./descripshen.php?id=<?=$entry->idEntry?>">Подробнее...</a>
+	<h2>Личный кабинет</h2>
+	<div class="wrapper">
+		<div class="personal">
+			<form class="personal__password-form" action="./change_password_script.php" method="POST">
+				<div class="wrapper-inputs">
+					<div class="wrapper-inputs__passwordChange">
+						<p class="section_title">Смена пароля</p>
+						<div class="recovery_code">
+							<p>Код из письма: </p>	
+							<input class="input" id="Code" name="Code" type="text">
 						</div>
 					</div>
-					<?
+				</div>
+				<input class="input" id="ChangePassword" type="submit"style="display: none;">
+				<button id="changePasswordButton" type="submit" class="button">Сменить пароль</button>
+			</form>
+			<?
+				if (isset($_COOKIE["password_response"])) {
+					if ($_COOKIE["password_response"] == false) {
+						?>
+						<script>
+							toggleValidationError("Неверно введён текущий пароль.", document.querySelector(".personal__password-form"));
+						</script>
+						<?
+						setcookie ("password_response", "", time() - 3600); //удаление куки
+					}
 				}
-			}
-		}
-		?>
+			?>
+		</div>
 	</div>
-	<button class="backwardButton">Назад</button>
 	<footer>
         <div class="wrapper"></div>
             <div class="footer">
@@ -158,6 +166,4 @@ else {
             </div>
         </div>   
     </footer>
-	<script src="./js/cart.js"></script>
-	<script src="./js/chekTypeBrowser.js"></script>
 </body>

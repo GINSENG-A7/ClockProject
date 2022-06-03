@@ -370,7 +370,8 @@ function UpdateUsersData($connection, $login, $name, $surname, $patronymic, $dis
 }
 
 function UpdateUsersPassword($connection, $login, $newPassword) {
-	$sql = "UPDATE `users` u SET u.password = ".md5($newPassword)." WHERE u.login = '".$login."'";
+	$sql = "UPDATE `users` u SET u.password = '".md5($newPassword)."' WHERE u.login = '".$login."'";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
@@ -388,6 +389,30 @@ function DeleteUserCascade($connection, $entyesConnection, $idUser) {
 	$sql3 = "DELETE FROM `tickets` WHERE user_id = ".$idUser."";
 	mysqli_query($connection, $sql3);
 }
+
+//------------------------Recoveryes--------------------------//
+
+function SelectRecoveryByUserId($connection, $user_id) {
+	$sql = "SELECT * FROM `recoverys` r WHERE r.user_id = ".$user_id."";
+	$result = mysqli_query($connection, $sql);
+	if ($result == NULL || empty($result)) {
+		return NULL;
+	}
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
+
+function AddNewRecoveryToUser($connection, $hash, $date, $user_id) {
+	$sql = "INSERT INTO `recoverys` (idRecovery, `hash`, `date`, user_id) VALUES (DEFAULT, '".$hash."', '".$date."', ".$user_id.")";
+	// print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function DeleteRecoveryByUser($connection, $user_id) {
+	$sql = "DELETE FROM `recoverys` r WHERE r.user_id = ".$user_id."";
+	mysqli_query($connection, $sql);
+}
+
 //------------------------Cart_and_orders--------------------------//
 function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
 	$sql = "SELECT * FROM `orders` o WHERE o.status_id = ".$status_id." && o.user_id = (SELECT u.idUser FROM users u WHERE u.login = '".$login."')";

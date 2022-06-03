@@ -152,37 +152,21 @@ changeDataButton.addEventListener("click", function (event) {
     // changeDataInput.click();
   }
 });
-var passwordForm = document.getElementsByClassName("personal__password-form")[0];
-passwordForm.addEventListener('submit', function _callee2(e) {
-  var response;
-  return regeneratorRuntime.async(function _callee2$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          e.preventDefault();
-          _context2.next = 3;
-          return regeneratorRuntime.awrap(fetch(passwordForm.action, {
-            method: 'POST',
-            body: new FormData(passwordForm)
-          }));
+var passwordForm = document.getElementsByClassName("personal__password-form")[0]; // passwordForm.addEventListener('submit', async (e) => {
+// 	e.preventDefault();
+// 	let response = await fetch(passwordForm.action, {
+// 		method: 'POST',
+// 		body: new FormData(passwordForm)
+// 	});
+// 	if (response.ok) {
+// 		window.location.replace("../personal.php");
+// 		alert("Пароль успешно измененён.");
+// 	}
+// 	else {
+// 		alert("Request error");
+// 	}
+// });
 
-        case 3:
-          response = _context2.sent;
-
-          if (response.ok) {
-            window.location.replace("../personal.php");
-            alert("Пароль успешно измененён.");
-          } else {
-            alert("Request error");
-          }
-
-        case 5:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  });
-});
 var allPasswordsInputs = passwordForm.querySelectorAll("input[type=password]");
 var changePasswordButton = document.querySelector("#changePasswordButton");
 var passwordInputsAreNotEmpty = true;
@@ -190,6 +174,7 @@ var oldPasswordValidationIsGood = true;
 var newPasswordValidationIsGood = true;
 changePasswordButton.addEventListener("click", function (event) {
   event.preventDefault();
+  event.stopImmediatePropagation();
   passwordInputsAreNotEmpty = true;
   oldPasswordValidationIsGood = true;
   newPasswordValidationIsGood = true;
@@ -223,8 +208,8 @@ changePasswordButton.addEventListener("click", function (event) {
   if (passwordInputsAreNotEmpty == false) {
     toggleValidationError("Все поля обязательны к заполнению.", passwordForm);
   } else {
-    var oldPW;
-    var newPW;
+    var oldPW = document.querySelector('#OldPassword');
+    var newPW = document.querySelector('#NewPassword');
     var _iteratorNormalCompletion4 = true;
     var _didIteratorError4 = false;
     var _iteratorError4 = undefined;
@@ -291,8 +276,9 @@ changePasswordButton.addEventListener("click", function (event) {
     }
   }
 
-  if (passwordInputsAreNotEmpty == true && oldPasswordValidationIsGood == true && newPasswordValidationIsGood == true) {// let changePasswordInput = passwordForm.querySelector("#PasswordData");
-    // changePasswordInput.click();
+  if (passwordInputsAreNotEmpty == true && oldPasswordValidationIsGood == true && newPasswordValidationIsGood == true) {
+    var changePasswordInput = passwordForm.querySelector("#ChangePassword");
+    changePasswordInput.click();
   }
 });
 
