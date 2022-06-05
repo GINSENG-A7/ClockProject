@@ -1,4 +1,5 @@
 <?require_once("./connection_script.php")?>
+<?require_once ("./classes/advancedUserClass.php");?>
 <?session_start()?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,11 +132,11 @@
                             <div class = "decription__price">
                                 <?=$entry->price?> ₽
                             </div>
-							<div class = "decription__material">
+							<div class = "decription__body">
                                 <?=$entry->body?>
                             </div>
-                            <div class = "decription__body">
-                                <?=SelectMaterialById($conn, $entry->idMaterial)['value']?>
+                            <div class = "decription__material">
+                                Материал: <?=SelectMaterialById($conn, $entry->idMaterial)['value']?>
                             </div>
 							<form id="addToCartForm" name="addToCartForm" action="add_to_cart_script.php" method="POST">
 								<input id="entryIdInput" name="entryIdInput" type="hidden" value="<?=$_GET['id']?>">
@@ -162,7 +163,7 @@
 											}
 										}
 										else {
-											print_r("sfghfdgjgdhkjgfhdj");
+											// print_r("sfghfdgjgdhkjgfhdj");
 											?>
 											<select class="sizeSelect" name="sizeIdSelect">
 											<?
@@ -183,7 +184,7 @@
 												}
 											}
 											if ($itemIsNotInCart == true) {
-												print_r("bbbbbbbb");
+												// print_r("bbbbbbbb");
 												if(!empty($entry->sizesArray) && $entry->sizesArray != NULL) {
 													for ($j = 0; $j < count($entry->sizesArray); $j++) {
 														print_r($sizesArray[$j]['size_id']);
@@ -226,6 +227,77 @@
                 </div>
             </div>
         </section>
+		<hr>
+		<section class="section-comments">
+			<div class="wrapper" style="max-width: 900px !important; padding: 0 12%;">
+				<?
+				$usersComments = SelectCommentByEntryIdAndUserId($conn, $entry->idEntry, SelectUserByLogin($clockUsersConn, $login)['idUser']);
+				if ($login != NULL && $usersComments == NULL) {
+					?>
+					<form class="newComment-form" action="./send_comment_script.php" method="POST">
+						<input type="hidden" name="idEntry" value="<?=$entry->idEntry?>">
+						<div class="flexWrapper">
+							<p>Ваш отзыв:</p>
+							<textarea name="comment" cols="30" rows="10"></textarea>
+						</div>
+						<p>Оцените товар: </p>
+						<div class="simple-rating">
+							<div class="simple-rating__items">
+								<input id="simple-rating__5" type="radio" class="simple-rating__item" name="simple-rating" value="5">
+								<label for="simple-rating__5" class="simple-rating__label"></label>
+								<input id="simple-rating__4" type="radio" class="simple-rating__item" name="simple-rating" value="4">
+								<label for="simple-rating__4" class="simple-rating__label"></label>
+								<input id="simple-rating__3" type="radio" class="simple-rating__item" name="simple-rating" value="3">
+								<label for="simple-rating__3" class="simple-rating__label"></label>
+								<input id="simple-rating__2" type="radio" class="simple-rating__item" name="simple-rating" value="2">
+								<label for="simple-rating__2" class="simple-rating__label"></label>
+								<input id="simple-rating__1" type="radio" class="simple-rating__item" name="simple-rating" value="1">
+								<label for="simple-rating__1" class="simple-rating__label"></label>
+							</div>
+						</div>
+						<input type="submit" value="Отправить">
+					</form>
+					<?
+				}
+				?>
+				<div class="commentsWrapper">
+					<?
+					$commentsArray = SelectAllCommentsByEntryId($conn, $entry->idEntry);
+					if ($commentsArray != NULL) {
+						for ($i = 0; $i < count($commentsArray); $i++) { 
+							$user = SelectUserByUserId($clockUsersConn, $commentsArray[$i]['user_id']);
+							?>
+							<div class="comment">
+								<div class="user">
+									<div class="login"><?=$user->login?></div>
+									<div class="date"><?=$commentsArray[$i]['date']?></div>
+								</div>
+								<div class="comment__text">
+									<p class="text"><?=$commentsArray[$i]['content']?></p>
+									<p>Оценка пользователя: </p>
+									<div class="simple-rating">
+										<div class="simple-rating__items">
+											<input id="simple-recentRating__5" type="radio" class="simple-rating__item" name="simple-rating" value="5" <?if ($commentsArray[$i]['rating'] == 5) {?>checked<?}?>>
+											<label for="simple-recentRating__5" class="simple-rating__label"></label>
+											<input id="simple-recentRating__4" type="radio" class="simple-rating__item" name="simple-rating" value="4" <?if ($commentsArray[$i]['rating'] == 4) {?>checked<?}?>>
+											<label for="simple-recentRating__4" class="simple-rating__label"></label>
+											<input id="simple-recentRating__3" type="radio" class="simple-rating__item" name="simple-rating" value="3" <?if ($commentsArray[$i]['rating'] == 3) {?>checked<?}?>>
+											<label for="simple-recentRating__3" class="simple-rating__label"></label>
+											<input id="simple-recentRating__2" type="radio" class="simple-rating__item" name="simple-rating" value="2" <?if ($commentsArray[$i]['rating'] == 2) {?>checked<?}?>>
+											<label for="simple-recentRating__2" class="simple-rating__label"></label>
+											<input id="simple-recentRating__1" type="radio" class="simple-rating__item" name="simple-rating" value="1" <?if ($commentsArray[$i]['rating'] == 1) {?>checked<?}?>>
+											<label for="simple-recentRating__1" class="simple-rating__label"></label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?
+						}
+					}
+					?>
+				</div>
+			</div>
+		</section>
         <footer>
             <div class="wrapper"></div>
                 <div class="footer">

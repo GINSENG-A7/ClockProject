@@ -395,7 +395,7 @@ function DeleteUserCascade($connection, $entyesConnection, $idUser) {
 function SelectRecoveryByUserId($connection, $user_id) {
 	$sql = "SELECT * FROM `recoverys` r WHERE r.user_id = ".$user_id."";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	$row = mysqli_fetch_assoc($result);
@@ -438,7 +438,7 @@ function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
 function SelectAllFromOrdersByStatus($connection, $status_id) {
 	$sql = "SELECT * FROM `orders` o WHERE o.status_id = ".$status_id." ORDER BY o.order_date";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	while($row = mysqli_fetch_array($result))
@@ -458,7 +458,7 @@ function SelectAllFromOrdersByStatus($connection, $status_id) {
 function SelectAllFromOrdersByOrderId($connection, $idOrder) {
 	$sql = "SELECT * FROM `orders` o WHERE o.idOrder = ".$idOrder."";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
     return $result;
@@ -467,7 +467,7 @@ function SelectAllFromOrdersByOrderId($connection, $idOrder) {
 function SelectEntryesInOrderByOrderId($connection, $idOrder) {
 	$sql = "SELECT * FROM entryes_in_order WHERE order_id = ".$idOrder." ORDER BY entry_id";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	while($row = mysqli_fetch_array($result))
@@ -486,7 +486,7 @@ function SelectEntryesInOrderByOrderId($connection, $idOrder) {
 function SelectEntryesInOrderById($connection, $entryesInOrderId) {
 	$sql = "SELECT * FROM entryes_in_order WHERE idEntry_in_order = ".$entryesInOrderId."";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	$row = mysqli_fetch_array($result);
@@ -558,7 +558,7 @@ function SelectAllFromSimpleTickets($connection, $is_open, $performer_id) {
 		$sql = "SELECT * FROM `simple_tickets` WHERE is_open = ".$is_open." AND performer_id IS NULL";
 	}
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	while($row = mysqli_fetch_array($result))
@@ -584,7 +584,7 @@ function SelectAllFromTickets($connection, $is_open, $performer_id) {
 		$sql = "SELECT * FROM `tickets` WHERE is_open = ".$is_open." AND performer_id IS NULL";
 	}
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	while($row = mysqli_fetch_array($result))
@@ -619,7 +619,7 @@ function UpdateSimpleTicketStatusAndPerformer($connection, $performer_id, $is_op
 function SelectAllMaterials($connection) {
 	$sql = "SELECT * FROM materials";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	while($row = mysqli_fetch_array($result))
@@ -635,7 +635,7 @@ function SelectAllMaterials($connection) {
 function SelectMaterialById($connection, $idMaterial) {
 	$sql = "SELECT * FROM materials WHERE idMaterial = ".$idMaterial."";
 	$result = mysqli_query($connection, $sql);
-	if ($result == NULL || empty($result)) {
+	if ($result->num_rows == 0) {
 		return NULL;
 	}
 	$row = mysqli_fetch_assoc($result);
@@ -650,6 +650,42 @@ function AddNewMaterial($connection, $value) {
 
 function DeleteMaterialById($connection, $idMaterial) {
 	$sql = "DELETE FROM `materials` m WHERE m.idMaterial = ".$idMaterial."";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+//----------------------Comments---------------------//
+function SelectAllCommentsByEntryId($connection, $entry_id) {
+	$sql = "SELECT * FROM comments WHERE entry_id = ".$entry_id."";
+	$result = mysqli_query($connection, $sql);
+	if ($result->num_rows == 0) {
+		return NULL;
+	}
+	while($row = mysqli_fetch_array($result))
+    {
+        $array[] = array(
+			'idComment'=>$row['idComment'],
+			'content'=>$row['content'],
+			'date'=>$row['date'],
+			'rating'=>$row['rating'],
+			'user_id'=>$row['user_id'],
+			'entry_id'=>$row['entry_id']
+		);
+    }
+    return $array;
+}
+
+function SelectCommentByEntryIdAndUserId($connection, $entry_id, $user_id) {
+	$sql = "SELECT * FROM comments c WHERE c.user_id = ".$user_id." AND c.entry_id = ".$entry_id."";
+	$result = mysqli_query($connection, $sql);
+	if ($result->num_rows == 0) {
+		return NULL;
+	}
+    return $result;
+}
+
+function AddNewComment($connection, $comment, $rating, $date, $entry_id, $user_id) {
+	$sql = "INSERT INTO comments (idComment, content, `date`, rating, `user_id`, entry_id) VALUES (DEFAULT, '$comment', '$date', ".$rating.", ".$user_id.", ".$entry_id.")";
 	print_r($sql);
 	mysqli_query($connection, $sql);
 }

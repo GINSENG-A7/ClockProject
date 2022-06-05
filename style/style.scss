@@ -237,7 +237,7 @@ body {
 
 .section-decription {
     color: rgb(255, 255, 255);
-    height: 82vh;
+    height: fit-content;
 }
 
 @media  (max-width: 821px) {
@@ -347,11 +347,184 @@ body {
 
     &__price {
 		@include adaptiv-font (22, 14);
+		margin: 15px 0;
     }
 
     &__body {
 		@include adaptiv-font (22, 14);
+		margin: 15px 0;
     }
+	&__material {
+		@include adaptiv-font (22, 14);
+		margin: 15px 0;
+	}
+}
+
+//-------------------Comments--------------------//
+.commentsWrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+.newComment-form {
+	margin-top: 20px;
+	color: #FFF;
+	p {
+		margin: 0;
+		display: inline-block;
+		@include adaptiv-font (22, 14);
+	}
+	.flexWrapper {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		p {
+			width: 30%;
+		}
+		textarea {
+			display: inline-block;
+			width: 70%;
+			height: 76px;
+			resize: vertical;
+		}
+	}
+	input {
+		display: inline-block;
+		width: 100%;
+		height: 21px;
+		margin-top: 10px;
+	}
+	.simple-rating {
+		position: relative;
+		font-size: 40px;
+		display: inline-block;
+		&::before {
+			content: "★★★★★";
+			display: block;
+			position: absolute;
+		}
+		&__items {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			flex-direction: row-reverse;
+			overflow: hidden;
+		}
+		&__item {
+			position: absolute;
+			width: 0%;
+			height: 0%;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			visibility: hidden;
+			&:checked,
+			&:checked ~ .simple-rating__label {
+				color: #FFF;
+			}
+		}
+		&__label {
+			flex: 0 0 20%;
+			height: 100%;
+			cursor: pointer;
+			color: gray;
+			&::before {
+				content: "★";
+				display: block;
+				transition: color 0.3s ease 0s;
+			}
+			&:hover, 
+			&:hover ~ .simple-rating__label,
+			&:checked ~ .simple-rating__label:hover {					
+				color: #FFF !important;
+			}
+		}
+	}
+}
+.comment {
+	color: #FFF;
+	.user {
+		.login {
+			display: inline-block;
+			margin-top: 5px;
+			margin-left: 15px;
+			@include adaptiv-font (22, 14);
+		}
+		.date {
+			display: inline-block;
+			margin-top: 5px;
+			@include adaptiv-font (14, 10);
+		}
+	}
+	&__text {
+		margin-left: 15px;
+		.text {
+			width: 98%;
+			display: block;
+			@include adaptiv-font (22, 14);
+		}
+		p {
+			display: inline-block;
+			@include adaptiv-font (20, 14);
+		}
+		.simple-rating {
+			position: relative;
+			font-size: 25px;
+			display: inline-block;
+			&::before {
+				content: "★★★★★";
+				display: block;
+				position: absolute;
+			}
+			&__items {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: flex;
+				flex-direction: row-reverse;
+				overflow: hidden;
+			}
+			&__item {
+				position: absolute;
+				width: 0%;
+				height: 0%;
+				top: 0;
+				left: 0;
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+				&:checked,
+				&:checked ~ .simple-rating__label {
+					color: #FFF;
+				}
+			}
+			&__label {
+				flex: 0 0 20%;
+				height: 100%;
+				cursor: pointer;
+				color: gray;
+				pointer-events: none;
+				&::before {
+					pointer-events: none;
+					content: "★";
+					display: block;
+					transition: color 0.3s ease 0s;
+				}
+				// &:hover, 
+				// &:hover ~ .simple-rating__label,
+				// &:checked ~ .simple-rating__label:hover {					
+				// 	color: #FFF !important;
+				// }
+			}
+		}
+	}
 }
 
 ._touch {
