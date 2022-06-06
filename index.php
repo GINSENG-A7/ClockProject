@@ -16,7 +16,7 @@
 	<?
 	if (isset($_SESSION["login"])) {
 		$login = $_SESSION["login"];
-		print_r($login);
+		// print_r($login);
 	} 
 	else {
 		$login = NULL;
@@ -65,7 +65,7 @@
 								<li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
 							</ul>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+						<!-- <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li> -->
 						<li class="nav-item">
 							<a class="nav-link" <?if ($login == NULL) {echo('href="./userSingUpOrLogIn.php"');}?>>
 								<i class="fa fa-user" style="font-size:24px"></i>
@@ -101,7 +101,6 @@
 				</nav>
 			</div>
 		</header>
-
     </div>
     <section class="section-auto-slider">
         <div class="slider">

@@ -24,10 +24,20 @@ body {
 		}
 	}
 }
+.dis {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+hr {
+	width: 99.6%;
+}
 .wrapper {
 
     max-width: 1200px;
     margin: 0 auto;
+	width: 100%;
 
 }
 .text-center {
@@ -237,12 +247,12 @@ body {
 
 .section-decription {
     color: rgb(255, 255, 255);
-    height: fit-content;
+	height: auto;
 }
 
 @media  (max-width: 821px) {
     .section-decription {
-        height: 100%;
+		height: auto;
     }
     .decription {
         display: block !important;
@@ -362,10 +372,9 @@ body {
 
 //-------------------Comments--------------------//
 .commentsWrapper {
-    margin-top: 20px;
-    margin-bottom: 20px;
     background-color: #222;
     border-radius: 10px;
+	margin: 20px 3%;
 }
 .newComment-form {
 	margin-top: 20px;

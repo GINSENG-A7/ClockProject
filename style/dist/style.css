@@ -16,9 +16,21 @@ body a:visited {
   color: #faf9fe;
 }
 
+.dis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+hr {
+  width: 99.6%;
+}
+
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .text-center {
@@ -404,7 +416,7 @@ body a:visited {
     font-size: 3.36vw;
   }
 }
-@media (max-width: 821px) {
+@media (max-width: 734px) {
   .header__logo div span:last-child {
     display: none;
   }
@@ -569,7 +581,7 @@ body a:visited {
     transform: rotate(45deg) translate(0px, 50%) !important;
   }
 }
-@media (min-width: 821px) {
+@media (min-width: 734px) {
   .header__menu-icon {
     animation-duration: 1s;
     animation-name: burger-dissapear;
@@ -927,7 +939,7 @@ body a:visited {
     font-size: 3.36vw;
   }
 }
-@media (max-width: 821px) {
+@media (max-width: 734px) {
   .header__logo div span:last-child {
     display: none;
   }
@@ -1092,7 +1104,7 @@ body a:visited {
     transform: rotate(45deg) translate(0px, 50%) !important;
   }
 }
-@media (min-width: 821px) {
+@media (min-width: 734px) {
   .header__menu-icon {
     animation-duration: 1s;
     animation-name: burger-dissapear;
@@ -1278,12 +1290,12 @@ body a:visited {
 
 .section-decription {
   color: white;
-  height: fit-content;
+  height: auto;
 }
 
 @media (max-width: 821px) {
   .section-decription {
-    height: 100%;
+    height: auto;
   }
 
   .decription {
@@ -1425,10 +1437,9 @@ body a:visited {
 }
 
 .commentsWrapper {
-  margin-top: 20px;
-  margin-bottom: 20px;
   background-color: #222;
   border-radius: 10px;
+  margin: 20px 3%;
 }
 
 .newComment-form {

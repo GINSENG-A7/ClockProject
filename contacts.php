@@ -65,7 +65,7 @@
                                 <li class="nav-sub__item"><a class="nav-sub__link" href="./shop.php?id=9">Брелки</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="./contacts.php">Контакты</a></li> -->
 						<li class="nav-item disappearable">
 							<div class="nav-item-textWrapper">
 								<span class = "contact-person">K.Max.Jeweller</span>

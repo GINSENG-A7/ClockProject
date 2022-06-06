@@ -7,7 +7,7 @@
 	isset($_POST['simple-rating'])) {
 		if (isset($_SESSION["login"])) {
 			$login = $_SESSION["login"];
-			print_r($login);
+			// print_r($login);
 		} 
 		else {
 			$login = NULL;
@@ -21,6 +21,8 @@
 		if ($usersComments == NULL) {
 			//Добавить комент date('Y-m-d H:i:s', strtotime($paidDateAsStr))
 			AddNewComment($conn, $comment, $rating, date('Y-m-d H:i:s', time()), $idEntry, $userArray['idUser']);
+			// header("Location: ./descripshen?id=".$idEntry."");
+			header("Refresh:0; url=./descripshen?id=".$idEntry."");
 		}
 	}
 	else {
