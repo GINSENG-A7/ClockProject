@@ -120,35 +120,43 @@
         <div class="wrapper">
             <h2  class="title-h2 text-center" >Список товаров</h2>
             <div class="card">
-            <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
-                for($i = 0 ; $i<count($entryesBySectionArray);$i++) {  
-                // $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
-                $entryesBySectionArray[$i]->setImages($conn);
-                if(count($entryesBySectionArray[$i]->imagesArray) > 1) {
-                ?> 
-                    <div class="card__item">
-                        <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">
-                            <div class="card__img">
-                                <div class = "img" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>')">
+            <?php if ($login != NULL) {
+				$userArray = SelectUserByLogin($clockUsersConn, $login);
+				$recomendEntryesInOrdersIds = SelectAllRecomends($clockUsersConn, $userArray['idUser']);
+				$recomendEntryesArray = SelectEntryesByRecomended($conn, $recomendEntryesInOrdersIds);
+				$entryesBySectionArray = $recomendEntryesArray;
+			} else {
+				$entryesBySectionArray = SelectRandomEntryes($conn);
+			}
+			// $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
+			for($i = 0 ; $i<count($entryesBySectionArray);$i++) {  
+			// $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
+			$entryesBySectionArray[$i]->setImages($conn);
+			if(count($entryesBySectionArray[$i]->imagesArray) > 1) {
+			?> 
+				<div class="card__item">
+					<a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">
+						<div class="card__img">
+							<div class = "img" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[0]->path?>')">
 
-                                </div>
-                                <div class = "img-back" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[1]->path?>')">
+							</div>
+							<div class = "img-back" style= "background-image: url('<?=$entryesBySectionArray[$i]->imagesArray[1]->path?>')">
 
-                                </div>
-                            </div>
-                            <div class="card__decription">
-                                <div class="card__title">
-                                    <?=$entryesBySectionArray[$i]->title?>
-                                </div>
-                                <div class="card__price">
-                                    <?=$entryesBySectionArray[$i]->price?> руб
-                                </div>
-                            </div>
-                        </a>
-                        <div class="card__btn">
-                            <a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">Подробнее...</a>
-                        </div>
-                    </div>
+							</div>
+						</div>
+						<div class="card__decription">
+							<div class="card__title">
+								<?=$entryesBySectionArray[$i]->title?>
+							</div>
+							<div class="card__price">
+								<?=$entryesBySectionArray[$i]->price?> руб
+							</div>
+						</div>
+					</a>
+					<div class="card__btn">
+						<a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">Подробнее...</a>
+					</div>
+				</div>
                 <?php  }}?>
             </div>
         </div>

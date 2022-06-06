@@ -254,6 +254,48 @@ function SelectFirstPictureBySection($connection, $idSection) { // 0 usages
     return $array;
 }
 
+function SelectEntryesByRecomended($connection, $eioIdArray) {
+	$sql = "SELECT * FROM entryes WHERE idSection IN (SELECT idSection FROM entryes WHERE idEntry IN (".implode(",", $eioIdArray).")) AND idMaterial IN (SELECT idMaterial FROM entryes WHERE idEntry IN (".implode(",", $eioIdArray)."))";
+	// print_r($sql);
+    $result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+		$tempEntry = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection'],
+			$row['isActive'],
+			$row['idMaterial']
+		);
+		$tempEntry->setImages($connection);
+
+        $array[] = $tempEntry;
+    }
+    return $array;
+}
+
+function SelectRandomEntryes($connection) {
+	$sql = "SELECT * FROM entryes ORDER BY RAND() LIMIT 12";
+	$result = mysqli_query($connection, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+		$tempEntry = new Entry(
+			$row['idEntry'],
+			$row['title'],
+			$row['body'],
+			$row['price'],
+			$row['idSection'],
+			$row['isActive'],
+			$row['idMaterial']
+		);
+		$tempEntry->setImages($connection);
+
+        $array[] = $tempEntry;
+    }
+    return $array;
+}
 //-----------------------------Users----------------------------//
 
 function AddNewUserInDatabase($connection, $login, $password, $name, $surname, $patronymic, $district, $city, $street, $house, $flat, $post_index, $email) {
@@ -428,6 +470,22 @@ function SelectAllFromOrdersByStatusAndUser($connection, $login, $status_id) {
 				'user_id'=>$row['user_id'],
 				'status_id'=>$row['status_id']
 			);
+		}
+		// print_r($array);
+		return $array;
+	}
+	return NULL;
+}
+
+function SelectAllRecomends($connection, $id_user) {
+	//(".implode(",", $materialsArray).")
+	$sql = "SELECT DISTINCT eio.entry_id FROM `entryes_in_order` eio WHERE eio.order_id IN (SELECT o.idOrder FROM `orders` o WHERE o.user_id = ".$id_user." AND o.status_id IN (1, 2, 4, 5))";
+	// print_r($sql);
+	$result = mysqli_query($connection, $sql);
+	if ($result != NULL || !empty($result)) {
+		while($row = mysqli_fetch_array($result))
+		{
+			$array[] = $row['entry_id'];
 		}
 		// print_r($array);
 		return $array;
