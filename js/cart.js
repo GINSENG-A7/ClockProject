@@ -10,6 +10,23 @@ PropagationOff(inputNumberArray);
 let inputSubmitArray = document.querySelectorAll(".submit_input");
 PropagationOff(inputSubmitArray);
 
+let deleteFormsArray = document.querySelectorAll("#deleteItemForm");
+for (const deleteForm of deleteFormsArray) {
+	deleteForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(deleteForm.action, {
+			method: 'POST',
+			body: new FormData(deleteForm)
+		});
+		if (response.ok) {
+			window.location.reload();
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}
+
 function PropagationOff(arrayOfElements) {
 	for (const element of arrayOfElements) {
 		if(element.matches(".number-minus")) {
@@ -47,19 +64,20 @@ for (const numberInput of numberInputsArray) {
 	form.method = 'POST';
 	form.appendChild(hiddenInputClone);
 	// Асинхронные отпарвки форм
-	// form.addEventListener('submit', async (e) => {
-	// 	e.preventDefault();
-	// 	let response = await fetch(form.action, {
-	// 		method: 'POST',
-	// 		body: new FormData(form)
-	// 	});
-	// 	if (response.ok) {
-	// 		alert("Ваш заказ обрабатывается, ожидайте отправки.");
-	// 	}
-	// 	else {
-	// 		alert("Request error");
-	// 	}
-	// });
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(form.action, {
+			method: 'POST',
+			body: new FormData(form)
+		});
+		if (response.ok) {
+			alert("Ваш заказ обрабатывается, ожидайте отправки.");
+			window.location.reload();
+		}
+		else {
+			alert("Request error");
+		}
+	});
 
 	let iIdInput = numberInput.form.querySelector("#itemId");
 	let iIdInputClone = iIdInput.cloneNode(false);
@@ -98,3 +116,9 @@ newOrderButton.addEventListener('click', (event) => {
 		submitInput.click();
 	}
 });
+
+let cords = ['scrollX','scrollY'];
+// Перед закрытием записываем в локалсторадж window.scrollX и window.scrollY как scrollX и scrollY
+window.addEventListener('unload', e => cords.forEach(cord => localStorage[cord] = window[cord]));
+// Прокручиваем страницу к scrollX и scrollY из localStorage (либо 0,0 если там еще ничего нет)
+window.scroll(...cords.map(cord => localStorage[cord]));

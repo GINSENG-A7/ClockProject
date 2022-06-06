@@ -1530,6 +1530,7 @@ hr {
 
 .comment {
   color: #FFF;
+  position: relative;
 }
 .comment .user .login {
   display: inline-block;
@@ -1635,6 +1636,20 @@ hr {
   content: "★";
   display: block;
   transition: color 0.3s ease 0s;
+}
+.comment .comment__deleteForm {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.comment .comment__deleteForm .deleteXBtn {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border: 0px;
+  border-top-right-radius: 10px;
 }
 
 @media (max-width: 428px) {

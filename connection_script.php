@@ -62,8 +62,8 @@ function SelectAllFromEntryes($connection) {
     return $array;
 }
 
-function SelectAllFromEntryesBySectionId($connection, $idSection) {
-	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e WHERE e.idSection = ".$idSection."";
+function SelectAllFromEntryesBySectionId($connection, $idSection, $activityArray) {
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e WHERE e.idSection = ".$idSection." AND e.isActive IN (".implode(",", $activityArray).")";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
@@ -81,7 +81,7 @@ function SelectAllFromEntryesBySectionId($connection, $idSection) {
 }
 
 function SelectAllFromEntryesByFilters($connection, $minPrice, $maxPrice, $idSection, $materialsArray) {
-	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e WHERE e.price > ".floatval($minPrice)." AND e.price < ".floatval($maxPrice)." AND e.idSection = ".$idSection." AND e.idMaterial IN (".implode(",", $materialsArray).")";
+	$sql = "SELECT e.idEntry, e.title, e.body, e.price, e.idSection, e.isActive, e.idMaterial FROM entryes e WHERE e.price > ".floatval($minPrice)." AND e.price < ".floatval($maxPrice)." AND e.idSection = ".$idSection." AND e.idMaterial IN (".implode(",", $materialsArray).") AND e.isActive = true";
     $result = mysqli_query($connection, $sql);
     while($row = mysqli_fetch_array($result))
     {
@@ -742,9 +742,26 @@ function SelectCommentByEntryIdAndUserId($connection, $entry_id, $user_id) {
     return $result;
 }
 
+function SelectCommentByCommentId($connection, $comment_id) {
+	$sql = "SELECT * FROM comments c WHERE c.idComment = ".$comment_id."";
+	// print_r($sql);
+	$result = mysqli_query($connection, $sql);
+	if ($result->num_rows == 0) {
+		return NULL;
+	}
+	$row = mysqli_fetch_assoc($result);
+    return $row;
+}
+
 function AddNewComment($connection, $comment, $rating, $date, $entry_id, $user_id) {
 	$sql = "INSERT INTO comments (idComment, content, `date`, rating, `user_id`, entry_id) VALUES (DEFAULT, '$comment', '$date', ".$rating.", ".$user_id.", ".$entry_id.")";
-	print_r($sql);
+	// print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function DeleteCommentById($connection, $idComment) {
+	$sql = "DELETE FROM comments c WHERE c.idComment = ".$idComment."";
+	// print_r($sql);
 	mysqli_query($connection, $sql);
 }
 ?>

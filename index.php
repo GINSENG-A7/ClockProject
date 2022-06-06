@@ -104,7 +104,7 @@
     </div>
     <section class="section-auto-slider">
         <div class="slider">
-            <?php $entryesBySection = SelectAllFromEntryesBySectionId($conn, 1);
+            <?php $entryesBySection = SelectAllFromEntryesBySectionId($conn, 1, array("true"));
             // echo(count($entryesBySection));
 			for($i = 0; $i<count($entryesBySection);$i++) {
 				$entryesBySection[$i]->setImages($conn);
@@ -165,7 +165,7 @@
     <section class="sectionAdvertisingSlider">
         <div class="wrapper">
             <div class="slider-bottom">
-                <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1);
+                <?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, 1, array("true"));
                 for($i = 0 ; $i<count($entryesBySectionArray);$i++) { 
                     $entryesBySectionArray[$i]->setImages($conn);
                 ?> 

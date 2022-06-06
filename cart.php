@@ -110,75 +110,77 @@ else {
 			$cart = SelectAllFromOrdersByStatusAndUser($clockUsersConn, $login, 1)[0];
 			if ($cart != NULL && !empty($cart)) {
 				$entryesInOrderArray = SelectEntryesInOrderByOrderId($clockUsersConn, $cart['idOrder']);
-				for ($i = 0; $i < count($entryesInOrderArray); $i++) {
-					$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
-					$entry->setImages($conn);
-					$entry->setSizes($conn);
-					// print_r($entry->imagesArray[0]->path);
-				?>
-					<div class="rows__item">
-						<form id="deleteItemForm" class="rows__item-purchase_form" method="POST" action="./delete_from_cart_script.php">
-							<input id="itemId" name="itemId" type="hidden" value="<?=$entry->idEntry?>">
-							<input id="entryesInOrderId" name="entryesInOrderId" type="hidden" value="<?=$entryesInOrderArray[$i]['idEntry_in_order']?>">
-							<input id="orderId" name="orderId" type="hidden" value="<?=$cart['idOrder']?>">
-							<div class="rows__item-img">
-								<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
-									<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
-
-									</div>
-								</a>
-							</div>
-							<div class="rows__item-none_flex_wrapper">
-								<div class="rows__item-flex_wrapper">
+				if ($entryesInOrderArray != NULL && !empty($entryesInOrderArray)) {
+					for ($i = 0; $i < count($entryesInOrderArray); $i++) {
+						$entry = SelectEntryByEntryId($conn, $entryesInOrderArray[$i]['entry_id']);
+						$entry->setImages($conn);
+						$entry->setSizes($conn);
+						// print_r($entry->imagesArray[0]->path);
+					?>
+						<div class="rows__item">
+							<form id="deleteItemForm" class="rows__item-purchase_form" method="POST" action="./delete_from_cart_script.php">
+								<input id="itemId" name="itemId" type="hidden" value="<?=$entry->idEntry?>">
+								<input id="entryesInOrderId" name="entryesInOrderId" type="hidden" value="<?=$entryesInOrderArray[$i]['idEntry_in_order']?>">
+								<input id="orderId" name="orderId" type="hidden" value="<?=$cart['idOrder']?>">
+								<div class="rows__item-img">
 									<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
-										<div class="rows__item-description">
-											<div class="title">
-												<?=$entry->title?>
-											</div>
-											<div class="price">
-												<?=$entry->price?> руб
-											</div>
+										<div class = "img" style="background-image: url('<?=$entry->imagesArray[0]->path?>')">
+	
 										</div>
 									</a>
-									<div class="number_wrapper">
-										<button class="number-minus" type="button">-</button>
-										<input name="itemCount" class="number_input" type="number" min="1" value="1" readonly>
-										<button class="number-plus" type="button">+</button>
-										<?
-										if ($entryesInOrderArray[$i]['size_id'] != NULL) {
-											$currentSize = SelectSizeById($conn, $entryesInOrderArray[$i]['size_id']);
-										?>
-											<select name="sizeIdSelect" class="sizeSelect">
-												<?
-												for ($j = 0; $j < count($entry->sizesArray); $j++) {
-													print_r($currentSize['idSize']);
-													print_r($entry->sizesArray[$j]['idSize']);
-													print_r('<br>');
-													if ($entry->sizesArray[$j]['idSize'] == $currentSize['idSize']) {
-														?>
-															<option selected="selected" class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?=$j?>"><?=$entry->sizesArray[$j]['value']?></option>
-														<?
+								</div>
+								<div class="rows__item-none_flex_wrapper">
+									<div class="rows__item-flex_wrapper">
+										<a class="wrap_link" href="./descripshen.php?id=<?=$entry->idEntry?>">
+											<div class="rows__item-description">
+												<div class="title">
+													<?=$entry->title?>
+												</div>
+												<div class="price">
+													<?=$entry->price?> руб
+												</div>
+											</div>
+										</a>
+										<div class="number_wrapper">
+											<button class="number-minus" type="button">-</button>
+											<input name="itemCount" class="number_input" type="number" min="1" value="1" readonly>
+											<button class="number-plus" type="button">+</button>
+											<?
+											if ($entryesInOrderArray[$i]['size_id'] != NULL) {
+												$currentSize = SelectSizeById($conn, $entryesInOrderArray[$i]['size_id']);
+											?>
+												<select name="sizeIdSelect" class="sizeSelect">
+													<?
+													for ($j = 0; $j < count($entry->sizesArray); $j++) {
+														print_r($currentSize['idSize']);
+														print_r($entry->sizesArray[$j]['idSize']);
+														print_r('<br>');
+														if ($entry->sizesArray[$j]['idSize'] == $currentSize['idSize']) {
+															?>
+																<option selected="selected" class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?=$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+															<?
+														}
+														else {
+															?>
+																<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?=$j?>"><?=$entry->sizesArray[$j]['value']?></option>
+															<?
+														}
 													}
-													else {
-														?>
-															<option class="sizeSelect-item" value="<?=$entry->sizesArray[$j]['idSize']?>" id="item-<?=$i?>-<?=$j?>"><?=$entry->sizesArray[$j]['value']?></option>
-														<?
-													}
-												}
-												?>
-											</select>
-										<?
-										}
-										?>
+													?>
+												</select>
+											<?
+											}
+											?>
+										</div>
+									</div>
+									<div class="rows__item-submit_wrapper">
+										<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit" value="Удалить">
 									</div>
 								</div>
-								<div class="rows__item-submit_wrapper">
-									<input class="submit_input" id="formButton" class="purchase_form-btn" type="submit" value="Удалить">
-								</div>
-							</div>
-						</form>
-					</div>
-				<?
+							</form>
+						</div>
+					<?
+					}
 				}
 				?>
 				<button id="newOrderButton" class="submit_input">Заказать</button>

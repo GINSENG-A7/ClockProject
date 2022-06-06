@@ -126,7 +126,7 @@ if ($userArray['idRole'] == 1) {
 		<div id="<?echo($sectionsArray[$i]['sectionName'])?>" class="tab-output">
 			<h2 class="OutputH2">Изменение</h2>
 			<?
-			$entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $sectionsArray[$i]['idSection']);
+			$entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $sectionsArray[$i]['idSection'], array("true", "false"));
 			if (is_countable($entryesBySectionArray)) {
 				for ($j = 0; $j < count($entryesBySectionArray); $j++) {
 					if($entryesBySectionArray[$j] != null) {

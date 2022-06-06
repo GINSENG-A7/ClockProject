@@ -178,7 +178,7 @@ else {
 			<div class="wrapper">
 				<h2  class="title-h2 text-center" >Список товаров</h2>
 				<div class="card">
-				<?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $_GET['id']);
+				<?php $entryesBySectionArray = SelectAllFromEntryesBySectionId($conn, $_GET['id'], array("true"));
 					for($i = 0 ; $i < count($entryesBySectionArray);$i++) {
 						$entry = $entryesBySectionArray[$i];
 						$entry->setImages($conn);

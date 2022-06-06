@@ -22,7 +22,7 @@
 			//Добавить комент date('Y-m-d H:i:s', strtotime($paidDateAsStr))
 			AddNewComment($conn, $comment, $rating, date('Y-m-d H:i:s', time()), $idEntry, $userArray['idUser']);
 			// header("Location: ./descripshen?id=".$idEntry."");
-			header("Refresh:0; url=./descripshen?id=".$idEntry."");
+			header("Refresh:0; url=./descripshen.php?id=".$idEntry."");
 		}
 	}
 	else {
