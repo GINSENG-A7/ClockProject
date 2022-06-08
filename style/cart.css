@@ -147,7 +147,7 @@
   }
 }
 
-@media (max-width: 821px) {
+@media (max-width: 734px) {
   .header__logo div span:last-child {
     display: none;
   }
@@ -342,7 +342,7 @@
   }
 }
 
-@media (min-width: 821px) {
+@media (min-width: 734px) {
   .header__menu-icon {
     -webkit-animation-duration: 1s;
             animation-duration: 1s;

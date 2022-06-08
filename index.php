@@ -123,8 +123,13 @@
             <?php if ($login != NULL) {
 				$userArray = SelectUserByLogin($clockUsersConn, $login);
 				$recomendEntryesInOrdersIds = SelectAllRecomends($clockUsersConn, $userArray['idUser']);
-				$recomendEntryesArray = SelectEntryesByRecomended($conn, $recomendEntryesInOrdersIds);
-				$entryesBySectionArray = $recomendEntryesArray;
+				if ($recomendEntryesInOrdersIds != NULL) {
+					$recomendEntryesArray = SelectEntryesByRecomended($conn, $recomendEntryesInOrdersIds);
+					$entryesBySectionArray = $recomendEntryesArray;
+				}
+				else {
+					$entryesBySectionArray = SelectRandomEntryes($conn);
+				}
 			} else {
 				$entryesBySectionArray = SelectRandomEntryes($conn);
 			}

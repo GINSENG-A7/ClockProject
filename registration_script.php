@@ -59,7 +59,7 @@
 					$user->patronymic,
 					$user->district,
 					$user->city,
-					$suer->street,
+					$user->street,
 					$user->house,
 					$user->flat,
 					$user->postIndex,
