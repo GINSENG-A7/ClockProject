@@ -15,6 +15,7 @@ var tablinks = document.getElementsByClassName("tab-links");
 var _loop = function _loop(i) {
   tablinks[i].addEventListener("click", function () {
     openTab(event, tablinks[i].outerText);
+    localStorage.setItem(tablinks[i].id, 1);
     var bodyTextAreas = document.querySelectorAll(".wrapper-body");
 
     for (var _i5 = 0; _i5 < bodyTextAreas.length; _i5++) {
@@ -222,10 +223,12 @@ try {
 var cords = ['scrollX', 'scrollY']; // Перед закрытием записываем в локалсторадж window.scrollX и window.scrollY как scrollX и scrollY
 
 window.addEventListener('unload', function (e) {
-  return cords.forEach(function (cord) {
+  cords.forEach(function (cord) {
     return localStorage[cord] = window[cord];
   });
 }); // Прокручиваем страницу к scrollX и scrollY из localStorage (либо 0,0 если там еще ничего нет)
+
+document.querySelector("#" + localStorage.getItem('openedTab')).click();
 
 (_window = window).scroll.apply(_window, _toConsumableArray(cords.map(function (cord) {
   return localStorage[cord];

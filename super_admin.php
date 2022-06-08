@@ -32,14 +32,14 @@ if ($userArray['idRole'] == 1) {
 	<div class="tab">
 		<div>
 			<?for ($i = 0; $i < count($sectionsArray); $i++) {?>
-				<button class="tab-links"><?echo($sectionsArray[$i]['sectionName'])?></button>
+				<button id="<?=$sectionsArray[$i]['sectionName']?>" class="tab-links"><?echo($sectionsArray[$i]['sectionName'])?></button>
 			<?}?>
 		</div>
 		<div>
-			<button class="tab-links">Клиенты</button>
+			<button id="Клиенты" class="tab-links">Клиенты</button>
 		</div>
 		<div>
-			<button class="tab-links">Сотрудники</button>
+			<button id="Сотрудники" class="tab-links">Сотрудники</button>
 		</div>
 		<form  action="./exit_script.php" method="POST" class="exit_form">
 			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">

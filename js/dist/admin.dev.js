@@ -15,11 +15,12 @@ var tablinks = document.getElementsByClassName("tab-links");
 var _loop = function _loop(i) {
   tablinks[i].addEventListener("click", function () {
     openTab(event, tablinks[i].outerText);
+    localStorage.setItem("openedTab", tablinks[i].id);
     var bodyTextAreas = document.querySelectorAll(".wrapper-body");
 
     for (var _i9 = 0; _i9 < bodyTextAreas.length; _i9++) {
-      var bTA = bodyTextAreas[_i9];
-      console.log(bTA.scrollHeight); // bTA.style.height = bTA.scrollHeight;
+      var bTA = bodyTextAreas[_i9]; //  console.log(bTA.scrollHeight);
+      // bTA.style.height = bTA.scrollHeight;
       // bTA.style.overflowY = "hidden";
 
       bTA.setAttribute("style", "height:" + bTA.scrollHeight + "px;");
@@ -360,10 +361,12 @@ exitForm.addEventListener('submit', function _callee(e) {
 var cords = ['scrollX', 'scrollY']; // Перед закрытием записываем в локалсторадж window.scrollX и window.scrollY как scrollX и scrollY
 
 window.addEventListener('unload', function (e) {
-  return cords.forEach(function (cord) {
+  cords.forEach(function (cord) {
     return localStorage[cord] = window[cord];
   });
 }); // Прокручиваем страницу к scrollX и scrollY из localStorage (либо 0,0 если там еще ничего нет)
+
+document.querySelector("#" + localStorage.getItem('openedTab')).click();
 
 (_window = window).scroll.apply(_window, _toConsumableArray(cords.map(function (cord) {
   return localStorage[cord];
