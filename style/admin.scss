@@ -460,6 +460,15 @@ body {
 						}
 					}
 				}
+				&__track {
+					display: block;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
 			}
 		}
 

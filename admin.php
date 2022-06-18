@@ -392,14 +392,15 @@ if ($userArray['idRole'] == 2) {
 			// print_r($ticketsArray);
 			
 			$simpleTicketsArray = SelectAllFromSimpleTickets($clockUsersConn, true, $manager->idUser);
+			print_r($simpleTicketsArray);
 			if ($ticketsArray != NULL || $simpleTicketsArray != NULL) {
 				if ($ticketsArray == NULL) {
 					$mergedArray = $simpleTicketsArray;
 				}
-				elseif ($sectionsArray == NULL) {
+				elseif ($simpleTicketsArray == NULL) {
 					$mergedArray = $ticketsArray;
 				}
-				elseif ($ticketsArray != NULL && $sectionsArray != NULL) {
+				elseif ($ticketsArray != NULL && $simpleTicketsArray != NULL) {
 					$mergedArray = array_merge($ticketsArray, $simpleTicketsArray);
 				}
 				usort($mergedArray, "dateCompare");
@@ -478,16 +479,15 @@ if ($userArray['idRole'] == 2) {
 			$simpleTicketsArray = SelectAllFromSimpleTickets($clockUsersConn, true, NULL);
 			if ($ticketsArray != NULL || $simpleTicketsArray != NULL) {
 				if ($ticketsArray == NULL) {
-					$mergedArray = $sectionsArray;
+					$mergedArray = $simpleTicketsArray;
 				}
-				elseif ($sectionsArray == NULL) {
+				elseif ($simpleTicketsArray == NULL) {
 					$mergedArray = $ticketsArray;
 				}
-				elseif ($ticketsArray != NULL && $sectionsArray != NULL) {
+				elseif ($ticketsArray != NULL && $simpleTicketsArray != NULL) {
 					$mergedArray = array_merge($ticketsArray, $simpleTicketsArray);
 				}
 				usort($mergedArray, "dateCompare");
-				// print_r($mergedArray);
 				// print_r($mergedArray);
 				for ($i = 0; $i < count($mergedArray); $i++) {
 					if ($mergedArray[$i]['user_id'] != NULL) {

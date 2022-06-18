@@ -41,6 +41,9 @@ if ($userArray['idRole'] == 1) {
 		<div>
 			<button id="Сотрудники" class="tab-links">Сотрудники</button>
 		</div>
+		<div>
+			<button id="Сотрудники" class="tab-links">Материалы</button>
+		</div>
 		<form  action="./exit_script.php" method="POST" class="exit_form">
 			<input style = "height: 40px;background-color: darkgray;" type="submit" value="Выход">
 		</form>

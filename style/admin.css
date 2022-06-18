@@ -514,6 +514,18 @@ body {
   margin: 5px 0;
 }
 
+.tab-output .ordersGridWrapper .order__track {
+  display: block;
+}
+
+.tab-output .ordersGridWrapper .order__track p {
+  display: inline;
+}
+
+.tab-output .ordersGridWrapper .order__track p:first-child {
+  font-weight: 600;
+}
+
 .tab-output .ticketsGridWrapper {
   display: -ms-grid;
   display: grid;

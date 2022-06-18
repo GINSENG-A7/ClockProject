@@ -506,6 +506,7 @@ function SelectAllFromOrdersByStatus($connection, $status_id) {
 			'order_date'=>$row['order_date'],
 			'paid_date'=>$row['paid_date'],
 			'historicalDiscount'=>$row['historicalDiscount'],
+			'track'=>$row['track'],
 			'user_id'=>$row['user_id'],
 			'status_id'=>$row['status_id']
 		);
