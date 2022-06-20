@@ -3,6 +3,10 @@ body {
   background-color: black;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 body a {
   text-decoration: none;
@@ -317,6 +321,12 @@ hr {
 .phone:hover {
   text-decoration: underline;
   color: blue;
+}
+
+.headerWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .header {
@@ -840,6 +850,12 @@ hr {
 .phone:hover {
   text-decoration: underline;
   color: blue;
+}
+
+.headerWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .header {
@@ -1690,6 +1706,48 @@ hr {
   ._touch .section-about .card__img .img {
     width: 100%;
   }
+}
+
+.backwardButton {
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  height: 40px;
+  background-color: gainsboro;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.backwardButton:hover {
+  color: #FFF !important;
+  background-color: transparent;
+  text-shadow: none;
+}
+.backwardButton:hover:before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
+}
+.backwardButton:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: "";
+  color: #000 !important;
+  background: #5a5a5a;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.backwardButton p {
+  line-height: normal;
+  vertical-align: middle;
+  font-size: 20px;
+  text-align: center;
+  margin: 0px;
 }
 
 .number {

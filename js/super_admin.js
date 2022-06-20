@@ -64,8 +64,111 @@ function openTab(event, tabName) {
 	event.currentTarget.className += " active";
 }
 
-let sizeFormsArray = document.querySelectorAll(".sizeEditForm");
+let picturesForms = document.querySelectorAll("form.deleteOnePictureForm");
+for (let i = 0; i < picturesForms.length; i++) {
+	let pictureForm = picturesForms[i];
+	let xButton = pictureForm.querySelector("#X-button");
+	let submitInput = pictureForm.querySelector("#X-submit");
 
+	xButton.addEventListener("click", () => {
+		submitInput.click();
+	});
+
+	pictureForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(pictureForm.action, {
+			method: 'POST',
+			body: new FormData(pictureForm)
+		});
+		if (response.ok) {
+			alert("Фото успешно удалено.");
+			window.location.replace("../super_admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}
+
+let insertImageForms = document.querySelectorAll("form.insertImageForm");
+for (let i = 0; i < insertImageForms.length; i++) {
+	let insertImage = insertImageForms[i];
+	let insertButton = insertImage.querySelector("#insertImage-button");
+	let filesInput = insertImage.querySelector("#files");
+	let submitInput = insertImage.querySelector("#insertImage-submit");
+
+	filesInput.addEventListener('change', handleFileSelect, false);
+	function handleFileSelect(event) {
+		let files = event.target.files; // FileList object
+		let output = [];
+		for (let i = 0, f; f = files[i]; i++) {
+			output.push(escape(f.name));
+		}
+		if (files != null || files != undefined || output.length > 0) {
+			submitInput.click();
+		}
+		console.log(output);
+
+	}
+
+	filesInput.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(filesInput.action, {
+			method: 'POST',
+			body: new FormData(filesInput)
+		});
+		if (response.ok) {
+			alert("Фото успешно добавлено.");
+			window.location.replace("../super_admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+	
+	insertButton.addEventListener("click", (event) => {
+		filesInput.click();
+		event.stopPropagation();
+	});
+}
+
+let outputForms = document.querySelectorAll(".outputForm");
+for (const outputForm of outputForms) {
+	outputForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(outputForm.action, {
+			method: 'POST',
+			body: new FormData(outputForm)
+		});
+		if (response.ok) {
+			alert("Данные успешно обновлены.");
+			window.location.replace("../super_admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}
+
+let tabContentForms = document.querySelectorAll(".tab-content > form");
+for (const tabContentForm of tabContentForms) {
+	tabContentForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(tabContentForm.action, {
+			method: 'POST',
+			body: new FormData(tabContentForm)
+		});
+		if (response.ok) {
+			alert("Данные успешно добавлены.");
+			window.location.replace("../super_admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}
+
+let sizeFormsArray = document.querySelectorAll(".sizeEditForm");
 for (const sizeForm of sizeFormsArray) {
 	sizeForm.addEventListener('submit', async (e) => {
 		e.preventDefault();
@@ -75,6 +178,7 @@ for (const sizeForm of sizeFormsArray) {
 		});
 		if (response.ok) {
 			alert("Размер больше не активен");
+			window.location.replace("../super_admin.php");
 		}
 		else {
 			alert("Request error");
@@ -114,6 +218,7 @@ for (const clientForm of clientFormsArray) {
 		if (response.ok) {
 			// window.location.replace("../index.php");
 			alert("Учётная запись успешно создана");
+			window.location.replace("../super_admin.php");
 		}
 		else {
 			alert("Request error");
@@ -131,6 +236,23 @@ for (const clientForm of clientFormsArray) {
 		}
 	});
 }
+
+let exitForm = document.querySelector(".exit_form");
+exitForm.addEventListener('submit', async (e) => {
+	e.preventDefault();
+	let response = await fetch(exitForm.action, {
+		method: 'POST',
+		body: new FormData(exitForm)
+	});
+	let formAction = exitForm.action.substring(exitForm.action.lastIndexOf("/") + 1);
+	if (response.ok) {
+		alert("Вы успешно вышли из учётной записи.");
+		window.location.replace("../index.php");
+	}
+	else {
+		alert("Request error");
+	}
+});
 
 let cords = ['scrollX','scrollY'];
 // Перед закрытием записываем в локалсторадж window.scrollX и window.scrollY как scrollX и scrollY

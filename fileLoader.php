@@ -88,24 +88,37 @@
 			//inserting entryes in tables IMAGES & ENTRYES
 
 			$sectionsArray = SelectAllSections($conn);
-			if (isset($_POST['Title']) && 
+
+			//Adding new pictures
+			if (isset($_POST['Entry-id'])) {
+				$entryId = $_POST['Entry-id'];
+				//добавление картинок
+				for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
+					AddNewImages($conn, $tempFilesPathArray[$j], $entryId);
+				}
+			}
+
+			elseif (isset($_POST['Title']) && 
 			isset($_POST['Price']) && 
 			isset($_POST['Body']) &&
-			isset($_POST['Tab-id'])) {
+			isset($_POST['Tab-id']) &&
+			isset($_POST['Material'])) {
 				$title = $_POST['Title'];
 				$body = $_POST['Body'];
 				$price = $_POST['Price'];
 				$tabName = $_POST['Tab-id'];
+				$idMaterial = $_POST['Material'];
 				echo($title);
 				echo($body);
 				echo($price);
 				echo($tabName);
+				echo($idMaterial);
 				for ($i = 0; $i < count($sectionsArray); $i++) {
 					// echo (strcasecmp(trim($POST['Tab-id']),  trim($sectionsArray[$i])) == 0) ? 'Equal' : 'Not equal';
 					print_r($sectionsArray[$i]['sectionName']);
 					if(trim($tabName) == trim($sectionsArray[$i]['sectionName'])) {
 						echo("!");
-						AddNewEntry($conn, $title, $body, $price, SelectSectionIdByName($conn, $tabName));
+						AddNewEntry($conn, $title, $body, $price, $idMaterial, SelectSectionIdByName($conn, $tabName));
 						$lastInsertedIdInEntryes = mysqli_insert_id($conn);
 						for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
 							AddNewImages($conn, $tempFilesPathArray[$j], $lastInsertedIdInEntryes);
@@ -117,14 +130,6 @@
 				throw new Exception('POST data is not set.');
 			}
 
-			//Adding new pictures
-			if (isset($_POST['Entry-id'])) {
-				$entryId = $_POST['Entry-id'];
-				//добавление картинок
-				for($j = 0 ; $j < count($tempFilesPathArray); $j++) {
-					AddNewImages($conn, $tempFilesPathArray[$j], $entryId);
-				}
-			}
 
 			exit;
 			

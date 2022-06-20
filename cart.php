@@ -179,15 +179,25 @@ else {
 								</div>
 							</form>
 						</div>
+					<button id="newOrderButton" class="submit_input">Заказать</button>
+					<div class="cloneFormsWrapper"></div>
 					<?
 					}
 				}
+				elseif ($entryesInOrderArray == NULL && empty($entryesInOrderArray)) {
+					?>
+					<div class="noItemsInCart">
+						<h2>Ваша корзина пуста</h2>
+					</div>
+					<?
+				}
+			}
+			elseif ($cart == NULL && empty($cart)){
 				?>
-				<button id="newOrderButton" class="submit_input">Заказать</button>
-				<div class="cloneFormsWrapper">
-
+				<div class="noItemsInCart">
+					<h2>Ваша корзина пуста</h2>
 				</div>
-			<?
+				<?
 			}
 			?>
 		</div>

@@ -39,8 +39,20 @@ function AddNewImages($connection, $path, $idEntry) {
 	mysqli_query($connection, $sql);
 }
 
-function AddNewEntry($connection, $title, $body, $price, $idSection) {
-	$sql = "INSERT INTO `entryes` (idEntry, title, body, price, idSection) VALUES (DEFAULT, '$title', '$body', $price, $idSection)";
+function AddNewEntry($connection, $title, $body, $price, $idMaterial, $idSection) {
+	$sql = "INSERT INTO `entryes` (idEntry, title, body, price, idMaterial, idSection) VALUES (DEFAULT, '$title', '$body', $price, $idMaterial, $idSection)";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+
+function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice, $newMaterialId) {
+	$sql = "UPDATE entryes SET title = '".$newTitle."', body = '".$newBody."', price = '$newPrice', idMaterial = ".$newMaterialId." WHERE idEntry = ".$idEntry."";
+	print_r($sql);
+	mysqli_query($connection, $sql);
+}
+function UpdateEntryActivityById($connection, $idEntry, $isActive) {
+	$sql = "UPDATE entryes SET isActive = ".$isActive." WHERE idEntry = ".$idEntry."";
+	print_r($sql);
 	mysqli_query($connection, $sql);
 }
 
@@ -189,16 +201,6 @@ function DeleteSizeById($connection, $idSize) {
 
 function UpdateSizeIsActiveById($connection, $isActive, $idSize) {
 	$sql = "UPDATE `sizes` SET isActive = ".$isActive." WHERE idSize = ".$idSize."";
-	print_r($sql);
-	mysqli_query($connection, $sql);
-}
-
-function UpdateEntryById($connection, $idEntry, $newTitle, $newBody, $newPrice) {
-	$sql = "UPDATE entryes SET title = '".$newTitle."', body = '".$newBody."', price = '$newPrice' WHERE idEntry = ".$idEntry."";
-	mysqli_query($connection, $sql);
-}
-function UpdateEntryActivityById($connection, $idEntry, $isActive) {
-	$sql = "UPDATE entryes SET isActive = ".$isActive." WHERE idEntry = ".$idEntry."";
 	print_r($sql);
 	mysqli_query($connection, $sql);
 }

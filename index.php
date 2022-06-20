@@ -118,7 +118,7 @@
     </section>
     <section class="section-about">
         <div class="wrapper">
-            <h2  class="title-h2 text-center" >Список товаров</h2>
+            <h2  class="title-h2 text-center" >Рекомендуем</h2>
             <div class="card">
             <?php if ($login != NULL) {
 				$userArray = SelectUserByLogin($clockUsersConn, $login);
@@ -137,7 +137,7 @@
 			for($i = 0 ; $i<count($entryesBySectionArray);$i++) {  
 			// $img = SelectAllImagesByEntryId($conn, $entryesBySectionArray[$i]['idEntry']);
 			$entryesBySectionArray[$i]->setImages($conn);
-			if(count($entryesBySectionArray[$i]->imagesArray) > 1) {
+			if(count($entryesBySectionArray[$i]->imagesArray) > 0) {
 			?> 
 				<div class="card__item">
 					<a href="./descripshen.php?id=<?=$entryesBySectionArray[$i]->idEntry?>">

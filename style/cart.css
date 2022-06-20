@@ -9,6 +9,12 @@
   color: blue;
 }
 
+.headerWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .header {
   max-width: 1000px;
   padding-left: 15px;
@@ -555,6 +561,22 @@ h2 {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+}
+
+.noItemsInCart {
+  height: 74vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 45px;
+  color: #333;
 }
 
 .invisible {

@@ -30,7 +30,7 @@
 					<span class="line"></span>
                     <div class="wrapper-buttons">
                         <div class="button" id="loginButton"><p>Войти</p></div>
-						<div class="button" id="loginVKButton"><p>Войти через VK</p></div>
+						<!-- <div class="button" id="loginVKButton"><p>Войти через VK</p></div> -->
 						<div class="button" id="registerButton"><p>Зарегистрироваться</p></div>
                     </div>
                 </form>

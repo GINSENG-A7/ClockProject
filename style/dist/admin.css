@@ -125,7 +125,10 @@ body {
   margin-bottom: 10px;
 }
 .tab-output .entry-wrapper {
-  margin-top: 30px;
+  margin-top: 20px;
+  height: fit-content;
+  margin-bottom: 60px;
+  border-top: 1px solid #555;
 }
 .tab-output .entry-wrapper:first-of-type {
   margin-top: 0px;
@@ -156,7 +159,6 @@ body {
   width: 100%;
 }
 .tab-output .radioWrapper {
-  background-color: aquamarine;
   height: 100px;
   width: 117px;
   display: block;
@@ -182,11 +184,11 @@ body {
 }
 .tab-output .imageWrapper {
   width: calc(100% - 156px);
-  height: calc(83px + 17px);
+  height: calc(83px + 21px);
   outline: springgreen;
   outline-style: solid;
   position: absolute;
-  margin-top: -93px;
+  margin-top: -60px;
   display: flex;
   flex-direction: row;
   gap: 2px;

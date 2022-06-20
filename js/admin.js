@@ -69,18 +69,33 @@ function openTab(event, tabName) {
 //Rebind button click to invisible submit in the form
 let picturesForms = document.querySelectorAll("form.deleteOnePictureForm");
 for (let i = 0; i < picturesForms.length; i++) {
-	pictureForm = picturesForms[i];
+	let pictureForm = picturesForms[i];
 	let xButton = pictureForm.querySelector("#X-button");
 	let submitInput = pictureForm.querySelector("#X-submit");
 
 	xButton.addEventListener("click", () => {
 		submitInput.click();
 	});
+
+	pictureForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(pictureForm.action, {
+			method: 'POST',
+			body: new FormData(pictureForm)
+		});
+		if (response.ok) {
+			alert("Фото успешно удалено.");
+			window.location.replace("../admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
 }
 
-let  insertImageForms = document.querySelectorAll("form.insertImageForm");
+let insertImageForms = document.querySelectorAll("form.insertImageForm");
 for (let i = 0; i < insertImageForms.length; i++) {
-	insertImage = insertImageForms[i];
+	let insertImage = insertImageForms[i];
 	let insertButton = insertImage.querySelector("#insertImage-button");
 	let filesInput = insertImage.querySelector("#files");
 	let submitInput = insertImage.querySelector("#insertImage-submit");
@@ -99,11 +114,60 @@ for (let i = 0; i < insertImageForms.length; i++) {
 
 	}
 
-
+	filesInput.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(filesInput.action, {
+			method: 'POST',
+			body: new FormData(filesInput)
+		});
+		if (response.ok) {
+			alert("Фото успешно добавлено.");
+			window.location.replace("../admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
 	
 	insertButton.addEventListener("click", (event) => {
 		filesInput.click();
 		event.stopPropagation();
+	});
+}
+
+let outputForms = document.querySelectorAll(".outputForm");
+for (const outputForm of outputForms) {
+	outputForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(outputForm.action, {
+			method: 'POST',
+			body: new FormData(outputForm)
+		});
+		if (response.ok) {
+			alert("Данные успешно обновлены.");
+			window.location.replace("../admin.php");
+		}
+		else {
+			alert("Request error");
+		}
+	});
+}
+
+let tabContentForms = document.querySelectorAll(".tab-content > form");
+for (const tabContentForm of tabContentForms) {
+	tabContentForm.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		let response = await fetch(tabContentForm.action, {
+			method: 'POST',
+			body: new FormData(tabContentForm)
+		});
+		if (response.ok) {
+			alert("Данные успешно добавлены.");
+			window.location.replace("../admin.php");
+		}
+		else {
+			alert("Request error");
+		}
 	});
 }
 
@@ -117,6 +181,7 @@ for (let i = 0; i < updateClientDiscountForms.length; i++) {
 		});
 		if (response.ok) {
 			alert("Данные учётной записи успешно обновлены");
+			window.location.replace("../admin.php");
 		}
 		else {
 			alert("Request error");
@@ -138,12 +203,14 @@ for (const button of orderLinkWrappedButtonsArray) {
 		});
 		if (response.ok) {
 			alert("Данные успешно обновлены");
+			window.location.replace("../admin.php");
 		}
 		else {
 			alert("Request error");
 		}
 	});
 }
+
 let cancelOrderButtonsArray = document.querySelectorAll('.cancel_order_btn');
 for (const cancelOrderButton of cancelOrderButtonsArray) {
 	cancelOrderButton.addEventListener("click", (event) => {
@@ -166,6 +233,7 @@ for (const form of ticketForms) {
 		if (response.ok) {
 			if (formAction == "perform_ticket_script.php") {
 				alert("Вы назначены ответственным за разрешение данного обращения.");
+				window.location.replace("../admin.php");
 			}
 			else if (formAction == "close_ticket_script.php") {
 				alert("Обращение было закрыто.");

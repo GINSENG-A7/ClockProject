@@ -110,6 +110,18 @@ if ($userArray['idRole'] == 1) {
 						<span class="wrapper-span">Описание</span>
 						<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"></textarea>
 					</div>
+					<div class="wrapper">
+						<span class="wrapper-span">Материал</span>
+						<select name="Material" id="material">
+							<?
+							for ($y = 0; $y < count($materialsArray); $y++) { 
+								?>
+								<option value="<?=$materialsArray[$y]['idMaterial']?>"><?=$materialsArray[$y]['value']?></option>
+								<?
+							}
+							?>
+						</select>
+					</div>
 					<!-- <input id="files_input-1" type="submit" value='Загрузить' name="submit"> -->
 					<!-- <button id="loadDataButton-1" class="tab-content-button"></button> -->
 					<div class="fileInputWrapper">
@@ -175,7 +187,7 @@ if ($userArray['idRole'] == 1) {
 													<img src="<?echo($entryesBySectionArray[$j]->imagesArray[$u]->path)?>" alt="">
 													<button id="X-button" class="X-button">X</button>
 													<input id="X-submit" type="submit" class="X-submit">
-													<input type="hidden" name="ImageId" value="<?echo($imagesByEntryArray[$u]['idImage'])?>">
+													<input type="hidden" name="ImageId" value="<?echo($entryesBySectionArray[$j]->imagesArray[$u]->idImage)?>">
 												</form>
 											</div>
 										<?}?>

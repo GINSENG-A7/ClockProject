@@ -83,6 +83,18 @@ if ($userArray['idRole'] == 2) {
 					<span class="wrapper-span">Описание</span>
 					<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"></textarea>
 				</div>
+				<div class="wrapper">
+					<span class="wrapper-span">Материал</span>
+					<select name="Material" id="material">
+						<?
+						for ($y = 0; $y < count($materialsArray); $y++) { 
+							?>
+							<option value="<?=$materialsArray[$y]['idMaterial']?>"><?=$materialsArray[$y]['value']?></option>
+							<?
+						}
+						?>
+					</select>
+				</div>
 				<!-- <input id="files_input-1" type="submit" value='Загрузить' name="submit"> -->
 				<!-- <button id="loadDataButton-1" class="tab-content-button"></button> -->
 				<div class="fileInputWrapper">
@@ -125,6 +137,10 @@ if ($userArray['idRole'] == 2) {
 										<span class="wrapper-span">Описание</span>
 										<textarea class="wrapper-body" name="Body" id="body" cols="30" rows="1"><?echo($entryesBySectionArray[$j]->body)?></textarea>
 									</div>
+									<div class="radioWrapper">
+										<p><input type="radio" name="IsActive" value="Enabled" <?if($entryesBySectionArray[$j]->isActive == true) {echo("checked");}?>> Активен</p> 
+										<p><input type="radio" name="IsActive" value="Disabled" <?if($entryesBySectionArray[$j]->isActive == false) {echo("checked");}?>> Неактивен</p> 
+									</div>
 									<div class="wrapper">
 										<span class="wrapper-span">Материал</span>
 										<select name="Material" id="material">
@@ -151,10 +167,10 @@ if ($userArray['idRole'] == 2) {
 									<input type="hidden" name="Section-id" value="<?echo($sectionsArray[$i]['sectionName'])?>">
 									<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
 								</form>
-								<form id="deleteForm-<?echo($i)?>-<?echo($j)?>" class="deleteForm" method="POST" action="dataDeleter.php">
+								<!-- <form id="deleteForm-<?//echo($i)?>-<?//echo($j)?>" class="deleteForm" method="POST" action="dataDeleter.php">
 									<input id="delete_input" type="submit" name="Post-delete" value="Удалить">
-									<input type="hidden" name="Entry-id" value="<?echo($entryesBySectionArray[$j]->idEntry)?>">
-								</form>
+									<input type="hidden" name="Entry-id" value="<?//echo($entryesBySectionArray[$j]->idEntry)?>">
+								</form> -->
 	
 								<?$entryesBySectionArray[$j]->setImages($conn);?>
 								<input id="imagesByEntryArray" type="hidden" value="imagesByEntryArray" data-imagesByEntryArrayLength="<?echo(count($entryesBySectionArray[$j]->imagesArray))?>">
@@ -165,7 +181,7 @@ if ($userArray['idRole'] == 2) {
 													<img src="<?echo($entryesBySectionArray[$j]->imagesArray[$u]->path)?>" alt="">
 													<button id="X-button" class="X-button">X</button>
 													<input id="X-submit" type="submit" class="X-submit">
-													<input type="hidden" name="ImageId" value="<?echo($imagesByEntryArray[$u]['idImage'])?>">
+													<input type="hidden" name="ImageId" value="<?echo($entryesBySectionArray[$j]->imagesArray[$u]->idImage)?>">
 												</form>
 											</div>
 										<?}?>
