@@ -462,6 +462,16 @@ body {
 .tab-output .ticketsGridWrapper .ticket__contacts p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__contacts p:first-child {
   font-weight: 600;
 }
+.tab-output .ticketsGridWrapper .ticket__email, .tab-output .ticketsGridWrapper .simple_ticket__email {
+  display: block;
+  margin: 5px 0;
+}
+.tab-output .ticketsGridWrapper .ticket__email p, .tab-output .ticketsGridWrapper .simple_ticket__email p {
+  display: inline;
+}
+.tab-output .ticketsGridWrapper .ticket__email p:first-child, .tab-output .ticketsGridWrapper .simple_ticket__email p:first-child {
+  font-weight: 600;
+}
 .tab-output .ticketsGridWrapper .ticket input[type=submit], .tab-output .ticketsGridWrapper .simple_ticket input[type=submit] {
   margin-top: 5px;
 }

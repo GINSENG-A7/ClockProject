@@ -366,9 +366,9 @@ try {
             case 0:
               e.preventDefault();
               _context7.next = 3;
-              return regeneratorRuntime.awrap(fetch(form.action, {
+              return regeneratorRuntime.awrap(fetch(button.form.action, {
                 method: 'POST',
-                body: new FormData(form)
+                body: new FormData(button.form)
               }));
 
             case 3:

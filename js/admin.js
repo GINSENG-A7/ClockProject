@@ -197,9 +197,9 @@ for (const button of orderLinkWrappedButtonsArray) {
 	});
 	button.form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		let response = await fetch(form.action, {
+		let response = await fetch(button.form.action, {
 			method: 'POST',
-			body: new FormData(form)
+			body: new FormData(button.form)
 		});
 		if (response.ok) {
 			alert("Данные успешно обновлены");

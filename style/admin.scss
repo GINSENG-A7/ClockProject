@@ -549,6 +549,16 @@ body {
 						}
 					}
 				}
+				&__email {
+					display: block;
+					margin: 5px 0;
+					p {
+						display: inline;
+						&:first-child {
+							font-weight: 600;
+						}
+					}
+				}
 				input[type=submit] {
 					margin-top: 5px;
 				}

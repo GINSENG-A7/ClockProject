@@ -445,6 +445,10 @@ if ($userArray['idRole'] == 2) {
 									<p>Логин пользователя: </p>
 									<p><?echo($user->login);?> </p>
 								</div>
+								<div class="ticket__email">
+									<p>Почта пользователя: </p>
+									<p><?echo($user->email);?></p>
+								</div>
 								<input name="becomeTicketPerformer" type="submit" value="Завершить">
 								<!-- Добавить асинхронное выполнение скрипта -->
 							</form>

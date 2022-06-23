@@ -23,6 +23,7 @@
   color: white;
   justify-content: space-between;
   align-items: center;
+  background-color: #000;
 }
 .header__logo {
   display: flex;
@@ -408,7 +409,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: #282828;
   margin: 0;
   padding: 0;
   color: #FFF;

@@ -109,12 +109,23 @@ for (const numberInput of numberInputsArray) {
 	cloneFormsWrapper.appendChild(form);
 }
 
-let newOrderButton = document.querySelector("#newOrderButton");
-let submitInputsArray = cloneFormsWrapper.querySelectorAll('input[type="submit"]');
-newOrderButton.addEventListener('click', (event) => {
-	for (const submitInput of submitInputsArray) {
-		submitInput.click();
-	}
+try {
+	let newOrderButton = document.querySelector("#newOrderButton");
+	let submitInputsArray = cloneFormsWrapper.querySelectorAll('input[type="submit"]');
+	newOrderButton.addEventListener('click', (event) => {
+		for (const submitInput of submitInputsArray) {
+			submitInput.click();
+		}
+	});
+	
+} catch (error) {
+	
+}
+
+
+let backwardButton = document.querySelector(".backwardButton");
+backwardButton.addEventListener("click", (e) => {
+	history.go(-1);
 });
 
 let cords = ['scrollX','scrollY'];

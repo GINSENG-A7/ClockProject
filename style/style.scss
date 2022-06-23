@@ -9,13 +9,14 @@ $accent: #1071FF;
 $soft: #FCFCFA;
 
 body {
-    background-color: black;
+    background-color: rgb(40, 40, 40);
     margin: 0;
     padding: 0;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	overflow-x: hidden;
 	a {
 		text-decoration: none;
 		color: $light;
@@ -174,7 +175,10 @@ hr {
         &__item{
             display: grid;
             grid-auto-flow: row;
-            grid-template: auto 1fr minmax(40px,auto)/ 1fr;
+            grid-template: auto minmax(40px,auto)/ 1fr;
+			padding: 5px;
+			border: 3px solid #555;
+			border-radius: 10px;
             //overflow: hidden;
             //background-image: url(../img/clock/2a1ee2_b7d9e76fb7ed4bafa73e7ec7f246d8d7_mv2.webp);
         }
@@ -216,7 +220,7 @@ hr {
         &__btn{
             padding: 8px;
             margin-top: 10px;
-            max-width: 35%;
+            max-width: 40%;
             transition: all 1s;
             cursor: pointer;
             a {

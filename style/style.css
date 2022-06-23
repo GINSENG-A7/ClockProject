@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-  background-color: black;
+  background-color: #282828;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -14,6 +14,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  overflow-x: hidden;
 }
 
 body a {
@@ -481,6 +482,7 @@ hr {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #000;
 }
 
 .header__logo {
@@ -1064,9 +1066,12 @@ hr {
   display: -ms-grid;
   display: grid;
   grid-auto-flow: row;
-  -ms-grid-rows: auto 1fr minmax(40px, auto);
+  -ms-grid-rows: auto minmax(40px, auto);
   -ms-grid-columns: 1fr;
-      grid-template: auto 1fr minmax(40px, auto)/1fr;
+      grid-template: auto minmax(40px, auto)/1fr;
+  padding: 5px;
+  border: 3px solid #555;
+  border-radius: 10px;
 }
 
 .section-about .card__img {
@@ -1110,7 +1115,7 @@ hr {
 .section-about .card__btn {
   padding: 8px;
   margin-top: 10px;
-  max-width: 35%;
+  max-width: 40%;
   -webkit-transition: all 1s;
   transition: all 1s;
   cursor: pointer;
@@ -1167,6 +1172,7 @@ hr {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #000;
 }
 
 .header__logo {

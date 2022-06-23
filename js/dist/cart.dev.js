@@ -217,32 +217,39 @@ try {
   }
 }
 
-var newOrderButton = document.querySelector("#newOrderButton");
-var submitInputsArray = cloneFormsWrapper.querySelectorAll('input[type="submit"]');
-newOrderButton.addEventListener('click', function (event) {
-  var _iteratorNormalCompletion4 = true;
-  var _didIteratorError4 = false;
-  var _iteratorError4 = undefined;
+try {
+  var newOrderButton = document.querySelector("#newOrderButton");
+  var submitInputsArray = cloneFormsWrapper.querySelectorAll('input[type="submit"]');
+  newOrderButton.addEventListener('click', function (event) {
+    var _iteratorNormalCompletion4 = true;
+    var _didIteratorError4 = false;
+    var _iteratorError4 = undefined;
 
-  try {
-    for (var _iterator4 = submitInputsArray[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-      var submitInput = _step4.value;
-      submitInput.click();
-    }
-  } catch (err) {
-    _didIteratorError4 = true;
-    _iteratorError4 = err;
-  } finally {
     try {
-      if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-        _iterator4["return"]();
+      for (var _iterator4 = submitInputsArray[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+        var submitInput = _step4.value;
+        submitInput.click();
       }
+    } catch (err) {
+      _didIteratorError4 = true;
+      _iteratorError4 = err;
     } finally {
-      if (_didIteratorError4) {
-        throw _iteratorError4;
+      try {
+        if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+          _iterator4["return"]();
+        }
+      } finally {
+        if (_didIteratorError4) {
+          throw _iteratorError4;
+        }
       }
     }
-  }
+  });
+} catch (error) {}
+
+var backwardButton = document.querySelector(".backwardButton");
+backwardButton.addEventListener("click", function (e) {
+  history.go(-1);
 });
 var cords = ['scrollX', 'scrollY']; // Перед закрытием записываем в локалсторадж window.scrollX и window.scrollY как scrollX и scrollY
 
